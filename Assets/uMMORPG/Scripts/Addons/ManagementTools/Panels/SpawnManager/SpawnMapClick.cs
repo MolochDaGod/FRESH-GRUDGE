@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+#if _SQLITE
+using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -128,3 +129,5 @@ public class SpawnMapClick : MonoBehaviour, IPointerClickHandler, IPointerEnterH
 #endif
     }
 }
+
+#endif

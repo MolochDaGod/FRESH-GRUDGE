@@ -427,7 +427,9 @@ public partial class Player : Entity
 
         if (isLocalPlayer)
             localPlayer = null;
+#if _SQLITE
         OnDestroy_StaffMembersUpdate();
+#endif
 
     }
 
@@ -1085,7 +1087,9 @@ public partial class Player : Entity
     [Client]
     protected override void UpdateClient()
     {
+#if _SQLITE
         UpdateClient_SetObjectViaPosition();
+#endif
 
         if (state == "IDLE" || state == "MOVING")
         {

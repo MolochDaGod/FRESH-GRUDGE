@@ -1,4 +1,5 @@
-﻿#if UNITY_EDITOR
+#if _SQLITE
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 
@@ -234,4 +235,5 @@ public sealed class MToolsSetupRemastered3D : MToolsSetupBase
         return false;
     }
 }
+#endif
 #endif

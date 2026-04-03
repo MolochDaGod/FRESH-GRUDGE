@@ -1,4 +1,5 @@
-﻿using System;
+#if _SQLITE
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -1119,3 +1120,4 @@ public class RAHR_UI_AuctionHouse : MonoBehaviour {
     }
     #endregion
 }
+#endif

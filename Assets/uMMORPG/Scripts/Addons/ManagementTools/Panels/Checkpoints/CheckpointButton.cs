@@ -1,4 +1,5 @@
-﻿using TMPro;
+#if _SQLITE
+using TMPro;
 using UnityEngine;
 
 public class CheckpointButton : MonoBehaviour
@@ -47,3 +48,5 @@ public struct Checkpoint
     }
 #endif
 }
+
+#endif

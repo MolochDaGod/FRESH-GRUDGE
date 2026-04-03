@@ -1,4 +1,5 @@
-﻿using TMPro;
+#if _SQLITE
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -229,3 +230,5 @@ public class UIDatabaseInfo : MonoBehaviour
 #endif
     }
 }
+
+#endif

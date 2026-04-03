@@ -1,4 +1,5 @@
-﻿#if UNITY_EDITOR
+#if _SQLITE
+#if UNITY_EDITOR
 using System.IO;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -807,4 +808,5 @@ public abstract class MToolsSetupBase : EditorWindow
         GetPage(page);
     }
 }
+#endif
 #endif

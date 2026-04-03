@@ -1,4 +1,5 @@
-﻿using Mirror;
+#if _SQLITE
+using Mirror;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -161,3 +162,5 @@ public class UIPasswordChange : MonoBehaviour
         saveButton.interactable = authenticator.loginPassword == passwordCurrentInputField.text ? true : false;
     }
 }
+
+#endif

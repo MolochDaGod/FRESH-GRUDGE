@@ -1,4 +1,5 @@
-﻿using System;
+#if _SQLITE
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -178,3 +179,5 @@ public class UIItemManager : MonoBehaviour
         */
     }
 }
+
+#endif

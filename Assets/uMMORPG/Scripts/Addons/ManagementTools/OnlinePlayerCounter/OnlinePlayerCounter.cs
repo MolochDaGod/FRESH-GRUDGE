@@ -1,4 +1,5 @@
-﻿using Mirror;
+#if _SQLITE
+using Mirror;
 using UnityEngine;
 
 public class OnlinePlayerCounter : NetworkBehaviour
@@ -39,3 +40,5 @@ public class OnlinePlayerCounter : NetworkBehaviour
         }
     }
 }
+
+#endif

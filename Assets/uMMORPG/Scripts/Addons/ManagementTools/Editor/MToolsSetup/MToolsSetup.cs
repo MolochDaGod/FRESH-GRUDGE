@@ -1,3 +1,4 @@
+#if _SQLITE
 #if UNITY_EDITOR
 //using Controller2k;
 using UnityEditor;
@@ -57,4 +58,5 @@ public static class MToolsSetup
         return LayerMask.GetMask("Default");
     }
 }
+#endif
 #endif

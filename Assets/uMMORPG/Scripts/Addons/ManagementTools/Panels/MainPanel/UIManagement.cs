@@ -1,4 +1,5 @@
-﻿using System;
+#if _SQLITE
+using System;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -436,3 +437,5 @@ public class UIManagement : MonoBehaviour
         canvas.enabled = false;
     }
 }
+
+#endif

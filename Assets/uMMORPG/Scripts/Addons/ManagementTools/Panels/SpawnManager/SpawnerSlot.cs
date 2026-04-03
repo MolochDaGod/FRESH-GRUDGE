@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+#if _SQLITE
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -50,3 +51,5 @@ public class SpawnerSlot : MonoBehaviour
         Destroy(gameObject);
     }
 }
+
+#endif

@@ -1,4 +1,5 @@
-﻿using TMPro;
+#if _SQLITE
+using TMPro;
 using UnityEngine;
 
 public class UIInfo : MonoBehaviour
@@ -29,3 +30,5 @@ public class UIInfo : MonoBehaviour
         canvas.enabled = false;
     }
 }
+
+#endif

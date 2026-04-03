@@ -1,4 +1,5 @@
-﻿using TMPro;
+#if _SQLITE
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -159,3 +160,5 @@ public class UISpawnMap : MonoBehaviour
         canvas.enabled = false;
     }
 }
+
+#endif

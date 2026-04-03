@@ -1,4 +1,5 @@
-﻿using System;
+#if _SQLITE
+using System;
 using System.Text;
 using TMPro;
 using UnityEngine;
@@ -807,3 +808,4 @@ public struct PlayerInfo
         muted = _muted;
     }
 }
+#endif

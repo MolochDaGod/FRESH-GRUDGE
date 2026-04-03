@@ -1,4 +1,5 @@
-﻿using TMPro;
+#if _SQLITE
+using TMPro;
 using UnityEngine;
 
 public class UIItemTooltip : MonoBehaviour
@@ -35,3 +36,5 @@ public class UIItemTooltip : MonoBehaviour
         }
     }
 }
+
+#endif

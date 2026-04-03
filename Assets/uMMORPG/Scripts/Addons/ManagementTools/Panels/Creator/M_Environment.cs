@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+#if _SQLITE
+using UnityEngine;
 using Mirror;
 
 public partial class M_Environment : NetworkBehaviour
@@ -10,3 +11,5 @@ public partial class M_Environment : NetworkBehaviour
         transform.name = transform.name.Replace("(Clone)", "").Trim();
     }
 }
+
+#endif

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+#if _SQLITE
+using UnityEngine;
 using UnityEngine.UI;
 
 public class UITeleportMap : MonoBehaviour
@@ -104,3 +105,5 @@ public class UITeleportMap : MonoBehaviour
         teleportCamera.transform.position = cameraLocation;
     }
 }
+
+#endif

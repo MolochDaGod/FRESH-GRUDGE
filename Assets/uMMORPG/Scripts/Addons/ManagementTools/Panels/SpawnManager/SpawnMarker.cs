@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+#if _SQLITE
+using UnityEngine;
 
 public class SpawnMarker : MonoBehaviour
 {
@@ -24,3 +25,5 @@ public class SpawnMarker : MonoBehaviour
     }
 #endif
 }
+
+#endif

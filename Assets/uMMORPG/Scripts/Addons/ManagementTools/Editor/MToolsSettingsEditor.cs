@@ -1,4 +1,5 @@
-﻿#if UNITY_EDITOR
+#if _SQLITE
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 
@@ -26,4 +27,5 @@ public class MToolsSettingsEditor : Editor
         GUILayout.EndHorizontal();
     }
 }
+#endif
 #endif

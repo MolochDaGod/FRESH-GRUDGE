@@ -41,7 +41,11 @@ public partial class UIChat : MonoBehaviour
 
             // activation (ignored once after deselecting, so it doesn't immediately
             // activate again)
-            if (Utils.AnyKeyDown(activationKeys) && !eatActivation && !UIManagement.singleton.canvas.enabled)
+            if (Utils.AnyKeyDown(activationKeys) && !eatActivation
+#if _SQLITE
+                && !UIManagement.singleton.canvas.enabled
+#endif
+                )
                 messageInput.Select();
             eatActivation = false;
 

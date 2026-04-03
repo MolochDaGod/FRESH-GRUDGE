@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+#if _SQLITE
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class UIShowItemTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
@@ -16,3 +17,5 @@ public class UIShowItemTooltip : MonoBehaviour, IPointerEnterHandler, IPointerEx
         UIItemTooltip.singleton.Hide();
     }
 }
+
+#endif

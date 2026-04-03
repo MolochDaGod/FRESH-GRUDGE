@@ -6,9 +6,11 @@ using System.Collections;
 
 public static class AddonManagement
 {
+#if _SQLITE
     static M_Spawner cache;
     public static M_Spawner SpawnerPrefab => cache ?? (cache = Resources.Load<M_Spawner>("Spawner"));
 
+#if _SQLITE
     static List<Monster> cacheMonsters;
     public static List<Monster> Monsters => cacheMonsters ?? (cacheMonsters = ((NetworkManagerMMO)NetworkManager.singleton).RegisteredMonsters());
 
@@ -17,8 +19,10 @@ public static class AddonManagement
 
     static List<M_Environment> cacheEnvironments;
     public static List<M_Environment> Environments => cacheEnvironments ?? (cacheEnvironments = ((NetworkManagerMMO)NetworkManager.singleton).RegisteredEnvironments());
+#endif
 
     public static Dictionary<string, M_Spawner> spawners = new Dictionary<string, M_Spawner>();
+#endif
 
     public static WaitForEndOfFrame EndOfFrame { get; } = new WaitForEndOfFrame();
     public static WaitForSeconds OneSecond { get; } = new WaitForSeconds(1);
@@ -127,6 +131,7 @@ public partial class Player
     }
     #endregion
 
+#if _SQLITE
     #region Creator
     public void UpdateClient_SetObjectViaPosition()
     {
@@ -307,6 +312,7 @@ public partial class Player
 #endif
     }
     #endregion
+#endif
 }
 
 public partial class Monster
@@ -361,6 +367,7 @@ public partial class Entity
     */
 }
 
+#if _SQLITE
 public partial class UIChat
 {
     public void ChatMute()
@@ -385,3 +392,4 @@ public partial class UIChat
         }
     }
 }
+#endif

@@ -55,10 +55,12 @@ public partial class UIInteractInstance : MonoBehaviour
                         collider.transform.root.GetComponent<Storage>().ActivatePanel("StoragePanel"); // Activate the storage panel UI
                     }
                 }
+#if _SQLITE
                 if (collider.transform.root.GetComponent<RAHR_UI_AuctionHouse>())
                 {
 
                 }
+#endif
                 if (collider.transform.root.GetComponent<InteractableWorkbench>())
                 {
                     InteractableWorkbench workBench = collider.transform.root.GetComponent<InteractableWorkbench>();

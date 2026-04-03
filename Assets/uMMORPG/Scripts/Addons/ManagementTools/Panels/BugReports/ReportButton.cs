@@ -1,4 +1,5 @@
-﻿using System.Collections;
+#if _SQLITE
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -195,3 +196,5 @@ public struct BugReport
     }
 #endif
 }
+
+#endif

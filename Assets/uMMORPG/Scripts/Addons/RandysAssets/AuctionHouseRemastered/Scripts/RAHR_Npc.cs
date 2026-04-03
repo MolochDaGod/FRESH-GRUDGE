@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+#if _SQLITE
+using UnityEngine;
 
 public class RAHR_Npc : NpcOffer {
     public override bool HasOffer(Player player) => true;
@@ -11,3 +12,4 @@ public class RAHR_Npc : NpcOffer {
         UINpcDialogue.singleton.panel.SetActive(false);
     }
 }
+#endif

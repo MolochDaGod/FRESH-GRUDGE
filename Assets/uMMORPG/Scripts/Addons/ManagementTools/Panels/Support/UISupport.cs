@@ -1,4 +1,5 @@
-﻿using System;
+#if _SQLITE
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -94,3 +95,5 @@ public class UISupport : MonoBehaviour
         input.text = "";
     }
 }
+
+#endif

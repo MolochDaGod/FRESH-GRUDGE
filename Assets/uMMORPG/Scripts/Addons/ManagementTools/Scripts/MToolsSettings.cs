@@ -287,6 +287,7 @@ public class MToolsSettings : ScriptableObject
                 }
             }
 
+#if _SQLITE
             M_Environment[] environments = FindResources<M_Environment>(creator.folderEnvironments);
             foreach (M_Environment prefab in environments)
             {
@@ -309,7 +310,9 @@ public class MToolsSettings : ScriptableObject
                     manager.spawnPrefabs.Add(prefab.gameObject);
                 }
             }
+#endif
 
+#if _SQLITE
             List<Transform> objects = manager.RegisteredPrefabs();
             List<string> categories = objects.Select(item => item.tag).Distinct().ToList();
 
@@ -323,6 +326,7 @@ public class MToolsSettings : ScriptableObject
                     creator.categories[j].objects = objects.Select(item => item).Where(go => go.tag == categories[j]).ToArray();
                 }
             }
+#endif
 
             EditorSceneManager.MarkSceneDirty(manager.gameObject.scene);
 
@@ -338,12 +342,14 @@ public class MToolsSettings : ScriptableObject
     {
         if (AssetDatabase.IsValidFolder(creator.folderEnvironments))
         {
+#if _SQLITE
             M_Environment[] environments = FindResources<M_Environment>(creator.folderEnvironments);
             foreach (M_Environment prefab in environments)
             {
                 prefab.tag = "Untagged";
                 prefab.gameObject.layer = 0;
             }
+#endif
         }
     }
 

@@ -1,4 +1,5 @@
-﻿using TMPro;
+#if _SQLITE
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -80,3 +81,5 @@ public class UINote : MonoBehaviour
         canvas.enabled = false;
     }
 }
+
+#endif

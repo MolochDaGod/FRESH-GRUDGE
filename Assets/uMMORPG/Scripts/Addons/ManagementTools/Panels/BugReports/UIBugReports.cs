@@ -1,4 +1,5 @@
-﻿using System.Collections;
+#if _SQLITE
+using System.Collections;
 using System.Text;
 using TMPro;
 using UnityEngine;
@@ -184,3 +185,5 @@ public class UIBugReports : MonoBehaviour
         }
     }
 }
+
+#endif

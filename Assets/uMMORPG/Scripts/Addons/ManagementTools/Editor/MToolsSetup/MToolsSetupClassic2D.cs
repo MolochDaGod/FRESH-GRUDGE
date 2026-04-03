@@ -1,4 +1,5 @@
-﻿#if UNITY_EDITOR
+#if _SQLITE
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 
@@ -141,4 +142,5 @@ public sealed class MToolsSetupClassic2D : MToolsSetupBase
 
     public override void DisableDefaultUI(bool enabled) { }
 }
+#endif
 #endif

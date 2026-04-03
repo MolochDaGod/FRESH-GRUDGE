@@ -1,4 +1,5 @@
-﻿using TMPro;
+#if _SQLITE
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -50,3 +51,5 @@ public class UICheckpointConfirmation : MonoBehaviour
         input.text = "";
     }
 }
+
+#endif

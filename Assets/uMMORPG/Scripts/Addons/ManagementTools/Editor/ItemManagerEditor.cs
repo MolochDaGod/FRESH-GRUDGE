@@ -1,4 +1,5 @@
-﻿#if UNITY_EDITOR
+#if _SQLITE
+#if UNITY_EDITOR
 using TMPro;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -82,4 +83,5 @@ public class ItemManagerEditor : Editor
         }
     }
 }
+#endif
 #endif

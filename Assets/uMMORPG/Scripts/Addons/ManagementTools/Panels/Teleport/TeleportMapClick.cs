@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+#if _SQLITE
+using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -134,3 +135,5 @@ public class TeleportMapClick : MonoBehaviour, IPointerClickHandler, IPointerEnt
 #endif
     }
 }
+
+#endif

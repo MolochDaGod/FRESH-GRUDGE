@@ -1,4 +1,5 @@
-﻿using TMPro;
+#if _SQLITE
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -56,3 +57,5 @@ public class UIAmountConfirmation : MonoBehaviour
         canvas.enabled = false;
     }
 }
+
+#endif

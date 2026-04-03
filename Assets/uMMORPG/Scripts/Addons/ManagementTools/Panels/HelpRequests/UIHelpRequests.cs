@@ -1,4 +1,5 @@
-﻿using System.Collections;
+#if _SQLITE
+using System.Collections;
 using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
@@ -140,3 +141,5 @@ public class UIHelpRequests : MonoBehaviour
         }
     }
 }
+
+#endif

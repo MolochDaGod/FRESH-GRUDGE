@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+#if _SQLITE
+using UnityEngine;
 
 public class RAHR_ResetUI : MonoBehaviour {
     public void OnWindowClose() {
@@ -7,3 +8,4 @@ public class RAHR_ResetUI : MonoBehaviour {
         RAHR_UI_AuctionHouse.singleton.Hide();
     }
 }
+#endif

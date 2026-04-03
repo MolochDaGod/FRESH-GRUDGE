@@ -1,4 +1,5 @@
-﻿#if UNITY_EDITOR
+#if _SQLITE
+#if UNITY_EDITOR
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
@@ -27,4 +28,5 @@ public class InspectorButtonPropertyDrawer : PropertyDrawer
         }
     }
 }
+#endif
 #endif

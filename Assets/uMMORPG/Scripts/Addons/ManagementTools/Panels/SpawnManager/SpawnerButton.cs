@@ -1,4 +1,5 @@
-﻿using System;
+#if _SQLITE
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -336,3 +337,5 @@ public struct Spawner
     }
 #endif
 }
+
+#endif
