@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84eed4e77087417786ecac1a1bde5ad5, type: 3}
+  m_Name: Bandit Necklace
+  m_EditorClassIdentifier: 
+  category: Bandit Necklace
+  image: {fileID: 21300000, guid: d6661bafcafd74cdaac76499edf4c038, type: 3}
+  requiredCraft: {fileID: 11400000, guid: 68383e6c96572f445b97c6075ffecf15, type: 2}
+  minSkillLevel: 1
+  ProfessionExperienceRewardMin: 2
+  ProfessionExperienceRewardMax: 38
+  ingredients:
+  - item: {fileID: 11400000, guid: 2608a09a88215491fbe878f632afe522, type: 2}
+    amount: 1
+    DontDestroyOnFailure: 0
+    DontDestroyOnCriticalSuccess: 0
+  manaCost: 0
+  experience: 2
+  skillExp: 1
+  defaultResult:
+  - item: {fileID: 11400000, guid: 7bdf78588c6cece49ad28673ce5aca69, type: 2}
+    amount: 1
+    DontDestroyOnFailure: 0
+    DontDestroyOnCriticalSuccess: 0
+  failureResult: []
+  criticalResult:
+  - item: {fileID: 11400000, guid: 29a210a1c69759040b1c7e5f195014ab, type: 2}
+    amount: 1
+    DontDestroyOnFailure: 0
+    DontDestroyOnCriticalSuccess: 0
+  probability: 0.75
+  criticalProbability: 0.05
+  failureProbability: 0.5
+  duration: 10
+  requiresAllTools: 0
+  tools:
+  - requiredItem: {fileID: 11400000, guid: ebde5c85fd92e499493a5ae898bef3cb, type: 2}
+    equippedItem: 1
+    toolDestroyChance: 0
+    modifyProbability: 0
+    modifyCriticalProbability: 0
+    modifyExperienceMin: 0
+    modifyExperienceMax: 0
+    modifyDuration: -1
+  optionalTools: []
+  probabilityPerSkillLevel: 0.05
+  durationPerSkillLevel: -1
+  criticalResultPerSkillLevel: 0
+  failureResultPerSkillLevel: 0
+  mustBeEquipped: ' [Equipped]'
+  notGuaranteed: ' [No Guarantee]'
+  toolTip: '-=-=-=- {NAME} -=-=-=-
+
+    Craft Skill: {SKILLNAME} [{MINSKILLLVL}+]
+
+    Success
+    Probability: {PROBABILITY} [+{PROBABILITYBONUS}% per Skill Level]
+
+    Crafting
+    Duration: {DURATION} [{DURATIONBONUS}s per Skill Level]
+
+    -=-=-=- INGREDIENTS
+    -=-=-=-
+
+    {INGREDIENTS}
+
+    -=-=-=- TOOLS -=-=-=-
+
+    {TOOLS}
+
+    -=-=-=-
+    BOOSTERS (Optional) -=-=-=-
+
+    {BOOSTERS}
+
+    -=-=-=- RESULTS -=-=-=-
+
+    Default
+    Result: {DEFAULTRESULT}
+
+    Critical Result: {CRITICALRESULT}
+
+    Failure Result:
+    {FAILURERESULT}'

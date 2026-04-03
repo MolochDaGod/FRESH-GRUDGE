@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b177add11312ef840b80db5e9d6213bd, type: 3}
+  m_Name: Scriptable Scene List
+  m_EditorClassIdentifier: 
+  LobbyScene:
+    sceneAsset: {fileID: 102900000, guid: 7d6a96a09ca6bd14dbbcd04558cf543f, type: 3}
+    sceneName: _Lobby
+  CharacterManager:
+    unityScenes:
+      sceneAsset: {fileID: 102900000, guid: 86a1629fa5f511e4bb82c9e6f65261a3, type: 3}
+      sceneName: _characterManager
+    ipServer: 127.0.0.1
+    portServer: 7777
+    background: {fileID: 21300000, guid: 84733c42898b3a143af4527da4f1df13, type: 3}
+  debugScene:
+    sceneAsset: {fileID: 102900000, guid: f45be9d07fc86ce4486991ed52bbd2c4, type: 3}
+    sceneName: Avalon
+  serverScenes:
+  - unityScenes:
+      sceneAsset: {fileID: 102900000, guid: a17ccf85898d1624dbad1f6226355ade, type: 3}
+      sceneName: Brocelie
+    ipServer: 127.0.0.1
+    portServer: 7778
+    background: {fileID: 21300000, guid: 84733c42898b3a143af4527da4f1df13, type: 3}
+  - unityScenes:
+      sceneAsset: {fileID: 102900000, guid: b164a439f1d0f7b498759b0178dffb78, type: 3}
+      sceneName: Game
+    ipServer: 127.0.0.1
+    portServer: 7779
+    background: {fileID: 21300000, guid: 84733c42898b3a143af4527da4f1df13, type: 3}
+  - unityScenes:
+      sceneAsset: {fileID: 102900000, guid: f45be9d07fc86ce4486991ed52bbd2c4, type: 3}
+      sceneName: Avalon
+    ipServer: 127.0.0.1
+    portServer: 9222
+    background: {fileID: 21300000, guid: 84733c42898b3a143af4527da4f1df13, type: 3}
+  - unityScenes:
+      sceneAsset: {fileID: 102900000, guid: 00f3257a6fe175545a880a4f9444f83a, type: 3}
+      sceneName: Matria
+    ipServer: 127.0.0.1
+    portServer: 7780
+    background: {fileID: 21300000, guid: 84733c42898b3a143af4527da4f1df13, type: 3}
+  displayTips:
+  - If you go to a PVP zone don't forget to equip yourself with PVP armor!
+  - Defeating monsters of higher level than yours gives you more experience
+  - Did you know that if you log in every day you earn rewards?
+  - Do you know the Madrigael dungeon, it is very dangerous to venture there but
+    its rewards are important!
+  - Did you know that conquering castles in PVP gives bonus gold, XP, and PVP points?
+  - It seems that when you play Grouper you earn 10% more xp per monster kill, it's
+    huge isn't it?
+  - Are you in a Guild? I ask you because you could benefit from guild buffs, access
+    to the guild chest, and find companions for your quests
+  - One day I was told that having a High Realm Rank allows you to buy very powerful
+    armor and weapons especially for PVP
+  - Did you know killing players who are 5 levels lower than you does absolutely
+    nothing at all?
+  - Did you know that you can block the leveling up of your character to be able
+    to leave it in one of the low level pvp maps?

@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 834f7277c1bec4b4892af772287af170, type: 3}
+  m_Name: Friendship (Demo)
+  m_EditorClassIdentifier: 
+  GameEventFriendship: {fileID: 11400000, guid: 5320ca0bafd234b42a4de8e60f407511,
+    type: 2}
+  GameEventFriendInvite: {fileID: 11400000, guid: 1dcb2b1c4d27ff94f8ae0e32bd7fdbd0,
+    type: 2}
+  GameEventCoupleInvite: {fileID: 11400000, guid: ac08dee77ec1aa64097ed548925559c6,
+    type: 2}
+  maxFriends: 50
+  inviteFriendWaitSeconds: 3
+  allowCouple: 1
+  minDayFriend: 15
+  autoDivorce: 1
+  maxDayOffline: 90
+  increaseRewardForCouple: 20
+  coupleCostPerCharacter:
+    itemCost: []
+    goldCost: 50
+    coinCost: 0
+    healthCost: 0
+    manaCost: 0
+    staminaCost: 0
+    experienceCost: 0
+    skillExperienceCost: 0
+    honorCurrencyCost: []
+  allowGifts: 1
+  rewardPoint: 10
+  rewardCharacter:
+    itemReward: []
+    goldReward: 20
+    coinReward: 3
+    healthReward: 0
+    manaReward: 0
+    staminaReward: 0
+    experienceReward: 0
+    skillExperienceReward: 0
+    honorCurrencyReward: []
+    showChatMessage: 0
+    checkSpaceInventory: 0
+    editMessage: 0
+    chatMessageGold: 'You received: {0} Gold(s)'
+    chatMessageCoin: 'You received: {0} Coin(s)'
+    chatMessageHealth: 'You received: {0} Health'
+    chatMessageMana: 'You received: {0} Mana'
+    chatMessageStamina: 'You received: {0} Stamina'
+    chatMessageExperience: 'You received: {0} Experience'
+    chatMessageSkillExperience: 'You received: {0} Skill Experience'
+    chatMessageItem: 'You received: {0} {1}'
+    chatMessageHonorCurrency: 'You received: {0} {1}'
+  rewardFriend:
+    itemReward: []
+    goldReward: 50
+    coinReward: 5
+    healthReward: 0
+    manaReward: 0
+    staminaReward: 0
+    experienceReward: 0
+    skillExperienceReward: 0
+    honorCurrencyReward: []
+    showChatMessage: 0
+    checkSpaceInventory: 0
+    editMessage: 0
+    chatMessageGold: 'You received: {0} Gold(s)'
+    chatMessageCoin: 'You received: {0} Coin(s)'
+    chatMessageHealth: 'You received: {0} Health'
+    chatMessageMana: 'You received: {0} Mana'
+    chatMessageStamina: 'You received: {0} Stamina'
+    chatMessageExperience: 'You received: {0} Experience'
+    chatMessageSkillExperience: 'You received: {0} Skill Experience'
+    chatMessageItem: 'You received: {0} {1}'
+    chatMessageHonorCurrency: 'You received: {0} {1}'
+  timespanHours: 1
+  editMessage: 0
+  msgMaxFriends: You cannot have anymore friends!
+  msgIsNowFriend: '{0} is now your friend.'
+  msgIsAlreadyFriend: '{0} is already your friend'
+  msgCannotFriendSelf: You cannot add yourself as a friend.
+  msgTargetOffline: '{0} is not online.'
+  msgTargetNotExist: A player {0} does not exist.
+  msgNoLongerFriend: '{0} is no longer your friend.'
+  msgTargetNotFriend: '{0} is not your friend.'
+  msgGiftedFriend: You Gifted {0}.
+  msgCongrulationCoupled: Congratulations you are now in couple with {0}
+  msgAlreadyCoupled: Sorry you or your friend is already in couple
+  msgWeddingCostNoOk: Sorry {0} does not have the necessary for the wedding
+  msgWeddingNumberDayNoOk: Sorry {0} does not have the necessary for the wedding
+  msgNoSameRealm: Sorry player {0} is not from the same realm as you!
+  msgRequirementCoupleNoOk: '[Couple] You or your friend does not have the necessary
+    for the wedding'
+  msgRequirementCoupleDay: '[Couple] Friends since : {0} Day(s)'
+  msgRequirementCoupleStamina: 'Couple] Stamina Cost : {0} Point(s)'
+  msgRequirementCoupleHealth: '[Couple] Health Cost :{0} Point(s)'
+  msgRequirementCoupleCoin: '[Couple] Coin Cost : {0} coin(s)'
+  msgRequirementCoupleExperience: '[Couple] Experience Cost : {0} Point(s)'
+  msgRequirementCoupleGold: '[Couple] Gold Cost : {0} Point(s)'
+  msgRequirementCoupleMana: '[Couple] Mana Cost : {0} Point(s)'
+  msgRequirementCoupleSkillExperience: '[Couple] Skill Experience Cost : {0} Point(s)'
+  msgRequirementCoupleHonnorCurrency: '[Couple] Honnor Currency cost : {0} {1}'
+  msgRequirementCoupleItem: '[Couple] Item Cost : {0} {1}'

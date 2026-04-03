@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c873a32e82777c4ca1452ff3e3757bc, type: 3}
+  m_Name: Page 10
+  m_EditorClassIdentifier: 
+  title: Step 10
+  description: 
+  path: Assets/uMMORPG/Scripts
+  fileName: NetworkManagerMMO.cs
+  text:
+  - installed: 0
+    search: player.isGameMaster = character.isGameMaster;
+    replace: //player.isGameMaster = character.isGameMaster;
+  - installed: 0
+    search: Player CreateCharacter(GameObject classPrefab, string characterName,
+      string account, bool gameMaster)
+    replace: Player CreateCharacter(GameObject classPrefab, string characterName,
+      string account)
+  - installed: 0
+    search: player.isGameMaster = gameMaster;
+    replace: //player.isGameMaster = gameMaster;
+  - installed: 0
+    search: "if (message.gameMaster == false ||\n                               
+      conn == NetworkServer.localConnection)\n                            {\n                               
+      // create new character based on the prefab.\n                               
+      Player player = CreateCharacter(playerClasses[message.classIndex].gameObject,
+      message.name, account, message.gameMaster);\n\n                               
+      // addon system hooks\n                                onServerCharacterCreate.Invoke(message,
+      player);\n\n                                // save the player\n                               
+      Database.singleton.CharacterSave(player, false);\n                               
+      Destroy(player.gameObject);\n\n                                // send available
+      characters list again, causing\n                                // the client
+      to switch to the character\n                                // selection scene
+      again\n                                conn.Send(MakeCharactersAvailableMessage(account));\n                           
+      }\n                            else\n                            {\n                               
+      //Debug.Log(\"character insufficient permissions for GM request: \" + conn); 
+      <- don't show on live server\n                                ServerSendError(conn,
+      \"insufficient permissions\", false);\n                            }"
+    replace: "/*\n                            if (message.gameMaster == false ||\n                               
+      conn == NetworkServer.localConnection)\n                            {\n                               
+      // create new character based on the prefab.\n                               
+      Player player = CreateCharacter(playerClasses[message.classIndex].gameObject,
+      message.name, account, message.gameMaster);\n\n                               
+      // addon system hooks\n                                onServerCharacterCreate.Invoke(message,
+      player);\n\n                                // save the player\n                               
+      Database.singleton.CharacterSave(player, false);\n                               
+      Destroy(player.gameObject);\n\n                                // send available
+      characters list again, causing\n                                // the client
+      to switch to the character\n                                // selection scene
+      again\n                                conn.Send(MakeCharactersAvailableMessage(account));\n                           
+      }\n                            else\n                            {\n                               
+      //Debug.Log(\"character insufficient permissions for GM request: \" + conn); 
+      <- don't show on live server\n                                ServerSendError(conn,
+      \"insufficient permissions\", false);\n                            }\r\n                           
+      */\r\n                            // create new character based on the prefab.\r\n                           
+      Player player = CreateCharacter(playerClasses[message.classIndex].gameObject,
+      message.name, account);\r\n\r\n                            // addon system
+      hooks\r\n                            onServerCharacterCreate.Invoke(message,
+      player);\r\n\r\n                            // save the player\r\n                           
+      Database.singleton.CharacterSave(player, false);\r\n                           
+      Destroy(player.gameObject);\r\n\r\n                            // send available
+      characters list again, causing\r\n                            // the client
+      to switch to the character\r\n                            // selection scene
+      again\r\n                            conn.Send(MakeCharactersAvailableMessage(account));"
+  - installed: 0
+    search: "Database.singleton.CharacterSave(conn.identity.GetComponent<Player>(),
+      false);\r\n            Debug.Log(\"saved:\" + conn.identity.name);"
+    replace: "//Database.singleton.CharacterSave(conn.identity.GetComponent<Player>(),
+      false);\r\n            //Debug.Log(\"saved:\" + conn.identity.name);\r\n           
+      if (conn.identity.TryGetComponent(out Player player))\r\n            {\r\n               
+      if (player.canBeSaved)\r\n                {\r\n                    Database.singleton.CharacterSave(player,
+      false);\r\n                    //print(\"saved:\" + conn.identity.name);\r\n               
+      }\r\n            }"

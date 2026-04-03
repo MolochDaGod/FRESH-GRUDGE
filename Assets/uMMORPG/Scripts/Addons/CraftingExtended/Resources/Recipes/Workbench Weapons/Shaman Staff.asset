@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84eed4e77087417786ecac1a1bde5ad5, type: 3}
+  m_Name: Shaman Staff
+  m_EditorClassIdentifier: 
+  category: Weapons
+  image: {fileID: 21300000, guid: 1369f71b8a9e36a4b950e935f1e1d3bb, type: 3}
+  requiredCraft: {fileID: 11400000, guid: dc981b9b455a15346998294764ced34d, type: 2}
+  minSkillLevel: 0
+  ProfessionExperienceRewardMin: 0
+  ProfessionExperienceRewardMax: 0
+  ingredients:
+  - item: {fileID: 11400000, guid: c65ede651bd7a27498effae1cf244bc5, type: 2}
+    amount: 1
+    DontDestroyOnFailure: 0
+    DontDestroyOnCriticalSuccess: 0
+  - item: {fileID: 11400000, guid: b680680160e393344986c5d98ab71675, type: 2}
+    amount: 1
+    DontDestroyOnFailure: 0
+    DontDestroyOnCriticalSuccess: 0
+  - item: {fileID: 11400000, guid: 2f76def3567a01747a7a93708673f4c6, type: 2}
+    amount: 1
+    DontDestroyOnFailure: 0
+    DontDestroyOnCriticalSuccess: 0
+  - item: {fileID: 11400000, guid: 6bc952c93184cc344800ebfce03139f6, type: 2}
+    amount: 5
+    DontDestroyOnFailure: 0
+    DontDestroyOnCriticalSuccess: 0
+  manaCost: 0
+  staminaCost: 0
+  experience: 0
+  skillExp: 0
+  defaultResult:
+  - item: {fileID: 11400000, guid: 7fe92c20118177d40bb00f4e9e965332, type: 2}
+    amount: 1
+    DontDestroyOnFailure: 0
+    DontDestroyOnCriticalSuccess: 0
+  failureResult: []
+  criticalResult: []
+  probability: 1
+  criticalProbability: 0
+  failureProbability: 0
+  duration: 1
+  requiresAllTools: 0
+  tools: []
+  optionalTools: []
+  probabilityPerSkillLevel: 0
+  durationPerSkillLevel: 0
+  criticalResultPerSkillLevel: 0
+  failureResultPerSkillLevel: 0
+  mustBeEquipped: ' [Equipped]'
+  notGuaranteed: ' [No Guarantee]'
+  toolTip: " {NAME} \n\n-------------------------------\n[ INGREDIENTS ]\n{INGREDIENTS}\n\n-------------------------------\n[
+    RESULTS ]\nResult: {DEFAULTRESULT}"

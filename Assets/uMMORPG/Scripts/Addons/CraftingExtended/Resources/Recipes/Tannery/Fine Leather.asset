@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84eed4e77087417786ecac1a1bde5ad5, type: 3}
+  m_Name: Fine Leather
+  m_EditorClassIdentifier: 
+  category: Leather
+  image: {fileID: 21300000, guid: 0e7ada41adf06794488ac10d0857a5a3, type: 3}
+  requiredCraft: {fileID: 11400000, guid: fce2f78a0bce6e54cbf18d10429b64b0, type: 2}
+  minSkillLevel: 0
+  ProfessionExperienceRewardMin: 0
+  ProfessionExperienceRewardMax: 0
+  ingredients:
+  - item: {fileID: 11400000, guid: e3bb2eef74c943541be65b9d6f86ae3e, type: 2}
+    amount: 1
+    DontDestroyOnFailure: 0
+    DontDestroyOnCriticalSuccess: 0
+  manaCost: 0
+  experience: 0
+  skillExp: 0
+  defaultResult:
+  - item: {fileID: 11400000, guid: 2238c36156c61954b9528df4ed9bf456, type: 2}
+    amount: 1
+    DontDestroyOnFailure: 0
+    DontDestroyOnCriticalSuccess: 0
+  failureResult: []
+  criticalResult: []
+  probability: 1
+  criticalProbability: 0
+  failureProbability: 0
+  duration: 1
+  requiresAllTools: 0
+  tools: []
+  optionalTools: []
+  probabilityPerSkillLevel: 0
+  durationPerSkillLevel: 0
+  criticalResultPerSkillLevel: 0
+  failureResultPerSkillLevel: 0
+  mustBeEquipped: ' [Equipped]'
+  notGuaranteed: ' [No Guarantee]'
+  toolTip: " {NAME} \n\n-------------------------------\n[ INGREDIENTS ]\n{INGREDIENTS}\n\n-------------------------------\n[
+    RESULTS ]\nResult: {DEFAULTRESULT}"

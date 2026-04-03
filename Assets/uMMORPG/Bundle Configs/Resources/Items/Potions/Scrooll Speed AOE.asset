@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15fc3fc1e7b904446acebd0ccbe4c9d7, type: 3}
+  m_Name: Scrooll Speed AOE
+  m_EditorClassIdentifier: 
+  currencyCosts: []
+  dropChance: 1
+  dropPrefab: {fileID: 3934906887477761577, guid: f641935395c7a574482859e1279297e1,
+    type: 3}
+  rarity: 5
+  itemCategory: 
+  weight: 0
+  dropSound: {fileID: 0}
+  maxStack: 99
+  maxDurability: 0
+  buyPrice: 1
+  sellPrice: 1
+  itemMallPrice: 1
+  sellable: 1
+  tradable: 1
+  destroyable: 1
+  toolTip: '<b>{NAME}</b>
+
+    Restores some Health.
+
+
+    Restores {USAGEHEALTH}
+    Health on use.
+
+    Destroyable: {DESTROYABLE}
+
+    Sellable: {SELLABLE}
+
+    Tradable:
+    {TRADABLE}
+
+    Required Level: {MINLEVEL}
+
+
+    Amount: {AMOUNT}
+
+    Price:
+    {BUYPRICE} Gold
+
+    <i>Sells for: {SELLPRICE} Gold</i>'
+  image: {fileID: 21300000, guid: d0199d8f11e8e4d9d9b638476269f75e, type: 3}
+  usageRequirements:
+    isActive: 0
+    aliveOnly: 1
+    stateType: 0
+    minLevel: 0
+    maxLevel: 0
+    minHealth: 0
+    minMana: 0
+    dayStart: 0
+    dayEnd: 0
+    activeMonth: 0
+    cannotUseInCombat: 0
+    waitSecondsAfterCombat: 10
+    requiredSkills: []
+    requiresAllSkills: 0
+    requiredBuff: {fileID: 0}
+    prohibitedBuff: {fileID: 0}
+    allowedClasses: []
+    requiresParty: 0
+    requiresGuild: 0
+    requiredEquipment: []
+    requiresAllEquipment: 0
+    requiredItems: []
+    requiresAllItems: 0
+    allowedPrestigeClasses: []
+    requiredAttributes: []
+    requiresAllAttributes: 0
+    requiredRealm: {fileID: 0}
+    requiredAlly: {fileID: 0}
+    lootableBy: 0
+    requiredQuest: {fileID: 0}
+    questMustBeInProgress: 0
+    factionRequirements: []
+    requiresAllFactionRatings: 0
+    harvestProfessionRequirements: []
+    requiresAllHarvestingProfessions: 0
+    craftProfessionRequirements: []
+    requiresAllCraftingProfessions: 0
+    requiredTravelrouteName: 
+    worldEvent: {fileID: 0}
+    minEventCount: 0
+    maxEventCount: 0
+    minGuildLevel: 0
+    accountUnlockable: 
+  usageAreaId: 0
+  usableSound: {fileID: 8300000, guid: c5847a1bb698bcc40b30280749c7a1bd, type: 3}
+  minLevel: 1
+  cooldown: 2
+  _cooldownCategory: item_Speed
+  applyBuff: {fileID: 11400000, guid: 6690b869239010a4787f29d9e1484178, type: 2}
+  buffLevel: 1
+  buffChance: 1
+  distance: 10
+  successMessage: You buffed {0} with {1}
+  reverseTargeting: 0
+  affectSelf: 0
+  affectOwnParty: 0
+  affectOwnGuild: 0
+  affectOwnRealm: 0
+  affectPlayers: 0
+  affectMonsters: 0
+  affectNpc: 0
+  affectPets: 0
+  defaultSelfTarget: 1
+  decreaseAmount: 1

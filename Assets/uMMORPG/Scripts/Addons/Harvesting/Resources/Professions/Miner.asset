@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cf42490a71fd704e81aab2595c033d4, type: 3}
+  m_Name: Miner
+  m_EditorClassIdentifier: 
+  levels: 050000000a00000014000000
+  rewardTitle: []
+  image: {fileID: 21300000, guid: df57dd44964e74ecc80f24572b2d94dd, type: 3}
+  animatorState: Pickup
+  playTimeRemaining: 60
+  startPlayerSound: {fileID: 8300000, guid: 9b8c797d70f4fa748978a03fb9d6153d, type: 3}
+  stopPlayerSound: {fileID: 0}
+  baseHarvestChance: 0.8
+  criticalHarvestChance: 0.05
+  bonusHarvestChance: 1
+  harvestingRequirements:
+    isActive: 0
+    aliveOnly: 1
+    stateType: 0
+    minLevel: 0
+    maxLevel: 0
+    minHealth: 0
+    minMana: 0
+    minStamina: 0
+    dayStart: 0
+    dayEnd: 0
+    activeMonth: 0
+    cannotUseInCombat: 0
+    waitSecondsAfterCombat: 10
+    requiredSkills: []
+    requiresAllSkills: 0
+    requiredBuff: {fileID: 0}
+    prohibitedBuff: {fileID: 0}
+    allowedClasses: []
+    requiresParty: 0
+    requiresGuild: 0
+    requiredEquipment:
+    - {fileID: 11400000, guid: 294d5adf4cd5ce344b0d91b880313bdd, type: 2}
+    - {fileID: 11400000, guid: 1c303a7706416a24ea895b81b19ad76e, type: 2}
+    - {fileID: 11400000, guid: c7d272e510f72484cbaa6a515e2c79c1, type: 2}
+    requiresAllEquipment: 0
+    requiredItems: []
+    requiresAllItems: 0
+    allowedPrestigeClasses: []
+    requiredAttributes: []
+    requiresAllAttributes: 0
+    requiredRealm: {fileID: 0}
+    requiredAlly: {fileID: 0}
+    lootableBy: 0
+    requiredQuest: {fileID: 0}
+    questMustBeInProgress: 0
+    factionRequirements: []
+    requiresAllFactionRatings: 0
+    harvestProfessionRequirements: []
+    requiresAllHarvestingProfessions: 0
+    craftProfessionRequirements: []
+    requiresAllCraftingProfessions: 0
+    requiredTravelrouteName: 
+    worldEvent: {fileID: 0}
+    minEventCount: 0
+    maxEventCount: 0
+    minGuildLevel: 0
+    accountUnlockable: {fileID: 0}
+    activeMinPatreon: 0
+  requiresAllTools: 0
+  tools: []
+  optionalTools: []
+  probabilityPerSkillLevel: 0.025
+  durationPerSkillLevel: 0
+  criticalProbabilityPerSkillLevel: 0
+  toolTip: Allows to mine minerals from rocks.

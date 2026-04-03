@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97eaffceb384546eabc422ec129f6422, type: 3}
+  m_Name: pretre choice
+  m_EditorClassIdentifier: 
+  dropChance: 0
+  dropPrefab: {fileID: 0}
+  itemCategory: 
+  maxStack: 1
+  maxDurability: 0
+  buyPrice: 2
+  sellPrice: 1
+  itemMallPrice: 1
+  sellable: 1
+  tradable: 1
+  destroyable: 1
+  toolTip: Acquires the prestige class of a "Pretre".
+  image: {fileID: 0}
+  usageRequirements:
+    isActive: 1
+    aliveOnly: 1
+    stateType: 0
+    minLevel: 1
+    maxLevel: 99
+    minHealth: 0
+    minMana: 0
+    dayStart: 0
+    dayEnd: 0
+    activeMonth: 0
+    requiredSkills: []
+    requiresAllSkills: 0
+    requiredBuff: {fileID: 0}
+    prohibitedBuff: {fileID: 0}
+    allowedClasses: []
+    requiresParty: 0
+    requiresGuild: 0
+    requiredEquipment: []
+    requiresAllEquipment: 0
+    requiredItems: []
+    requiresAllItems: 0
+    allowedPrestigeClasses: []
+    requiredRealm: {fileID: 0}
+    requiredAlly: {fileID: 0}
+    lootableBy: 0
+    requiredQuest: {fileID: 0}
+    questMustBeInProgress: 0
+    factionRequirements: []
+    requiresAllFactionRatings: 0
+    harvestProfessionRequirements: []
+    requiresAllHarvestingProfessions: 0
+    craftProfessionRequirements: []
+    requiresAllCraftingProfessions: 0
+    requiredTravelrouteName: 
+    worldEvent: {fileID: 0}
+    minEventCount: 0
+    maxEventCount: 0
+    accountUnlockable: 
+  usageAreaId: 0
+  minLevel: 0
+  cooldown: 0
+  _cooldownCategory: 
+  prestigeClass: {fileID: 11400000, guid: d2e1dc97da047ca46bb0fc7bf273ce5c, type: 2}
+  successMessage: 'You acquired the prestige class: '
+  decreaseAmount: 1

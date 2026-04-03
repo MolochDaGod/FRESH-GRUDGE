@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 391bf75c8016a1543babc19b3cbe246e, type: 3}
+  m_Name: Orc Journey 10
+  m_EditorClassIdentifier: 
+  repeatable: 0
+  showRewards: 1
+  toolTip: "<b>{NAME}</b>\r\n\r\n<size=14><b>Tasks:</b></size>\r\n{KILLTARGET}\r\n\r<size=14>Our
+    scouts report increased activity at the dark elf stronghold. It\u2019s time to
+    take action\u2014go and eliminate the threat before it\u2019s too late!</size>\n<size=14><b>Rewards:</b></size>\r\n\u2022
+    <color=#FFD700>{REWARDGOLD} Gold</color>\r\n\u2022 <color=#8A2BE2>{REWARDEXPERIENCE}
+    Experience</color>\r\n\r\n<size=14><b>Items:</b></size>\r\n{REWARDITEMS}\r\n"
+  questRequirements:
+    isActive: 1
+    aliveOnly: 1
+    stateType: 0
+    minLevel: 0
+    maxLevel: 0
+    minHealth: 0
+    minMana: 0
+    minStamina: 0
+    dayStart: 0
+    dayEnd: 0
+    activeMonth: 0
+    cannotUseInCombat: 0
+    waitSecondsAfterCombat: 10
+    requiredSkills: []
+    requiresAllSkills: 0
+    requiredBuff: {fileID: 0}
+    prohibitedBuff: {fileID: 0}
+    allowedClasses: []
+    requiresParty: 0
+    requiresGuild: 0
+    requiredEquipment: []
+    requiresAllEquipment: 0
+    requiredItems: []
+    requiresAllItems: 0
+    allowedPrestigeClasses: []
+    requiredAttributes: []
+    requiresAllAttributes: 0
+    requiredRealm: {fileID: 0}
+    requiredAlly: {fileID: 0}
+    lootableBy: 0
+    requiredQuest: {fileID: 11400000, guid: a6c0277790e2d2f458b027994056403a, type: 2}
+    questMustBeInProgress: 0
+    harvestProfessionRequirements: []
+    requiresAllHarvestingProfessions: 0
+    craftProfessionRequirements: []
+    requiresAllCraftingProfessions: 0
+    requiredTravelrouteName: 
+    minGuildLevel: 0
+    accountUnlockable: {fileID: 0}
+  acceptItems: []
+  removeAtCompletion: 0
+  questRewards:
+  - rewardChance: 1
+    availableToClass:
+    - {fileID: 11460454, guid: cac9c28df7eaac4458062f2df33dd671, type: 3}
+    rewardGold: 50
+    rewardCoins: 0
+    rewardExperience: 10
+    rewardItem: []
+    rewardUnlockroutes: []
+    honorCurrency: []
+    title: {fileID: 0}
+    changeRealm: {fileID: 0}
+    changeAlliedRealm: {fileID: 0}
+  exploreTarget: []
+  harvestTarget: []
+  craftTarget: []
+  lootTarget: []
+  visitTarget: []
+  visitInOrder: 0
+  pvpTarget: []
+  killTarget:
+  - target: {fileID: 2865447476967645777, guid: 0ae3924b173d67049a338e369aa1f7f2,
+      type: 3}
+    amount: 1
+  gatherTarget: []
+  DontDestroyGathered: 0
+  autoCompleteQuest: 0
+  headerPvpTarget: '* Kill Players '
+  headerKillTarget: '* Kill Monsters '
+  headerGatherTarget: '* Gather Items '
+  headerVisitTarget: '* Visit Npc''s '
+  headerExploreTarget: '* Explore Areas '
+  headerHarvestTarget: '* Harvest Resources '
+  headerCraftTarget: '* Craft Items '
+  headerLootTarget: '* Loot Crates '
+  headerFactionTarget: '* Faction Requirement '
+  pvpDescription:
+    pvpKill: 'Kill '
+    pvpPlayer: ' Player(s) '
+    pvpLevel: ' level '
+    pvpParty: Party.
+    pvpGuild: Guild.
+    pvpRealm: Realm.
+    pvpNot: ' Not '
+    pvpMy: 'in my '

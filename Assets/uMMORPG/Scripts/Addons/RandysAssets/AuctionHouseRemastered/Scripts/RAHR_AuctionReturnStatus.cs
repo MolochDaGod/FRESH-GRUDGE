@@ -1,0 +1,24 @@
+﻿[System.Serializable]
+public enum RAHR_AuctionReturnStatus {
+    ItemDoesntExist,
+    ContainsBidders,
+    AuctionCanceled,
+    AuctionCreated,
+    BidTooLow,
+    StartingPricesInvalid,
+    NotEnoughGold,
+    InventoryFull,
+    CannotBidYourAuction,
+    CannoyBuyYourAuction,
+    BidSuccess,
+    BuyoutSuccess,
+    ClaimSuccess,
+    SellerUpdate,
+    BidderUpdate,
+    BidGreaterThanBuyout,
+    InventoryItemInvalid,
+    NoItemSelected,
+    NotTradable,
+    Summoned,
+    Error
+}

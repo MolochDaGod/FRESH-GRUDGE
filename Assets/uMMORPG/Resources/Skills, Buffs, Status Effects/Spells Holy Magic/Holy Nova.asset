@@ -1,0 +1,183 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb14d48666eb44862be87a6792055227, type: 3}
+  m_Name: Holy Nova
+  m_EditorClassIdentifier: 
+  animationType: 0
+  animationTag: 
+  skillType: 0
+  skillConditions:
+    activationChance: 1
+    healthThreshold: 0
+    casterHealth: 0
+    activeBuff: {fileID: 0}
+  category: 
+  usageRequirements:
+    isActive: 1
+    aliveOnly: 1
+    stateType: 0
+    minLevel: 0
+    maxLevel: 0
+    minHealth: 0
+    minMana: 0
+    minStamina: 0
+    dayStart: 0
+    dayEnd: 0
+    activeMonth: 0
+    cannotUseInCombat: 0
+    waitSecondsAfterCombat: 10
+    requiredSkills: []
+    requiresAllSkills: 0
+    requiredBuff: {fileID: 0}
+    prohibitedBuff: {fileID: 0}
+    allowedClasses: []
+    requiresParty: 0
+    requiresGuild: 0
+    requiredEquipment: []
+    requiresAllEquipment: 0
+    requiredItems: []
+    requiresAllItems: 0
+    allowedPrestigeClasses: []
+    requiredAttributes: []
+    requiresAllAttributes: 0
+    requiredRealm: {fileID: 0}
+    requiredAlly: {fileID: 0}
+    lootableBy: 0
+    requiredQuest: {fileID: 0}
+    questMustBeInProgress: 0
+    harvestProfessionRequirements: []
+    requiresAllHarvestingProfessions: 0
+    craftProfessionRequirements: []
+    requiresAllCraftingProfessions: 0
+    requiredTravelrouteName: 
+    minGuildLevel: 0
+    accountUnlockable: {fileID: 0}
+  usageEquipmentId: 0
+  usageAreaId: 0
+  learnablePrestigeClasses: []
+  emptyPrestigeClass: 1
+  staminaCosts:
+    baseValue: 0
+    bonusPerLevel: 0
+  unlearnable: 0
+  disadvantageous: 0
+  cancelWhenMoving: 0
+  followupDefaultAttack: 0
+  toolTip: '<b>{NAME} Lvl {LEVEL}</b>
+
+    Blasts all surrounding enemys with a holy
+    nova!!
+
+
+    Cast Time: {CASTTIME}
+
+    Cooldown: {COOLDOWN}
+
+    Cast Range:
+    {CASTRANGE}
+
+    Heals Health: {HEALSHEALTH}
+
+    Mana Costs: {MANACOSTS}'
+  image: {fileID: 21300000, guid: 27c18832b2d76ea47a1729ba6067d933, type: 3}
+  learnDefault: 1
+  showCastBar: 0
+  cancelCastIfTargetDied: 0
+  allowMovement: 1
+  predecessor: {fileID: 0}
+  predecessorLevel: 1
+  requiredWeaponCategory: MainHand
+  requiredLevel:
+    baseValue: 0
+    bonusPerLevel: 0
+  requiredSkillExperience:
+    baseValue: 5
+    bonusPerLevel: 0
+  maxLevel: 5
+  manaCosts:
+    baseValue: 50
+    bonusPerLevel: 50
+  castTime:
+    baseValue: 1.5
+    bonusPerLevel: 0
+  cooldown:
+    baseValue: 10
+    bonusPerLevel: 0
+  castRange:
+    baseValue: 0
+    bonusPerLevel: 0
+  isAOE: 0
+  castSound: {fileID: 8300000, guid: 0baf8600b856b794b90ef46e9e7fb215, type: 3}
+  element: {fileID: 0}
+  damage:
+    baseValue: 50
+    bonusPerLevel: 40
+  stunChance:
+    baseValue: 0.1
+    bonusPerLevel: 0
+  stunTime:
+    baseValue: 0.1
+    bonusPerLevel: 0
+  effect: {fileID: 0}
+  castRadius:
+    baseValue: 7
+    bonusPerLevel: 0.5
+  removeBuffType: 0
+  debuffChance:
+    baseValue: 0
+    bonusPerLevel: 0
+  debuffAmount:
+    baseValue: 0
+    bonusPerLevel: 0
+  debuffAddAccuracy: 0
+  removeBuffs: []
+  applyBuffs: []
+  buffLevel:
+    baseValue: 0
+    bonusPerLevel: 0
+  buffChance:
+    baseValue: 0
+    bonusPerLevel: 0
+  buffAmount:
+    baseValue: 0
+    bonusPerLevel: 0
+  buffAddAccuracy: 0
+  addCasterDamage: 0
+  unstunSeconds:
+    baseValue: 0
+    bonusPerLevel: 0
+  unstunChance:
+    baseValue: 0
+    bonusPerLevel: 0
+  modifyCooldown:
+    baseValue: 0
+    bonusPerLevel: 0
+  modifyCooldownChance:
+    baseValue: 0
+    bonusPerLevel: 0
+  modifyBuffDuration:
+    baseValue: 0
+    bonusPerLevel: 0
+  modifyBuffDurationChance:
+    baseValue: 0
+    bonusPerLevel: 0
+  buffType: 0
+  reverseTargeting: 0
+  affectSelf: 0
+  affectPlayers: 1
+  affectNpcs: 0
+  affectMonsters: 1
+  affectPets: 1
+  affectOwnParty: 0
+  affectOwnGuild: 0
+  affectOwnRealm: 0
+  SpawnEffectOnMainTargetOnly: 0

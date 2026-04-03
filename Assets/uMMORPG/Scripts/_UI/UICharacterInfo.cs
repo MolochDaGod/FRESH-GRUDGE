@@ -1,0 +1,50 @@
+﻿// Note: this script has to be on an always-active UI parent, so that we can
+// always react to the hotkey.
+using UnityEngine;
+using UnityEngine.UI;
+
+public partial class UICharacterInfo : MonoBehaviour
+{
+    public KeyCode hotKey = KeyCode.T;
+    public GameObject panel;
+    public Text damageText;
+    public Text defenseText;
+    public Text healthText;
+    public Text manaText;
+    public Text criticalChanceText;
+    public Text blockChanceText;
+    public Text speedText;
+    public Text levelText;
+    public Text currentExperienceText;
+    public Text maximumExperienceText;
+    public Text skillExperienceText;
+
+    void Update()
+    {
+        Player player = Player.localPlayer;
+        if (player)
+        {
+            // hotkey (not while typing in chat, etc.)
+            if (Input.GetKeyDown(hotKey) && !UIUtils.AnyInputActive())
+                panel.SetActive(!panel.activeSelf);
+
+            // only refresh the panel while it's active
+            if (panel.activeSelf)
+            {
+                damageText.text = player.combat.damage.ToString();
+                defenseText.text = player.combat.defense.ToString();
+                healthText.text = player.health.max.ToString();
+                manaText.text = player.mana.max.ToString();
+                criticalChanceText.text = (player.combat.criticalChance * 100).ToString("F0") + "%";
+                blockChanceText.text = (player.combat.blockChance * 100).ToString("F0") + "%";
+                speedText.text = player.speed.ToString("F1");
+                levelText.text = player.level.current.ToString();
+                currentExperienceText.text = player.experience.current.ToString();
+                maximumExperienceText.text = player.experience.max.ToString();
+                skillExperienceText.text = ((PlayerSkills)player.skills).skillExperience.ToString();
+
+            }
+        }
+        else panel.SetActive(false);
+    }
+}

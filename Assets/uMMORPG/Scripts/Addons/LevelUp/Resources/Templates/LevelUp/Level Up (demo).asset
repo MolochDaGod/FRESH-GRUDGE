@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b779381605e323648a47cf1202d83c00, type: 3}
+  m_Name: Level Up (demo)
+  m_EditorClassIdentifier: 
+  levelUpNotice:
+    message: 'Level Up '
+    suffix: 
+    iconId: 0
+    soundId: 0
+  levelUpEffect: {fileID: -6239480115755006041, guid: e93284024a308c941af6ead97702ab6d,
+    type: 3}
+  skillExpOnLevelUp:
+    baseValue: 12
+    bonusPerLevel: 5
+  levelUpRewards: []
+  rewardGoldchatText: 'Level {LEVELUP} : you win {AMOUNT} Gold{S}'
+  rewardTitlechatText: 'Level {LEVELUP} : you win new Title {TITLENAME}'
+  rewardSkillExpchatText: 'Level {LEVELUP} : you win {AMOUNT} Skill Experience'
+  rewardHonnorCurrencychatText: 'Level {LEVELUP} : you win {AMOUNT} {CURRENCYNAME}'
+  rewardItemChatText: 'Level {LEVELUP} : you win {ITEM} x{AMOUNT}'

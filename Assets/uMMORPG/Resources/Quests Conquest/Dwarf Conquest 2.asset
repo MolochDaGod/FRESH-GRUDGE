@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 391bf75c8016a1543babc19b3cbe246e, type: 3}
+  m_Name: Dwarf Conquest 2
+  m_EditorClassIdentifier: 
+  repeatable: 0
+  showRewards: 1
+  toolTip: "<b>{NAME}</b>\r\n\r\n<size=14><b>Tasks:</b></size>\r\n{GATHERTARGET}\r\n\r<size=14>Brave
+    warrior, the time has come to cut off the head of the serpent! Each faction has
+    a commander who fuels their ambition. Your mission is to track down and eliminate
+    these leaders. Bring me their insignias as proof of your success, and your name
+    will be forever etched in our history!</size>\n<size=14><b>Rewards:</b></size>\r\n\u2022
+    <color=#FFD700>{REWARDGOLD} Gold</color>\r\n\u2022 <color=#8A2BE2>{REWARDEXPERIENCE}
+    Experience</color>\r\n\r\n<size=14><b>Items:</b></size>\r\n{REWARDITEMS}\r\n"
+  questRequirements:
+    isActive: 1
+    aliveOnly: 1
+    stateType: 0
+    minLevel: 0
+    maxLevel: 0
+    minHealth: 0
+    minMana: 0
+    minStamina: 0
+    dayStart: 0
+    dayEnd: 0
+    activeMonth: 0
+    cannotUseInCombat: 0
+    waitSecondsAfterCombat: 10
+    requiredSkills: []
+    requiresAllSkills: 0
+    requiredBuff: {fileID: 0}
+    prohibitedBuff: {fileID: 0}
+    allowedClasses: []
+    requiresParty: 0
+    requiresGuild: 0
+    requiredEquipment: []
+    requiresAllEquipment: 0
+    requiredItems: []
+    requiresAllItems: 0
+    allowedPrestigeClasses: []
+    requiredAttributes: []
+    requiresAllAttributes: 0
+    requiredRealm: {fileID: 0}
+    requiredAlly: {fileID: 0}
+    lootableBy: 0
+    requiredQuest: {fileID: 11400000, guid: 4a1e0efe714e9454eaddf1ffbe6ebd5e, type: 2}
+    questMustBeInProgress: 0
+    harvestProfessionRequirements: []
+    requiresAllHarvestingProfessions: 0
+    craftProfessionRequirements: []
+    requiresAllCraftingProfessions: 0
+    requiredTravelrouteName: 
+    minGuildLevel: 0
+    accountUnlockable: {fileID: 0}
+  acceptItems:
+  - item: {fileID: 11400000, guid: 863cbb8c217b9b742bdbaff8639cf86d, type: 2}
+    amount: 1
+  removeAtCompletion: 0
+  questRewards:
+  - rewardChance: 1
+    availableToClass:
+    - {fileID: 11460454, guid: 59d5e62d0829e8b4585cc028b7d6683c, type: 3}
+    rewardGold: 500
+    rewardCoins: 0
+    rewardExperience: 10
+    rewardItem: []
+    rewardUnlockroutes: []
+    honorCurrency: []
+    title: {fileID: 0}
+    changeRealm: {fileID: 0}
+    changeAlliedRealm: {fileID: 0}
+  exploreTarget: []
+  harvestTarget: []
+  craftTarget: []
+  lootTarget: []
+  visitTarget: []
+  visitInOrder: 0
+  pvpTarget: []
+  killTarget: []
+  gatherTarget:
+  - target: {fileID: 11400000, guid: 38ae823de58be31468bb7e5299c751f3, type: 2}
+    amount: 1
+  - target: {fileID: 11400000, guid: 76ae8171ab557794384a7f1a0f6e7565, type: 2}
+    amount: 1
+  - target: {fileID: 11400000, guid: 9602b6881e496ef459080e0602b390fa, type: 2}
+    amount: 1
+  - target: {fileID: 11400000, guid: 97014c41cbdeb124b8acb2e30cf93045, type: 2}
+    amount: 1
+  DontDestroyGathered: 0
+  autoCompleteQuest: 0
+  headerPvpTarget: '* Kill Players '
+  headerKillTarget: '* Kill Monsters '
+  headerGatherTarget: '* Gather Items '
+  headerVisitTarget: '* Visit Npc''s '
+  headerExploreTarget: '* Explore Areas '
+  headerHarvestTarget: '* Harvest Resources '
+  headerCraftTarget: '* Craft Items '
+  headerLootTarget: '* Loot Crates '
+  headerFactionTarget: '* Faction Requirement '
+  pvpDescription:
+    pvpKill: 'Kill '
+    pvpPlayer: ' Player(s) '
+    pvpLevel: ' level '
+    pvpParty: Party.
+    pvpGuild: Guild.
+    pvpRealm: Realm.
+    pvpNot: ' Not '
+    pvpMy: 'in my '

@@ -1,0 +1,134 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8041b8cabe4f3994da26454f201cdacb, type: 3}
+  m_Name: Savage Grip
+  m_EditorClassIdentifier: 
+  animationType: 0
+  animationTag: 
+  skillType: 0
+  skillConditions:
+    activationChance: 1
+    healthThreshold: 0
+    casterHealth: 0
+    activeBuff: {fileID: 0}
+  category: 
+  usageRequirements:
+    isActive: 1
+    aliveOnly: 1
+    stateType: 0
+    minLevel: 0
+    maxLevel: 0
+    minHealth: 0
+    minMana: 0
+    minStamina: 0
+    dayStart: 0
+    dayEnd: 0
+    activeMonth: 0
+    cannotUseInCombat: 0
+    waitSecondsAfterCombat: 10
+    requiredSkills: []
+    requiresAllSkills: 0
+    requiredBuff: {fileID: 0}
+    prohibitedBuff: {fileID: 0}
+    allowedClasses: []
+    requiresParty: 0
+    requiresGuild: 0
+    requiredEquipment: []
+    requiresAllEquipment: 0
+    requiredItems: []
+    requiresAllItems: 0
+    allowedPrestigeClasses: []
+    requiredAttributes: []
+    requiresAllAttributes: 0
+    requiredRealm: {fileID: 0}
+    requiredAlly: {fileID: 0}
+    lootableBy: 0
+    requiredQuest: {fileID: 0}
+    questMustBeInProgress: 0
+    harvestProfessionRequirements: []
+    requiresAllHarvestingProfessions: 0
+    craftProfessionRequirements: []
+    requiresAllCraftingProfessions: 0
+    requiredTravelrouteName: 
+    minGuildLevel: 0
+    accountUnlockable: {fileID: 0}
+  usageEquipmentId: 0
+  usageAreaId: 0
+  learnablePrestigeClasses: []
+  emptyPrestigeClass: 1
+  staminaCosts:
+    baseValue: 0
+    bonusPerLevel: 0
+  unlearnable: 0
+  disadvantageous: 0
+  cancelWhenMoving: 0
+  followupDefaultAttack: 0
+  toolTip: '<b>{NAME} Lvl {LEVEL}</b>
+
+    Drag your target to you
+
+
+    Damage:
+    {DAMAGE}
+
+    Cast Range: {CASTRANGE}
+
+    Cast Time: {CASTTIME}
+
+    Cooldown:
+    {COOLDOWN}'
+  image: {fileID: 21300000, guid: fe388e03a933dd04f87d369d6c2e67ac, type: 3}
+  learnDefault: 1
+  showCastBar: 1
+  cancelCastIfTargetDied: 1
+  allowMovement: 1
+  predecessor: {fileID: 0}
+  predecessorLevel: 1
+  requiredWeaponCategory: MainHand
+  requiredLevel:
+    baseValue: 1
+    bonusPerLevel: 0
+  requiredSkillExperience:
+    baseValue: 5
+    bonusPerLevel: 0
+  maxLevel: 5
+  manaCosts:
+    baseValue: 25
+    bonusPerLevel: 50
+  castTime:
+    baseValue: 1
+    bonusPerLevel: 0
+  cooldown:
+    baseValue: 10
+    bonusPerLevel: -0.5
+  castRange:
+    baseValue: 9
+    bonusPerLevel: 0.5
+  isAOE: 0
+  castSound: {fileID: 8300000, guid: fe3ab55ff0a896349ab15e88b1960352, type: 3}
+  element: {fileID: 0}
+  damage:
+    baseValue: 20
+    bonusPerLevel: 50
+  stunChance:
+    baseValue: 1
+    bonusPerLevel: 0
+  stunTime:
+    baseValue: 1
+    bonusPerLevel: 0
+  MoveTarget: 1
+  setDistance: -11
+  successChance:
+    baseValue: 1
+    bonusPerLevel: 0
+  tauntMessage: 'You taunted: '
+  failedMessage: 'You failed to taunt: '

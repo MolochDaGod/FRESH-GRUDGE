@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 208cb59fc51a1344197af0076e3ab7c0, type: 3}
+  m_Name: Bullet Attack (Vehicle) (NOTARGET)
+  m_EditorClassIdentifier: 
+  followupDefaultAttack: 1
+  toolTip: '<b>{NAME} Lvl {LEVEL}</b>
+
+    Default Attack
+
+
+    Damage: {DAMAGE}
+
+    Cast
+    Time: {CASTTIME}
+
+    Cooldown: {COOLDOWN}
+
+    Cast Range: {CASTRANGE}'
+  image: {fileID: 21300000, guid: bd8ecf87f82e341a1bef80b37fc2f83f, type: 3}
+  learnDefault: 1
+  showCastBar: 0
+  cancelCastIfTargetDied: 0
+  allowMovement: 1
+  predecessor: {fileID: 0}
+  predecessorLevel: 1
+  requiredWeaponCategory: 
+  requiredLevel:
+    baseValue: 0
+    bonusPerLevel: 0
+  requiredSkillExperience:
+    baseValue: 0
+    bonusPerLevel: 0
+  maxLevel: 1
+  manaCosts:
+    baseValue: 0
+    bonusPerLevel: 0
+  castTime:
+    baseValue: 0.1
+    bonusPerLevel: 0
+  cooldown:
+    baseValue: 1
+    bonusPerLevel: 0
+  castRange:
+    baseValue: 1000000
+    bonusPerLevel: 0
+  castSound: {fileID: 8300000, guid: 7f06a3c08e4faac448301e97580670b0, type: 3}
+  damage:
+    baseValue: 10
+    bonusPerLevel: 0
+  stunChance:
+    baseValue: 0
+    bonusPerLevel: 0
+  stunTime:
+    baseValue: 0
+    bonusPerLevel: 0
+  projectile: {fileID: -5653991934599337954, guid: 4ab927162eca6144c81691d61e6d7869,
+    type: 3}

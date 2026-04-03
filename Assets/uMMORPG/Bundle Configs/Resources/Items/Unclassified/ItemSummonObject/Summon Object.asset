@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0eb4079a887a4de3996439892bca804, type: 3}
+  m_Name: Summon Object
+  m_EditorClassIdentifier: 
+  currencyCosts: []
+  maxStack: 999
+  maxDurability: 0
+  buyPrice: 1
+  sellPrice: 1
+  itemMallPrice: 1
+  sellable: 0
+  tradable: 0
+  destroyable: 0
+  toolTip: '{NAME}'
+  image: {fileID: 0}
+  usageRequirements:
+    isActive: 1
+    aliveOnly: 1
+    stateType: 0
+    minLevel: 0
+    maxLevel: 0
+    minHealth: 0
+    minMana: 0
+    dayStart: 0
+    dayEnd: 0
+    activeMonth: 0
+    requiredSkills: []
+    requiresAllSkills: 0
+    requiredBuff: {fileID: 0}
+    prohibitedBuff: {fileID: 0}
+    allowedClasses: []
+    requiresParty: 0
+    requiresGuild: 0
+    requiredEquipment: []
+    requiresAllEquipment: 0
+    requiredItems: []
+    requiresAllItems: 0
+    requiredRealm: {fileID: 0}
+    requiredAlly: {fileID: 0}
+    lootableBy: 0
+    requiredQuest: {fileID: 0}
+    questMustBeInProgress: 0
+    factionRequirements: []
+    requiresAllFactionRatings: 0
+    harvestProfessionRequirements: []
+    requiresAllHarvestingProfessions: 0
+    craftProfessionRequirements: []
+    requiresAllCraftingProfessions: 0
+    requiredTravelrouteName: 
+    minGuildLevel: 0
+    accountUnlockable: 
+  usageAreaId: 0
+  minLevel: 0
+  cooldown: 0
+  _cooldownCategory: 
+  summonableObjectsPerLevel:
+  - gameObjects:
+    - gameObject: {fileID: 100000, guid: 05682822ff5a34e3f9ee59133371f266, type: 3}
+      effectObject: {fileID: 1861356044303458, guid: f5eb3a5bff7624ecf86cbacca12bc947,
+        type: 3}
+      probability: 1
+      level: 5
+    minAmount: 1
+    maxAmount: 10
+  distanceMultiplier: 10
+  increaseRangeWithLevel: 1
+  level: 1
+  rangeMultiplierPerLevel: 2
+  useInPvPZoneOnly: 0
+  setToCasterRealm: 0
+  decreaseAmount: 0
+  errorMessage: You can't use that right now!

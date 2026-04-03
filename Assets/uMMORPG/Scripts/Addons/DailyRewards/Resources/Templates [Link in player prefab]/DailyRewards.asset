@@ -1,0 +1,1987 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5db93f0a32edf4778962a85582b84553, type: 3}
+  m_Name: DailyRewards
+  m_EditorClassIdentifier: 
+  isActive: 1
+  autoClaimRewards: 0
+  montlyRewards:
+  - monthName: January
+    reward:
+      id: 
+      dayNumber: 0
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 50
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies:
+      - honorCurrency: {fileID: 11400000, guid: 1db21f03fb156b441a21d8123beb5ee2,
+          type: 2}
+        amountMin: 5
+        amountMax: 5
+    rewards:
+    - id: Happy New year
+      dayNumber: 1
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 1000
+      rewardCoins: 100
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 2
+      dayNumber: 2
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 4
+      dayNumber: 4
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 110
+      rewardCoins: 12
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 6
+      dayNumber: 6
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 8
+      dayNumber: 8
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 130
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day10
+      dayNumber: 0
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day12
+      dayNumber: 12
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 14
+      dayNumber: 14
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 16
+      dayNumber: 16
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 18
+      dayNumber: 18
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 20
+      dayNumber: 20
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 22
+      dayNumber: 22
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 24
+      dayNumber: 24
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 26
+      dayNumber: 26
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 28
+      dayNumber: 28
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+  - monthName: February
+    reward:
+      id: 
+      dayNumber: 0
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 50
+      rewardCoins: 5
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    rewards:
+    - id: Happy New year
+      dayNumber: 1
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 1000
+      rewardCoins: 100
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 2
+      dayNumber: 2
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 4
+      dayNumber: 4
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 110
+      rewardCoins: 12
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 6
+      dayNumber: 6
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 8
+      dayNumber: 8
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 130
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day10
+      dayNumber: 0
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day12
+      dayNumber: 12
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 14
+      dayNumber: 14
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 16
+      dayNumber: 16
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 18
+      dayNumber: 18
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 20
+      dayNumber: 20
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 22
+      dayNumber: 22
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 24
+      dayNumber: 24
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 26
+      dayNumber: 26
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 28
+      dayNumber: 28
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+  - monthName: March
+    reward:
+      id: 
+      dayNumber: 0
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 50
+      rewardCoins: 5
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    rewards:
+    - id: Happy New year
+      dayNumber: 1
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 1000
+      rewardCoins: 100
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 2
+      dayNumber: 2
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 4
+      dayNumber: 4
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 110
+      rewardCoins: 12
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 6
+      dayNumber: 6
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 8
+      dayNumber: 8
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 130
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day10
+      dayNumber: 0
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day12
+      dayNumber: 12
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 14
+      dayNumber: 14
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 16
+      dayNumber: 16
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 18
+      dayNumber: 18
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 20
+      dayNumber: 20
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 22
+      dayNumber: 22
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 24
+      dayNumber: 24
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 26
+      dayNumber: 26
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 28
+      dayNumber: 28
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+  - monthName: April
+    reward:
+      id: 
+      dayNumber: 0
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 50
+      rewardCoins: 5
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    rewards:
+    - id: Happy New year
+      dayNumber: 1
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 1000
+      rewardCoins: 100
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 2
+      dayNumber: 2
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 4
+      dayNumber: 4
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 110
+      rewardCoins: 12
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 6
+      dayNumber: 6
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 8
+      dayNumber: 8
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 130
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day10
+      dayNumber: 0
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day12
+      dayNumber: 12
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 14
+      dayNumber: 14
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 16
+      dayNumber: 16
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 18
+      dayNumber: 18
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 20
+      dayNumber: 20
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 22
+      dayNumber: 22
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 24
+      dayNumber: 24
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 26
+      dayNumber: 26
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 28
+      dayNumber: 28
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+  - monthName: May
+    reward:
+      id: 
+      dayNumber: 0
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 50
+      rewardCoins: 5
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    rewards:
+    - id: Happy New year
+      dayNumber: 1
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 1000
+      rewardCoins: 100
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 2
+      dayNumber: 2
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 4
+      dayNumber: 4
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 110
+      rewardCoins: 12
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 6
+      dayNumber: 6
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 8
+      dayNumber: 8
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 130
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day10
+      dayNumber: 0
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day12
+      dayNumber: 12
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 14
+      dayNumber: 14
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 16
+      dayNumber: 16
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 18
+      dayNumber: 18
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 20
+      dayNumber: 20
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 22
+      dayNumber: 22
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 24
+      dayNumber: 24
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 26
+      dayNumber: 26
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 28
+      dayNumber: 28
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+  - monthName: June
+    reward:
+      id: 
+      dayNumber: 0
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 50
+      rewardCoins: 5
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    rewards:
+    - id: Happy New year
+      dayNumber: 1
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 1000
+      rewardCoins: 100
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 2
+      dayNumber: 2
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 4
+      dayNumber: 4
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 110
+      rewardCoins: 12
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 6
+      dayNumber: 6
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 8
+      dayNumber: 8
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 130
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day10
+      dayNumber: 0
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day12
+      dayNumber: 12
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 14
+      dayNumber: 14
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 16
+      dayNumber: 16
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 18
+      dayNumber: 18
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 20
+      dayNumber: 20
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 22
+      dayNumber: 22
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 24
+      dayNumber: 24
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 26
+      dayNumber: 26
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 28
+      dayNumber: 28
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+  - monthName: July
+    reward:
+      id: 
+      dayNumber: 0
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 50
+      rewardCoins: 5
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    rewards:
+    - id: Happy New year
+      dayNumber: 1
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 1000
+      rewardCoins: 100
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 2
+      dayNumber: 2
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 4
+      dayNumber: 4
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 110
+      rewardCoins: 12
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 6
+      dayNumber: 6
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 8
+      dayNumber: 8
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 130
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day10
+      dayNumber: 0
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day12
+      dayNumber: 12
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 14
+      dayNumber: 14
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 16
+      dayNumber: 16
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 18
+      dayNumber: 18
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 20
+      dayNumber: 20
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 22
+      dayNumber: 22
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 24
+      dayNumber: 24
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 26
+      dayNumber: 26
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 28
+      dayNumber: 28
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+  - monthName: August
+    reward:
+      id: 
+      dayNumber: 0
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 50
+      rewardCoins: 5
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    rewards:
+    - id: Happy New year
+      dayNumber: 1
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 1000
+      rewardCoins: 100
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 2
+      dayNumber: 2
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 4
+      dayNumber: 4
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 110
+      rewardCoins: 12
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 6
+      dayNumber: 6
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 8
+      dayNumber: 8
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 130
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day10
+      dayNumber: 0
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day12
+      dayNumber: 12
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 14
+      dayNumber: 14
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 16
+      dayNumber: 16
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 18
+      dayNumber: 18
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 20
+      dayNumber: 20
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 22
+      dayNumber: 22
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 24
+      dayNumber: 24
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 26
+      dayNumber: 26
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 28
+      dayNumber: 28
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+  - monthName: September
+    reward:
+      id: 
+      dayNumber: 0
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 50
+      rewardCoins: 5
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    rewards:
+    - id: Happy New year
+      dayNumber: 1
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 1000
+      rewardCoins: 100
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 2
+      dayNumber: 2
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 4
+      dayNumber: 4
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 110
+      rewardCoins: 12
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 6
+      dayNumber: 6
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 8
+      dayNumber: 8
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 130
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day10
+      dayNumber: 0
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day12
+      dayNumber: 12
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 14
+      dayNumber: 14
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 16
+      dayNumber: 16
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 18
+      dayNumber: 18
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 20
+      dayNumber: 20
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 22
+      dayNumber: 22
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 24
+      dayNumber: 24
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 26
+      dayNumber: 26
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 28
+      dayNumber: 28
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+  - monthName: October
+    reward:
+      id: 
+      dayNumber: 0
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 50
+      rewardCoins: 5
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    rewards:
+    - id: Happy New year
+      dayNumber: 1
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 1000
+      rewardCoins: 100
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 2
+      dayNumber: 2
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 4
+      dayNumber: 4
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 110
+      rewardCoins: 12
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 6
+      dayNumber: 6
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 8
+      dayNumber: 8
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 130
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day10
+      dayNumber: 0
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day12
+      dayNumber: 12
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 14
+      dayNumber: 14
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 16
+      dayNumber: 16
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 18
+      dayNumber: 18
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 20
+      dayNumber: 20
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 22
+      dayNumber: 22
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 24
+      dayNumber: 24
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 26
+      dayNumber: 26
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 28
+      dayNumber: 28
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 10
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+  - monthName: November
+    reward:
+      id: 
+      dayNumber: 0
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 50
+      rewardCoins: 5
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    rewards:
+    - id: Happy New year
+      dayNumber: 1
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 1000
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 2
+      dayNumber: 2
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 4
+      dayNumber: 4
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 110
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 6
+      dayNumber: 6
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 8
+      dayNumber: 8
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 130
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day10
+      dayNumber: 0
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day12
+      dayNumber: 12
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 14
+      dayNumber: 14
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 16
+      dayNumber: 16
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 18
+      dayNumber: 18
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 20
+      dayNumber: 20
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 22
+      dayNumber: 22
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 24
+      dayNumber: 24
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 26
+      dayNumber: 26
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 28
+      dayNumber: 28
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+  - monthName: December
+    reward:
+      id: 
+      dayNumber: 0
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 50
+      rewardCoins: 5
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    rewards:
+    - id: Happy New year
+      dayNumber: 1
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 1000
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 2
+      dayNumber: 2
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 4
+      dayNumber: 4
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 110
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 6
+      dayNumber: 6
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 8
+      dayNumber: 8
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 130
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day10
+      dayNumber: 0
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day12
+      dayNumber: 12
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 14
+      dayNumber: 14
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 16
+      dayNumber: 16
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 18
+      dayNumber: 18
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 20
+      dayNumber: 20
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 22
+      dayNumber: 22
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 24
+      dayNumber: 24
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 10000
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 25
+      dayNumber: 25
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 10000
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 26
+      dayNumber: 26
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []
+    - id: Day 28
+      dayNumber: 28
+      spriteNotClaimed: {fileID: 0}
+      spriteClaimed: {fileID: 0}
+      rewardGold: 100
+      rewardCoins: 0
+      rewardExperience: 0
+      rewardSkillExperience: 0
+      rewardItems: []
+      honorCurrencies: []

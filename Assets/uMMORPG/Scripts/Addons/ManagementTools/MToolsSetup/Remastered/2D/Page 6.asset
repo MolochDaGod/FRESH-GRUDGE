@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c873a32e82777c4ca1452ff3e3757bc, type: 3}
+  m_Name: Page 6
+  m_EditorClassIdentifier: 
+  title: Step 6
+  description: 
+  path: Assets/uMMORPG/Scripts
+  fileName: Player.cs
+  text:
+  - installed: 0
+    search: if (avatarCamera) avatarCamera.enabled = true; // avatar camera for local
+      player
+    replace: "if (avatarCamera) avatarCamera.enabled = true; // avatar camera for
+      local player\r\n        OnStartLocalPlayer_Mute();"
+  - installed: 0
+    search: onlinePlayers[name] = this;
+    replace: "onlinePlayers[name] = this;\r\n        Start_StaffMembersUpdate();"
+  - installed: 0
+    search: "if (isLocalPlayer) // requires at least Unity 5.5.1 bugfix to work\r\n       
+      {\r\n            localPlayer = null;\r\n        }"
+    replace: "if (isLocalPlayer) // requires at least Unity 5.5.1 bugfix to work\r\n       
+      {\r\n            localPlayer = null;\r\n        }\r\n\r\n        OnDestroy_StaffMembersUpdate();"
+  - installed: 0
+    search: "return (state == \"IDLE\" || state == \"MOVING\" || castingAndAllowed)
+      &&\n               !isLocalPlayerTyping;"
+    replace: return (state == "IDLE" || state == "MOVING" || castingAndAllowed) &&
+      !isLocalPlayerTyping && !IsFrozen();
+  - installed: 0
+    search: "string UpdateServer_DEAD()\r\n    {"
+    replace: "string UpdateServer_DEAD()\r\n    {\r\n        if (EventResurrect())\r\n       
+      {\r\n            Resurrect();\r\n            return \"IDLE\";\r\n        }"
+  - installed: 0
+    search: "protected override void UpdateClient()\r\n    {"
+    replace: "protected override void UpdateClient()\r\n    {\r\n        UpdateClient_SetObjectViaPosition();"

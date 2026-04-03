@@ -1,0 +1,583 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a31ae0e4ab59c42ea9301250c85fb24a, type: 3}
+  m_Name: Defines
+  m_EditorClassIdentifier: 
+  addons:
+  - name: Account Unlockables
+    define: _iMMOACCOUNTUNLOCKABLES
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: _Tools, UsageRequirements
+    comments: none
+    active: 0
+  - name: Animation Tags
+    define: _iMMOANIMATIONTAGS
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 2020.3.37-37.1
+    dependencies: none
+    comments: none
+    active: 1
+  - name: Attache
+    define: _iMMOATTACHE
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: Tools
+    comments: none
+    active: 1
+  - name: Attributes
+    define: _iMMOATTRIBUTES
+    basis: uMMORPG3d 2D and 3D Remastered
+    author: Trugord
+    version: 
+    dependencies: Tools
+    comments: none
+    active: 1
+  - name: Bindpoint
+    define: _iMMOBINDPOINT
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: _Tools
+    comments: none
+    active: 1
+  - name: Chairs
+    define: _iMMOCHAIRS
+    basis: uMMORPG3d Remastered 3d
+    author: Trugord
+    version: 
+    dependencies: Tools
+    comments: none
+    active: 1
+  - name: CharacterCreation
+    define: _iMMOCHARACTERCREATION
+    basis: uMMORPG3d Remastered
+    author: trugord
+    version: 
+    dependencies: none
+    comments: none
+    active: 1
+  - name: Combat Remastered
+    define: _iMMOCOMBATREMASTERED
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: Tools
+    comments: none
+    active: 0
+  - name: Command Chat Console
+    define: _iMMOADMINCONSOLE
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: Tools
+    comments: none
+    active: 1
+  - name: Complete Chat
+    define: _iMMOCOMPLETECHAT
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: _Tools
+    comments: none
+    active: 1
+  - name: Complete Skills
+    define: _iMMOCOMPLETESKILLS
+    basis: uMMORPG3d Remastered 3d and 2d
+    author: Trugord
+    version: 
+    dependencies: Tools
+    comments: none
+    active: 1
+  - name: Conditional Skills
+    define: _iMMOCONDITIONALSKILLS
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 2020.3.37-37.2
+    dependencies: Tools, Attache
+    comments: none
+    active: 1
+  - name: Crafting Extended
+    define: _iMMOCRAFTING
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: Tools
+    comments: none
+    active: 1
+  - name: CursedEquipment
+    define: _iMMOCURSEDEQUIPMENT
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 2020.3.37-37.1
+    dependencies: none
+    comments: none
+    active: 0
+  - name: DailyRewards
+    define: _iMMODAILYREWARDS
+    basis: uMMORPG Remastered
+    author: Trugord
+    version: 2021.3.20-38.1
+    dependencies: none
+    comments: none
+    active: 1
+  - name: Doors
+    define: _iMMODOORS
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 2020.3.30-37.2
+    dependencies: none
+    comments: none
+    active: 1
+  - name: Elements
+    define: _iMMOELEMENTS
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 2019.4.2-34.2
+    dependencies: none
+    comments: none
+    active: 1
+  - name: Emotes
+    define: _iMMOEMOTES
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: Tools
+    comments: none
+    active: 1
+  - name: Equipable Bag
+    define: _iMMOEQUIPABLEBAG
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: Tools
+    comments: none
+    active: 1
+  - name: Equipable Buff
+    define: _iMMOEQUIPABLEBUFF
+    basis: uMMORPG3d Remastered 3d and 2d
+    author: Trugord
+    version: 
+    dependencies: Tools
+    comments: none
+    active: 1
+  - name: Equipment Level Up
+    define: _iMMOITEMLEVELUP
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: none
+    dependencies: none
+    comments: none
+    active: 1
+  - name: Equipment Set
+    define: _iMMOEQUIPMENTSETS
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: Tools
+    comments: none
+    active: 1
+  - name: Exploration
+    define: _iMMOEXPLORATION
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 2020.3.37-37.1
+    dependencies: none
+    comments: none
+    active: 1
+  - name: Extended Quests
+    define: _iMMOQUESTS
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: Tools
+    comments: none
+    active: 1
+  - name: Factions
+    define: _iMMOFACTIONS
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: Tools
+    comments: none
+    active: 0
+  - name: Friendship
+    define: _iMMOFRIENDS
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 2020.3.30-37.2
+    dependencies: none
+    comments: none
+    active: 1
+  - name: GuildUpgrades
+    define: _iMMOGUILDUPGRADES
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 2020.3.37-37.1
+    dependencies: Guild Upgrade
+    comments: none
+    active: 1
+  - name: Guild Warehouse
+    define: _iMMOGUILDWAREHOUSE
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 2020.3.30-37.1
+    dependencies: none
+    comments: none
+    active: 1
+  - name: Harvesting
+    define: _iMMOHARVESTING
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: Tools
+    comments: none
+    active: 1
+  - name: Honor Shop
+    define: _iMMOHONORSHOP
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: Tools
+    comments: none
+    active: 1
+  - name: ItemDrop
+    define: _iMMOITEMDROP
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: Tools, Loot Rules
+    comments: none
+    active: 1
+  - name: ItemRarity
+    define: _iMMOITEMRARITY
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 2020.3.30-37.4
+    dependencies: none
+    comments: none
+    active: 1
+  - name: Jukebox
+    define: _iMMOJUKEBOX
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 2020.3.30-37.1
+    dependencies: none
+    comments: none
+    active: 1
+  - name: Leaderboard
+    define: _iMMOLEADERBOARD
+    basis: uMMORPG3d Remastered 3d & 2d
+    author: Trugord
+    version: 
+    dependencies: none
+    comments: none
+    active: 1
+  - name: Level Up
+    define: _iMMOLEVELUP
+    basis: uMMORPG 2D and 3D Remastered
+    author: Trugord
+    version: 
+    dependencies: none
+    comments: none
+    active: 1
+  - name: LimitedZones
+    define: _iMMOLIMITEDZONES
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 2020.3.30-37.2
+    dependencies: none
+    comments: none
+    active: 1
+  - name: Logout Timer
+    define: _iMMOLOGOUTTIMER
+    basis: uMMORPG3d Remastered 3d & 2d
+    author: Trugord
+    version: 
+    dependencies: none
+    comments: none
+    active: 1
+  - name: LootRules
+    define: _iMMOLOOTRULES
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: Tools
+    comments: none
+    active: 1
+  - name: Lootcrate
+    define: _iMMOCHEST
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: none
+    comments: none
+    active: 1
+  - name: Mail
+    define: _iMMOMAIL
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: Tools
+    comments: none
+    active: 1
+  - name: MainMenu
+    define: _iMMOMAINMENU
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 2020.3.30-37.3
+    dependencies: none
+    comments: none
+    active: 1
+  - name: MeshSwitcher
+    define: _iMMOMESHSWITCHER
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 2020.3.37-37.1
+    dependencies: _Tools
+    comments: none
+    active: 1
+  - name: Minion
+    define: _iMMOMINION
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 2019.4.28-34.2
+    dependencies: Tools;
+    comments: none
+    active: 1
+  - name: Mobile Control
+    define: _iMMOMOBILECONTROLS
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: Tools
+    comments: none
+    active: 1
+  - name: NetworkLobby
+    define: _iMMOLOBBY
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 2020.3.30-37.2
+    dependencies: none
+    comments: none
+    active: 1
+  - name: Npc Extended
+    define: _iMMONPCEXTENDED
+    basis: uMMORPG3d Remastered 2D and 3D
+    author: Trugord
+    version: 
+    dependencies: 
+    comments: 
+    active: 1
+  - name: NpcRestrictions
+    define: _iMMONPCRESTRICTIONS
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 2021.3.13-38.1
+    dependencies: none
+    comments: none
+    active: 1
+  - name: Npc Shop
+    define: _iMMONPCSHOP
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 2020.3.30-37.2
+    dependencies: none
+    comments: none
+    active: 1
+  - name: player Titles
+    define: _iMMOTITLES
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: Tools
+    comments: none
+    active: 1
+  - name: player Warehouse
+    define: _iMMOWAREHOUSE
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 2020.3.30-37.1
+    dependencies: none
+    comments: none
+    active: 1
+  - name: PrestigeClasses
+    define: _iMMOPRESTIGECLASSES
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 2019.4.28-34.2
+    dependencies: _Tools,UsageRequirements,Traits
+    comments: Install All Other Addon before this
+    active: 1
+  - name: PVP Zone And Realms
+    define: _iMMOPVP
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: Tools
+    comments: none
+    active: 1
+  - name: Reports System
+    define: _iMMOREPORTS
+    basis: uMMORPG 2D&3D Remastered
+    author: Trugord
+    version: 
+    dependencies: Tools
+    comments: none
+    active: 1
+  - name: Sanctuary
+    define: _iMMOSANCTUARY
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 2020.3.30-37.2
+    dependencies: none
+    comments: none
+    active: 1
+  - name: Settings
+    define: _iMMOSETTINGS
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: none
+    comments: none
+    active: 1
+  - name: SkillCategories
+    define: _iMMOSKILLCATEGORY
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 2021.3.13-38.1
+    dependencies: none
+    comments: none
+    active: 1
+  - name: Speech Bubbles
+    define: _iMMOSPEECHBUBBLES
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 2020.3.30-37.2
+    dependencies: none
+    comments: none
+    active: 1
+  - name: Stamina
+    define: _iMMOSTAMINA
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 2021.3.16-38.1
+    dependencies: none
+    comments: none
+    active: 1
+  - name: Stats Overlay
+    define: _iMMOSTATSOVERLAY
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: Tools
+    comments: none
+    active: 1
+  - name: Teleporter
+    define: _iMMOTELEPORTER
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: Tools
+    comments: none
+    active: 1
+  - name: Timegate
+    define: _iMMOTIMEGATE
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: Tools
+    comments: none
+    active: 1
+  - name: Traits
+    define: _iMMOTRAITS
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: Tools
+    comments: none
+    active: 1
+  - name: Travel Routes
+    define: _iMMOTRAVEL
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: Tools
+    comments: none
+    active: 1
+  - name: Unlockable Classes
+    define: _iMMOUNLOCKABLECLASSES
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: _Tools,CharacterCreation
+    comments: none
+    active: 0
+  - name: Usage Requirements
+    define: _iMMOUSAGEREQUIREMENTS
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: Tools
+    comments: none
+    active: 1
+  - name: RTS BuildSystem
+    define: _iMMOBUILDSYSTEM
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 2020.3.24-36.1
+    dependencies: none
+    comments: none
+    active: 1
+  - name: Spawner
+    define: _iMMOSPAWNER
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 2020.3.24-36.1
+    dependencies: none
+    comments: none
+    active: 1
+  - name: Weight System
+    define: _iMMOWEIGHTSYSTEM
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 2020.3.37-37.2
+    dependencies: none
+    comments: none
+    active: 1
+  - name: Word Filter
+    define: _iMMOWORDFILTER
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 
+    dependencies: Tools
+    comments: none
+    active: 1
+  - name: WorldBossMessage
+    define: _iMMOWORLDBOSSMESSAGE
+    basis: uMMORPG 3D & 2D Remastered
+    author: Trugord
+    version: 
+    dependencies: Tools
+    comments: none
+    active: 0
+  - name: World Events
+    define: _iMMOWORLDEVENTS
+    basis: uMMORPG3d Remastered
+    author: Trugord
+    version: 2020.3.37-37.1
+    dependencies: _Tools, Extended Quests
+    comments: none
+    active: 0

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a5fbabac0d3040c6b25c4304fc6f44c, type: 3}
+  m_Name: Dark Side
+  m_EditorClassIdentifier: 
+  image: {fileID: 21300000, guid: d8ade5344d09b4aef8b314b3da25334b, type: 3}
+  description: "Il sont connu pour leurs cot\xE9 cupide et avide de pouvoir, il utilise
+    en g\xE9n\xE9ral des cot\xE9 obsure de la magie\n et sont sournoie, il sont souvent
+    impliqu\xE9 dans les probl\xE8me des autre royaume."
+  ranks:
+  - name: Hostile
+    min: -999
+    max: -500
+  - name: Unfriendly
+    min: -500
+    max: -60
+  - name: Neutral
+    min: -60
+    max: 60
+  - name: Friendly
+    min: 60
+    max: 500
+  - name: Honored
+    min: 500
+    max: 999
+  aggressiveThreshold: 0

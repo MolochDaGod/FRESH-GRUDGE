@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43bb92c682cded14e898aaf8b1fcf9eb, type: 3}
+  m_Name: Catamaran
+  m_EditorClassIdentifier: 
+  researchCosts:
+    gold: 0
+    requiredItems: []
+  researchResult: {fileID: 0}
+  itemSkins: []
+  currencyCosts:
+  - honorCurrency: {fileID: 11400000, guid: 6e819ede6d4bb9c4fa0d67cf99ccf098, type: 2}
+    amount: 100
+  dropChance: 1
+  dropPrefab: {fileID: 3934906887477761577, guid: df0c53af72f6a624582e5fee8c3a808e,
+    type: 3}
+  autoPickUp: 0
+  rarity: 4
+  itemCategory: 
+  auctionHouseCategory: 17
+  weight: 0
+  dropSound: {fileID: 0}
+  maxStack: 1
+  maxDurability: 1
+  buyPrice: 0
+  sellPrice: 0
+  itemMallPrice: 0
+  sellable: 0
+  tradable: 0
+  destroyable: 1
+  toolTip: '<b>{NAME}</b>
+
+    Water vehicle 3 passenger.
+
+
+    1 driver
+
+    2 passenger
+    seat'
+  image: {fileID: 21300000, guid: 1802edd651500ee479f4b68b7fbfcf79, type: 3}
+  usageRequirements:
+    isActive: 1
+    aliveOnly: 1
+    stateType: 0
+    minLevel: 0
+    maxLevel: 0
+    minHealth: 0
+    minMana: 0
+    minStamina: 0
+    dayStart: 0
+    dayEnd: 0
+    activeMonth: 0
+    cannotUseInCombat: 0
+    waitSecondsAfterCombat: 10
+    requiredSkills: []
+    requiresAllSkills: 0
+    requiredBuff: {fileID: 0}
+    prohibitedBuff: {fileID: 0}
+    allowedClasses: []
+    requiresParty: 0
+    requiresGuild: 0
+    requiredEquipment: []
+    requiresAllEquipment: 0
+    requiredItems: []
+    requiresAllItems: 0
+    allowedPrestigeClasses: []
+    requiredAttributes: []
+    requiresAllAttributes: 0
+    requiredRealm: {fileID: 0}
+    requiredAlly: {fileID: 0}
+    lootableBy: 0
+    requiredQuest: {fileID: 0}
+    questMustBeInProgress: 0
+    harvestProfessionRequirements: []
+    requiresAllHarvestingProfessions: 0
+    craftProfessionRequirements: []
+    requiresAllCraftingProfessions: 0
+    requiredTravelrouteName: 
+    minGuildLevel: 0
+    accountUnlockable: {fileID: 0}
+  usageAreaId: 0
+  usableSound: {fileID: 0}
+  minLevel: 1
+  cooldown: 1
+  _cooldownCategory: vehicle
+  vehicleToSpawn: {fileID: 7008560280430973071, guid: a4dde4f83c4a75e4cbc5b0bb47a70752,
+    type: 3}

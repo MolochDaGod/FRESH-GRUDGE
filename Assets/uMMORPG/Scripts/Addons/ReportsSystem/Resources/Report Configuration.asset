@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e367f061aaf69de4d8ff32dff3b67202, type: 3}
+  m_Name: Report Configuration
+  m_EditorClassIdentifier: 
+  enableReport: 1
+  timeToReport: 15
+  messageInfo:
+    command: 
+    identifierOut: (Reports)
+    identifierIn: (Reports)
+    textPrefab: {fileID: 193954, guid: 6311d2feb4006e4489b511ded72795d1, type: 3}
+  editMessage: 1
+  messageCantReport: 'Can''t report right now; because you reported a problem less
+    than {0} minutes ago. Time remaining: {1} minutes.'
+  messageSent: Report sent successfully.
+  messageReportDisabled: Sorry, the report is temporarily disabled

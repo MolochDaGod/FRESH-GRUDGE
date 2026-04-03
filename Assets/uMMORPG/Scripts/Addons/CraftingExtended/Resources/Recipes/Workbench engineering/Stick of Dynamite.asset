@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84eed4e77087417786ecac1a1bde5ad5, type: 3}
+  m_Name: Stick of Dynamite
+  m_EditorClassIdentifier: 
+  category: Engineering
+  image: {fileID: 21300000, guid: 02a48b1a3ad06c94c8079cae270ce25c, type: 3}
+  requiredCraft: {fileID: 11400000, guid: dc981b9b455a15346998294764ced34d, type: 2}
+  minSkillLevel: 0
+  ProfessionExperienceRewardMin: 0
+  ProfessionExperienceRewardMax: 0
+  ingredients:
+  - item: {fileID: 11400000, guid: e4b691c25ed355647b905fbbf2ee3975, type: 2}
+    amount: 1
+    DontDestroyOnFailure: 0
+    DontDestroyOnCriticalSuccess: 0
+  - item: {fileID: 11400000, guid: b91ac299414652f43b75c343b67d14ac, type: 2}
+    amount: 1
+    DontDestroyOnFailure: 0
+    DontDestroyOnCriticalSuccess: 0
+  - item: {fileID: 11400000, guid: 2c54b0d769b7f20438888540042a768c, type: 2}
+    amount: 1
+    DontDestroyOnFailure: 0
+    DontDestroyOnCriticalSuccess: 0
+  - item: {fileID: 11400000, guid: 89ce9bb2e8477de4687d5a95f9f361ea, type: 2}
+    amount: 1
+    DontDestroyOnFailure: 0
+    DontDestroyOnCriticalSuccess: 0
+  manaCost: 0
+  experience: 0
+  skillExp: 0
+  defaultResult:
+  - item: {fileID: 11400000, guid: 36fd720fcacbaaa46bb959a058fc777b, type: 2}
+    amount: 1
+    DontDestroyOnFailure: 0
+    DontDestroyOnCriticalSuccess: 0
+  failureResult: []
+  criticalResult: []
+  probability: 1
+  criticalProbability: 0
+  failureProbability: 0
+  duration: 1
+  requiresAllTools: 0
+  tools: []
+  optionalTools: []
+  probabilityPerSkillLevel: 0
+  durationPerSkillLevel: 0
+  criticalResultPerSkillLevel: 0
+  failureResultPerSkillLevel: 0
+  mustBeEquipped: ' [Equipped]'
+  notGuaranteed: ' [No Guarantee]'
+  toolTip: " {NAME} \n\n-------------------------------\n[ INGREDIENTS ]\n{INGREDIENTS}\n\n-------------------------------\n[
+    RESULTS ]\nResult: {DEFAULTRESULT}"

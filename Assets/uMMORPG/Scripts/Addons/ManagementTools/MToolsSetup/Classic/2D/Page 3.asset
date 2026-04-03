@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c873a32e82777c4ca1452ff3e3757bc, type: 3}
+  m_Name: Page 3
+  m_EditorClassIdentifier: 
+  title: Step 3
+  description: 
+  path: Assets/uMMORPG/Scripts
+  fileName: Database.cs
+  text:
+  - installed: 0
+    search: public bool banned { get; set; }
+    replace: public int AccessLevel { get; set; }
+  - installed: 0
+    search: connection.Insert(new accounts{ name=account, password=password, created=DateTime.UtcNow,
+      lastlogin=DateTime.Now, banned=false});
+    replace: "if (account == \"admin\")\r\n                    connection.Insert(new
+      accounts\r\n                    {\r\n                        name = account,\r\n                       
+      password = password,\r\n                        created = DateTime.UtcNow,\r\n                       
+      lastlogin = DateTime.Now,\r\n                        AccessLevel = 3\r\n                   
+      });\r\n                else\r\n                    connection.Insert(new accounts\r\n                   
+      {\r\n                        name = account,\r\n                        password
+      = password,\r\n                        created = DateTime.UtcNow,\r\n                       
+      lastlogin = DateTime.Now,\r\n                        AccessLevel = 1\r\n                   
+      });"
+  - installed: 0
+    search: if (connection.FindWithQuery<accounts>("SELECT * FROM accounts WHERE
+      name=? AND password=? and banned=0", account, password) != null)
+    replace: if (connection.FindWithQuery<accounts>("SELECT * FROM accounts WHERE
+      name=? AND password=? and NOT AccessLevel=0", account, password) != null)

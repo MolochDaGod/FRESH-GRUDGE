@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59fa94c9e0d1f4f1cbc18bac4741e2c6, type: 3}
+  m_Name: Stick of Dynamite
+  m_EditorClassIdentifier: 
+  researchCosts:
+    gold: 0
+    requiredItems: []
+  researchResult: {fileID: 0}
+  itemSkins: []
+  currencyCosts: []
+  dropChance: 1
+  dropPrefab: {fileID: 3934906887477761577, guid: 526e86309d2d2af4585f6ac59ac70d76,
+    type: 3}
+  autoPickUp: 0
+  rarity: 1
+  itemCategory: Consumable
+  auctionHouseCategory: 0
+  weight: 0
+  dropSound: {fileID: 0}
+  maxStack: 5
+  maxDurability: 0
+  buyPrice: 25
+  sellPrice: 25
+  itemMallPrice: 1
+  sellable: 1
+  tradable: 1
+  destroyable: 1
+  toolTip: <b>{NAME}</b>
+  image: {fileID: 21300000, guid: 02a48b1a3ad06c94c8079cae270ce25c, type: 3}
+  usageRequirements:
+    isActive: 1
+    aliveOnly: 1
+    stateType: 0
+    minLevel: 0
+    maxLevel: 0
+    minHealth: 0
+    minMana: 0
+    minStamina: 0
+    dayStart: 0
+    dayEnd: 0
+    activeMonth: 0
+    cannotUseInCombat: 0
+    waitSecondsAfterCombat: 10
+    requiredSkills: []
+    requiresAllSkills: 0
+    requiredBuff: {fileID: 0}
+    prohibitedBuff: {fileID: 0}
+    allowedClasses: []
+    requiresParty: 0
+    requiresGuild: 0
+    requiredEquipment: []
+    requiresAllEquipment: 0
+    requiredItems: []
+    requiresAllItems: 0
+    allowedPrestigeClasses: []
+    requiredAttributes: []
+    requiresAllAttributes: 0
+    requiredRealm: {fileID: 0}
+    requiredAlly: {fileID: 0}
+    lootableBy: 0
+    requiredQuest: {fileID: 0}
+    questMustBeInProgress: 0
+    harvestProfessionRequirements: []
+    requiresAllHarvestingProfessions: 0
+    craftProfessionRequirements: []
+    requiresAllCraftingProfessions: 0
+    requiredTravelrouteName: 
+    minGuildLevel: 0
+    accountUnlockable: {fileID: 0}
+  usageAreaId: 0
+  usableSound: {fileID: 0}
+  minLevel: 1
+  cooldown: 600
+  _cooldownCategory: 
+  effect: {fileID: 114103340247780244, guid: 0fef1149218d81e4080c630f821bd3d2, type: 3}
+  damage:
+    baseValue: 20
+    bonusPerLevel: 0
+  stunChance:
+    baseValue: 0
+    bonusPerLevel: 0
+  stunTime:
+    baseValue: 0
+    bonusPerLevel: 0
+  skillLevel: 0
+  range: 20
+  radius: 6
+  triggerAggroChance: 1
+  successMessage: 'You damaged: '
+  SpawnEffectOnMainTargetOnly: 1
+  applyBuff: {fileID: 0}
+  buffLevel: 0
+  buffChance: 0
+  reverseTargeting: 1
+  affectSelf: 0
+  affectOwnParty: 0
+  affectOwnGuild: 0
+  affectOwnRealm: 0
+  affectPlayers: 1
+  affectNpcs: 0
+  affectMonsters: 1
+  affectPets: 1
+  decreaseAmount: 1

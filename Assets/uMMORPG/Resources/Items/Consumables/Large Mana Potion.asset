@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45ad0ab75b024602bc182fd34499b53, type: 3}
+  m_Name: Large Mana Potion
+  m_EditorClassIdentifier: 
+  researchCosts:
+    gold: 0
+    requiredItems: []
+  researchResult: {fileID: 11400000, guid: d098cfca9728c584caaf022059ed9363, type: 2}
+  itemSkins: []
+  currencyCosts: []
+  dropChance: 1
+  dropPrefab: {fileID: 3934906887477761577, guid: 526e86309d2d2af4585f6ac59ac70d76,
+    type: 3}
+  autoPickUp: 0
+  rarity: 1
+  itemCategory: Consumable
+  auctionHouseCategory: 18
+  weight: 0
+  dropSound: {fileID: 0}
+  maxStack: 20
+  maxDurability: 0
+  buyPrice: 60
+  sellPrice: 15
+  itemMallPrice: 1
+  sellable: 1
+  tradable: 1
+  destroyable: 1
+  toolTip: '<b>{NAME}</b>
+
+    Restores some mana.
+
+
+    Restores {USAGEMANA} Mana
+    on use.
+
+    Destroyable: {DESTROYABLE}
+
+    Sellable: {SELLABLE}
+
+    Tradable:
+    {TRADABLE}
+
+    Required Level: {MINLEVEL}
+
+
+    Amount: {AMOUNT}
+
+    Price:
+    {BUYPRICE} Gold
+
+    <i>Sells for: {SELLPRICE} Gold</i>'
+  image: {fileID: 21300000, guid: 9b573f7888cab264280b460ee3255a40, type: 3}
+  usageRequirements:
+    isActive: 1
+    aliveOnly: 1
+    stateType: 0
+    minLevel: 1
+    maxLevel: 99
+    minHealth: 0
+    minMana: 0
+    minStamina: 0
+    dayStart: 0
+    dayEnd: 0
+    activeMonth: 0
+    cannotUseInCombat: 0
+    waitSecondsAfterCombat: 10
+    requiredSkills: []
+    requiresAllSkills: 0
+    requiredBuff: {fileID: 0}
+    prohibitedBuff: {fileID: 0}
+    allowedClasses: []
+    requiresParty: 0
+    requiresGuild: 0
+    requiredEquipment: []
+    requiresAllEquipment: 0
+    requiredItems: []
+    requiresAllItems: 0
+    allowedPrestigeClasses: []
+    requiredAttributes: []
+    requiresAllAttributes: 0
+    requiredRealm: {fileID: 0}
+    requiredAlly: {fileID: 0}
+    lootableBy: 0
+    requiredQuest: {fileID: 0}
+    questMustBeInProgress: 0
+    harvestProfessionRequirements: []
+    requiresAllHarvestingProfessions: 0
+    craftProfessionRequirements: []
+    requiresAllCraftingProfessions: 0
+    requiredTravelrouteName: 
+    minGuildLevel: 0
+    accountUnlockable: {fileID: 0}
+  usageAreaId: 0
+  usableSound: {fileID: 0}
+  minLevel: 1
+  cooldown: 0
+  _cooldownCategory: 
+  usageHealth: 0
+  usageMana: 1000
+  usageExperience: 0
+  usagePetHealth: 0

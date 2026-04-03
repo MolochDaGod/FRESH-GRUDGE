@@ -1,0 +1,20 @@
+#if UNITY_EDITOR
+public partial class DefinesManager
+{
+    public static void Constructor_SkillCategories()
+    {
+        AddOn addon = new AddOn();
+
+        addon.name          = "SkillCategories";
+        addon.basis         = "uMMORPG3d Remastered";
+        addon.define        = "_iMMOSKILLCATEGORY";
+        addon.author        = "Trugord";
+        addon.version       = "2021.3.13-38.1";
+        addon.dependencies  = "none";
+        addon.comments      = "none";
+        addon.active        = true;
+
+        addons.Add(addon);
+    }
+}
+#endif

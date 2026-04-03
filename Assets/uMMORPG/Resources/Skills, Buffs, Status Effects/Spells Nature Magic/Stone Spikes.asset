@@ -1,0 +1,235 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c57bee75a83964eb8b253fdb946269ed, type: 3}
+  m_Name: Stone Spikes
+  m_EditorClassIdentifier: 
+  animationType: 0
+  animationTag: 
+  skillType: 0
+  skillConditions:
+    activationChance: 1
+    healthThreshold: 0
+    casterHealth: 0
+    activeBuff: {fileID: 0}
+  category: 
+  usageRequirements:
+    isActive: 1
+    aliveOnly: 1
+    stateType: 0
+    minLevel: 0
+    maxLevel: 0
+    minHealth: 0
+    minMana: 0
+    minStamina: 0
+    dayStart: 0
+    dayEnd: 0
+    activeMonth: 0
+    cannotUseInCombat: 0
+    waitSecondsAfterCombat: 10
+    requiredSkills: []
+    requiresAllSkills: 0
+    requiredBuff: {fileID: 0}
+    prohibitedBuff: {fileID: 0}
+    allowedClasses: []
+    requiresParty: 0
+    requiresGuild: 0
+    requiredEquipment: []
+    requiresAllEquipment: 0
+    requiredItems: []
+    requiresAllItems: 0
+    allowedPrestigeClasses: []
+    requiredAttributes: []
+    requiresAllAttributes: 0
+    requiredRealm: {fileID: 0}
+    requiredAlly: {fileID: 0}
+    lootableBy: 0
+    requiredQuest: {fileID: 0}
+    questMustBeInProgress: 0
+    harvestProfessionRequirements: []
+    requiresAllHarvestingProfessions: 0
+    craftProfessionRequirements: []
+    requiresAllCraftingProfessions: 0
+    requiredTravelrouteName: 
+    minGuildLevel: 0
+    accountUnlockable: {fileID: 0}
+  usageEquipmentId: 0
+  usageAreaId: 0
+  learnablePrestigeClasses: []
+  emptyPrestigeClass: 1
+  staminaCosts:
+    baseValue: 0
+    bonusPerLevel: 0
+  unlearnable: 0
+  disadvantageous: 0
+  cancelWhenMoving: 0
+  followupDefaultAttack: 0
+  toolTip: '<b>{NAME} Lvl {LEVEL}</b>
+
+    Blast your enemy with stone spikes!
+
+
+    Damage:
+    {DAMAGE}
+
+    Cast Time: {CASTTIME}
+
+    Cooldown: {COOLDOWN}
+
+    Cast Range:
+    {CASTRANGE}'
+  image: {fileID: 21300000, guid: 340325a2c2db88a4c83b662eb56be2a0, type: 3}
+  learnDefault: 1
+  showCastBar: 1
+  cancelCastIfTargetDied: 1
+  allowMovement: 0
+  predecessor: {fileID: 0}
+  predecessorLevel: 0
+  requiredWeaponCategory: MainHand
+  requiredLevel:
+    baseValue: 0
+    bonusPerLevel: 0
+  requiredSkillExperience:
+    baseValue: 5
+    bonusPerLevel: 0
+  maxLevel: 5
+  manaCosts:
+    baseValue: 25
+    bonusPerLevel: 40
+  castTime:
+    baseValue: 0.8
+    bonusPerLevel: 0
+  cooldown:
+    baseValue: 12
+    bonusPerLevel: -1
+  castRange:
+    baseValue: 5
+    bonusPerLevel: 0
+  isAOE: 0
+  castSound: {fileID: 8300000, guid: 70a2d051802ebc5449f30d822f6a3c16, type: 3}
+  damage:
+    baseValue: 50
+    bonusPerLevel: 25
+  addCasterDamage: 1
+  stunChance:
+    baseValue: 0
+    bonusPerLevel: 0
+  stunAddAccuracy: 0
+  minStunTime:
+    baseValue: 0
+    bonusPerLevel: 0
+  maxStunTime:
+    baseValue: 0
+    bonusPerLevel: 0
+  projectile: {fileID: 0}
+  projectileSpeed:
+    baseValue: 0
+    bonusPerLevel: 0
+  sidekickAmount:
+    baseValue: 0
+    bonusPerLevel: 0
+  sidekickSpawnChance:
+    baseValue: 0
+    bonusPerLevel: 0
+  sidekickSpawnDelay: 0
+  sidekickSpreadAngle: 0
+  equippedWeapons: []
+  requiredAmmo: []
+  ammoAmount: 0
+  muzzleEffect: {fileID: 0}
+  impactEffect: {fileID: 0}
+  recoilCaster:
+    baseValue: 0
+    bonusPerLevel: 0
+  minRecoilTarget:
+    baseValue: 0
+    bonusPerLevel: 0
+  maxRecoilTarget:
+    baseValue: 0
+    bonusPerLevel: 0
+  recoilChance:
+    baseValue: 0
+    bonusPerLevel: 0
+  recoilAddAccuracy: 0
+  cooldownChance:
+    baseValue: 0
+    bonusPerLevel: 0
+  cooldownDuration:
+    baseValue: 0
+    bonusPerLevel: 0
+  cooldownAddAccuracy: 0
+  applyBuff: []
+  buffLevel:
+    baseValue: 0
+    bonusPerLevel: 0
+  buffChance:
+    baseValue: 0
+    bonusPerLevel: 0
+  buffAddAccuracy: 0
+  removeRandomBuff:
+    baseValue: 0
+    bonusPerLevel: 0
+  removeChance:
+    baseValue: 0
+    bonusPerLevel: 0
+  removeAddAccuracy: 0
+  applyCasterBuff:
+  - {fileID: 11400000, guid: 8d7396a5d93231c4ca92f1e0c067e696, type: 2}
+  buffCasterLevel:
+    baseValue: 0
+    bonusPerLevel: 0
+  buffCasterChance:
+    baseValue: 0
+    bonusPerLevel: 0
+  removeRandomCasterBuff:
+    baseValue: 0
+    bonusPerLevel: 0
+  removeCasterBuffChance:
+    baseValue: 0
+    bonusPerLevel: 0
+  impactRadius:
+    baseValue: 2
+    bonusPerLevel: 0
+  triggerAggroChance:
+    baseValue: 0
+    bonusPerLevel: 0
+  visualEffectOnMainTargetOnly: 0
+  reverseTargeting: 0
+  notAffectSelf: 0
+  notAffectOwnParty: 0
+  notAffectOwnGuild: 0
+  notAffectOwnRealm: 0
+  notAffectPlayers: 1
+  notAffectNpcs: 0
+  notAffectMonsters: 1
+  notAffectPets: 1
+  createOnTarget: []
+  createChance:
+    baseValue: 0
+    bonusPerLevel: 0
+  sidekicksDontStun: 0
+  sidekicksDontBuff: 0
+  sidekicksDontRecoil: 0
+  sidekicksDontDebuff: 0
+  sidekicksDontAOE: 0
+  sidekicksDontCreateObject: 0
+  minAngle:
+    baseValue: -45
+    bonusPerLevel: 0
+  maxAngle:
+    baseValue: 45
+    bonusPerLevel: 0
+  minHitsPerTarget:
+    baseValue: 1
+    bonusPerLevel: 0
+  maxHitsPerTarget:
+    baseValue: 1
+    bonusPerLevel: 1

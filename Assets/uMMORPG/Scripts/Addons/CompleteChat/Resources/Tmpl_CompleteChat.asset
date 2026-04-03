@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3207c50d1b86fd14f9e95f67c190e8aa, type: 3}
+  m_Name: Tmpl_CompleteChat
+  m_EditorClassIdentifier: 
+  useChaExternalService: 0
+  localChatItem: {fileID: 0}
+  localChatLevel: 1
+  localRateLimit: 1
+  maxLengthMessage: 150
+  localChannel:
+    command: 
+    identifierOut: 
+    identifierIn: 
+    textPrefab: {fileID: 106426152122079795, guid: 714eeb6f198e99c4a8415fedf31c6826,
+      type: 3}
+  whisperChannel:
+    command: /w
+    identifierOut: (TO)
+    identifierIn: (FROM)
+    textPrefab: {fileID: 193954, guid: edc3eb6b9dca172488e37f2964ab2e07, type: 3}
+  partyChannel:
+    command: /p
+    identifierOut: (Party)
+    identifierIn: (Party)
+    textPrefab: {fileID: 193954, guid: 51fde1a883675714fb030aa019e0dd69, type: 3}
+  guildChannel:
+    command: /g
+    identifierOut: (Guild)
+    identifierIn: (Guild)
+    textPrefab: {fileID: 193954, guid: f75787f6071a33841a3b80ecb7c738ea, type: 3}
+  infoChannel:
+    command: 
+    identifierOut: (Info)
+    identifierIn: (Info)
+    textPrefab: {fileID: 193954, guid: ad74a6bb6c101344a8811a5457c06adb, type: 3}
+  messageDisplayDefault: []
+  errorNotWhisperSelf: cant whisper to self
+  errorTooSoon: Must wait at least {RATELIMIT} seconds between messages.
+  errorLevelTooLow: Must be at least level {MINLEVEL} before using global chat.
+  errorMissingItem: You must have purchased {CHATITEM} before you can use global
+    chat.
+  emoteList: []
+  wordFilter: {fileID: 11400000, guid: e7600dd0678a84bc29ed48c50db3d5b6, type: 2}
+  messageError: '[Sys] World filter detect bad word...'
+  validSend: 0

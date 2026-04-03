@@ -1,0 +1,1 @@
+https://mmo-indie.com/addon/settings

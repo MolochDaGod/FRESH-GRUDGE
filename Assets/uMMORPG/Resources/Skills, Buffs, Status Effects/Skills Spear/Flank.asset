@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c728e3b573f047343b9dddd62baecfdd, type: 3}
+  m_Name: Flank
+  m_EditorClassIdentifier: 
+  animationType: 0
+  animationTag: 
+  skillType: 0
+  skillConditions:
+    activationChance: 1
+    healthThreshold: 0
+    casterHealth: 0
+    activeBuff: {fileID: 0}
+  category: 
+  usageRequirements:
+    isActive: 1
+    aliveOnly: 1
+    stateType: 0
+    minLevel: 0
+    maxLevel: 0
+    minHealth: 0
+    minMana: 0
+    minStamina: 0
+    dayStart: 0
+    dayEnd: 0
+    activeMonth: 0
+    cannotUseInCombat: 0
+    waitSecondsAfterCombat: 10
+    requiredSkills: []
+    requiresAllSkills: 0
+    requiredBuff: {fileID: 0}
+    prohibitedBuff: {fileID: 0}
+    allowedClasses: []
+    requiresParty: 0
+    requiresGuild: 0
+    requiredEquipment: []
+    requiresAllEquipment: 0
+    requiredItems: []
+    requiresAllItems: 0
+    allowedPrestigeClasses: []
+    requiredAttributes: []
+    requiresAllAttributes: 0
+    requiredRealm: {fileID: 0}
+    requiredAlly: {fileID: 0}
+    lootableBy: 0
+    requiredQuest: {fileID: 0}
+    questMustBeInProgress: 0
+    harvestProfessionRequirements: []
+    requiresAllHarvestingProfessions: 0
+    craftProfessionRequirements: []
+    requiresAllCraftingProfessions: 0
+    requiredTravelrouteName: 
+    minGuildLevel: 0
+    accountUnlockable: {fileID: 0}
+  usageEquipmentId: 0
+  usageAreaId: 0
+  learnablePrestigeClasses: []
+  emptyPrestigeClass: 1
+  staminaCosts:
+    baseValue: 0
+    bonusPerLevel: 0
+  unlearnable: 0
+  disadvantageous: 0
+  cancelWhenMoving: 0
+  followupDefaultAttack: 0
+  toolTip: '<b>{NAME} Lvl {LEVEL}</b>
+
+    Jump behind your enemy and stab them in
+    the back!
+
+
+    Damage: {DAMAGE}
+
+    Cast Time: {CASTTIME}
+
+    Cooldown: {COOLDOWN}
+
+    Cast
+    Range: {CASTRANGE}'
+  image: {fileID: 21300000, guid: 550c53e826ba0c54e8c73f09c8916ce7, type: 3}
+  learnDefault: 1
+  showCastBar: 0
+  cancelCastIfTargetDied: 1
+  allowMovement: 1
+  predecessor: {fileID: 0}
+  predecessorLevel: 0
+  requiredWeaponCategory: MainHand
+  requiredLevel:
+    baseValue: 0
+    bonusPerLevel: 0
+  requiredSkillExperience:
+    baseValue: 5
+    bonusPerLevel: 0
+  maxLevel: 5
+  manaCosts:
+    baseValue: 60
+    bonusPerLevel: 25
+  castTime:
+    baseValue: 0.2
+    bonusPerLevel: 0
+  cooldown:
+    baseValue: 20
+    bonusPerLevel: -2
+  castRange:
+    baseValue: 8
+    bonusPerLevel: 0
+  isAOE: 0
+  castSound: {fileID: 8300000, guid: 84e1cf0e5dff35745b6881671cec1a7e, type: 3}
+  element: {fileID: 0}
+  damage:
+    baseValue: 50
+    bonusPerLevel: 50
+  stunChance:
+    baseValue: 0.5
+    bonusPerLevel: 0.1
+  stunTime:
+    baseValue: 2
+    bonusPerLevel: 0
+  teleportDistanceBehind: 1
+  offsetY: 0.5

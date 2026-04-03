@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a699ba18ee3f0348904f6051e4eea17, type: 3}
+  m_Name: Apprentice_Alchemist
+  m_EditorClassIdentifier: uMMORPG::Titles
+  displayName: Apprentice Alchemist
+  image: {fileID: 21300000, guid: b4e1e06f16dde42a78c1bfb8d7ad981d, type: 3}
+  displayed: 1
+  description: Create your potion
+  category: {fileID: 11400000, guid: e1905f8b8756a764c8ded6ef13d61df7, type: 2}
+  AttributeModifiers:
+  - template: {fileID: 11400000, guid: 61e778e545022db4fa358d9bd04027fd, type: 2}
+    percentBonus: 0.022
+    flatBonus: 10
+  - template: {fileID: 11400000, guid: bb25b9a58aa79cb46b8f7b04230c35a8, type: 2}
+    percentBonus: 0.025
+    flatBonus: 10
+  - template: {fileID: 11400000, guid: f87ca670267d14ca6b9567f742a515ef, type: 2}
+    percentBonus: 0.043
+    flatBonus: 10
+  bonusAccuracy: 0
+  bonusResistance: 0
+  bonusBlockFactor: 0
+  bonusCriticalFactor: 0
+  bonusDrainHealthFactor: 0
+  bonusDrainManaFactor: 0
+  bonusReflectDamageFactor: 0
+  bonusDefenseBreakFactor: 0
+  bonusBlockBreakFactor: 0
+  bonusCriticalEvasion: 0
+  bonusAbsorbHealthFactor: 0
+  bonusAbsorbManaFactor: 0

@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ca52a2d0c310fc4ca4d26b3c6ed943a, type: 3}
+  m_Name: Orc Guard Order
+  m_EditorClassIdentifier: 
+  ArmoryCosts:
+    gold: 500
+    requiredItems:
+    - item: {fileID: 11400000, guid: 71dcc2cea2e035c4980bb5eec1f8c18b, type: 2}
+      amount: 1
+    - item: {fileID: 11400000, guid: 86d88496dee621c4da14214590f27971, type: 2}
+      amount: 1
+    - item: {fileID: 11400000, guid: 94f31cbbcf732d340867ecf81af5fce2, type: 2}
+      amount: 1
+  ArmoryResult: {fileID: 11400000, guid: e7db043fd3d00944facbacfbdf07f9b0, type: 2}
+  researchCosts:
+    gold: 0
+    requiredItems: []
+  researchResult: {fileID: 0}
+  StableCosts:
+    gold: 0
+    requiredItems: []
+  StableResult: {fileID: 0}
+  itemSkins: []
+  currencyCosts:
+  - honorCurrency: {fileID: 11400000, guid: 1db21f03fb156b441a21d8123beb5ee2, type: 2}
+    amount: 500
+  dropChance: 1
+  dropPrefab: {fileID: 3934906887477761577, guid: 526e86309d2d2af4585f6ac59ac70d76,
+    type: 3}
+  autoPickUp: 0
+  rarity: 2
+  itemCategory: Material
+  auctionHouseCategory: 0
+  weight: 0
+  dropSound: {fileID: 0}
+  maxStack: 100
+  maxDurability: 0
+  buyPrice: 1
+  sellPrice: 1
+  itemMallPrice: 1
+  sellable: 1
+  tradable: 1
+  destroyable: 1
+  toolTip: '<b>{NAME}</b>
+
+    give this Order to your Armory Master
+
+    to obtain
+    a base defender
+
+
+    Tradable: {TRADABLE}
+
+    <i>Sells for: {SELLPRICE} Gold</i>'
+  image: {fileID: 21300000, guid: 7ad6af39e79da1e47991a40aa6d2f438, type: 3}

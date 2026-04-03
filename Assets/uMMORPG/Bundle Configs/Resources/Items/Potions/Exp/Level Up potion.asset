@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45ad0ab75b024602bc182fd34499b53, type: 3}
+  m_Name: Level Up potion
+  m_EditorClassIdentifier: 
+  currencyCosts: []
+  dropChance: 1
+  dropPrefab: {fileID: 3934906887477761577, guid: f641935395c7a574482859e1279297e1,
+    type: 3}
+  rarity: 3
+  itemCategory: Potions
+  weight: 0
+  dropSound: {fileID: 8300000, guid: bc2d8da9699fe7c47809ee717f2a18a5, type: 3}
+  maxStack: 99
+  maxDurability: 0
+  buyPrice: 20
+  sellPrice: 10
+  itemMallPrice: 50
+  sellable: 1
+  tradable: 1
+  destroyable: 1
+  toolTip: '<b>{NAME}</b>
+
+    Restores some Health.
+
+
+    Restores {USAGEHEALTH}
+    Health on use.
+
+    Destroyable: {DESTROYABLE}
+
+    Sellable: {SELLABLE}
+
+    Tradable:
+    {TRADABLE}
+
+    Required Level: {MINLEVEL}
+
+
+    Amount: {AMOUNT}
+
+    Price:
+    {BUYPRICE} Gold
+
+    <i>Sells for: {SELLPRICE} Gold</i>'
+  image: {fileID: 21300000, guid: 07a54f0fd6b6f4f2bb63a7f654dbfeb5, type: 3}
+  usageRequirements:
+    isActive: 1
+    aliveOnly: 1
+    stateType: 0
+    minLevel: 0
+    maxLevel: 0
+    minHealth: 0
+    minMana: 0
+    dayStart: 0
+    dayEnd: 0
+    activeMonth: 0
+    cannotUseInCombat: 0
+    waitSecondsAfterCombat: 10
+    requiredSkills: []
+    requiresAllSkills: 0
+    requiredBuff: {fileID: 0}
+    prohibitedBuff: {fileID: 0}
+    allowedClasses: []
+    requiresParty: 0
+    requiresGuild: 0
+    requiredEquipment: []
+    requiresAllEquipment: 0
+    requiredItems: []
+    requiresAllItems: 0
+    allowedPrestigeClasses: []
+    requiredAttributes: []
+    requiresAllAttributes: 0
+    requiredRealm: {fileID: 0}
+    requiredAlly: {fileID: 0}
+    lootableBy: 0
+    requiredQuest: {fileID: 0}
+    questMustBeInProgress: 0
+    factionRequirements: []
+    requiresAllFactionRatings: 0
+    harvestProfessionRequirements: []
+    requiresAllHarvestingProfessions: 0
+    craftProfessionRequirements: []
+    requiresAllCraftingProfessions: 0
+    requiredTravelrouteName: 
+    worldEvent: {fileID: 0}
+    minEventCount: 0
+    maxEventCount: 0
+    minGuildLevel: 0
+    accountUnlockable: 
+  usageAreaId: 0
+  usableSound: {fileID: 8300000, guid: c5847a1bb698bcc40b30280749c7a1bd, type: 3}
+  minLevel: 5
+  cooldown: 20
+  _cooldownCategory: Health Potion
+  usageHealth: 0
+  usageMana: 0
+  usageExperience: 1000000000
+  usagePetHealth: 0
