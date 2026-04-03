@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+#if _SQLITE
 public partial class Player {
     [HideInInspector] public int auctionHouse_SellIndice = -1;
 
@@ -353,3 +354,5 @@ public partial class Player {
             auctionHouse_SellIndice = slotIndices[0];
     }
 }
+
+#endif

@@ -26,7 +26,9 @@ public class Storage : Inventory
             storages.Add(storageName, this);
 
             // load from db
+#if _SQLITE
             Database.singleton.LoadStorage(this);
+#endif
         }
         else Debug.LogWarning("A Storage with name " + name + " already exists. Use a different name for each Storage, otherwise it won't be saved to the Database.");
     }

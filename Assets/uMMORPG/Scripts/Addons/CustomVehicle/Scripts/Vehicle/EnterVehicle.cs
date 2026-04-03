@@ -76,7 +76,9 @@ namespace BurnyDev.UMMORPG.AddonCustomVehicle
                     allVehicles[name] = this;
 
                     // load from db
+#if _SQLITE
                     Database.singleton.LoadCustomVehicle(this);
+#endif
                 }
                 else Debug.LogWarning("A Custom vehicle with name " + name + " already exists. Use a different name for each CustomVehicle, otherwise it won't be saved to the Database.");
             }

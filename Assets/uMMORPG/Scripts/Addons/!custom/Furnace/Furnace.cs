@@ -42,7 +42,9 @@ public class Furnace : NetworkBehaviour
             furnaces.Add(furnaceName, this); ;
 
             // load from db
+#if _SQLITE
             Database.singleton.LoadFurnace(this);
+#endif
         }
         else Debug.LogWarning("A Furnace with name " + furnaceName + " already exists. Use a different name for each Furnace, otherwise it won't be saved to the Database.");
     }

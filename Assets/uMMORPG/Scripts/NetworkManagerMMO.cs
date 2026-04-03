@@ -252,7 +252,9 @@ public partial class NetworkManagerMMO : NetworkManager
 
         //load all player generated structures
         //(after base.OnStartServer so that we can call NetworkServer.Spawn)
+    #if _SQLITE
         Database.singleton.LoadStructures();
+    #endif
 
         // invoke saving
         InvokeRepeating(nameof(SavePlayers), saveInterval, saveInterval);
@@ -621,6 +623,7 @@ public partial class NetworkManagerMMO : NetworkManager
         if (Player.onlinePlayers.Count > 0)
             Debug.Log("saved " + Player.onlinePlayers.Count + " player(s)");
 
+#if _SQLITE
         Database.singleton.SaveStorages(Storage.storages.Values);
         if (Storage.storages.Count > 0)
             Debug.Log("saved " + Storage.storages.Count + " storage(s)");
@@ -632,6 +635,7 @@ public partial class NetworkManagerMMO : NetworkManager
         Database.singleton.SaveStructures(Structure.structures);
         if (Structure.structures.Count > 0)
             Debug.Log("saved " + Structure.structures.Count + " structure(s)");
+#endif
     }
 
     public override void OnServerDisconnect(NetworkConnectionToClient conn)

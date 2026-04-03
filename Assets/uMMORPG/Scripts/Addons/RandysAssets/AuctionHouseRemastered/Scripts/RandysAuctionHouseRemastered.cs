@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+#if _SQLITE
 public class RandysAuctionHouseRemastered : MonoBehaviour {
     public static RandysAuctionHouseRemastered singleton;
 
@@ -67,3 +68,5 @@ public class RandysAuctionHouseRemastered : MonoBehaviour {
         }
     }
 }
+
+#endif

@@ -1117,6 +1117,7 @@ public partial class Database
 
 #endif
 
+#if _SQLITE
 public partial class NetworkManagerMMO
 {
     // returns all prefabs by selected tags in registered spawnable prefabs
@@ -1217,3 +1218,5 @@ public partial class NetworkManagerMMO
         }
     }
 }
+
+#endif
