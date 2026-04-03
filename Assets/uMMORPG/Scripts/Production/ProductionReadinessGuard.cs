@@ -119,27 +119,25 @@ public class ProductionReadinessGuard : MonoBehaviour
 #if _MYSQL
         if (Database.singleton != null)
         {
-            if (string.IsNullOrWhiteSpace(Database.singleton.dbHost) ||
-                string.Equals(Database.singleton.dbHost, "localhost", System.StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(Database.singleton.dbHost, "127.0.0.1", System.StringComparison.OrdinalIgnoreCase))
+            if (Database.singleton.RuntimeDbUsesPlaceholderHost())
             {
                 warnings++;
-                Debug.LogWarning("[ProductionReadinessGuard] MySQL host is still localhost/empty. Use your actual database host for deployment.");
+                Debug.LogWarning($"[ProductionReadinessGuard] Effective MySQL host is still localhost/empty ({Database.singleton.RuntimeDbHost}). Use your actual database host for deployment.");
             }
 
-            if (string.IsNullOrWhiteSpace(Database.singleton.dbName) || string.Equals(Database.singleton.dbName, "dbName", System.StringComparison.OrdinalIgnoreCase))
+            if (Database.singleton.RuntimeDbUsesPlaceholderName())
             {
                 warnings++;
                 Debug.LogWarning("[ProductionReadinessGuard] MySQL database name is still the default placeholder.");
             }
 
-            if (string.IsNullOrWhiteSpace(Database.singleton.dbUser) || string.Equals(Database.singleton.dbUser, "dbUser", System.StringComparison.OrdinalIgnoreCase))
+            if (Database.singleton.RuntimeDbUsesPlaceholderUser())
             {
                 warnings++;
                 Debug.LogWarning("[ProductionReadinessGuard] MySQL username is still the default placeholder.");
             }
 
-            if (string.IsNullOrWhiteSpace(Database.singleton.dbPassword) || string.Equals(Database.singleton.dbPassword, "dbPassword", System.StringComparison.OrdinalIgnoreCase))
+            if (Database.singleton.RuntimeDbUsesPlaceholderPassword())
             {
                 warnings++;
                 Debug.LogWarning("[ProductionReadinessGuard] MySQL password is still the default placeholder.");

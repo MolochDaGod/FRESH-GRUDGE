@@ -15,6 +15,17 @@ public partial class Database : MonoBehaviour
 {
     public static Database singleton;
     private string connectionString = null;
+
+#if _SERVER
+    private const string EnvHost = "UMMORPG_MYSQL_HOST";
+    private const string EnvDatabase = "UMMORPG_MYSQL_DATABASE";
+    private const string EnvUser = "UMMORPG_MYSQL_USER";
+    private const string EnvPassword = "UMMORPG_MYSQL_PASSWORD";
+    private const string EnvPort = "UMMORPG_MYSQL_PORT";
+    private const string EnvCharacterSet = "UMMORPG_MYSQL_CHARSET";
+    private const string EnvConnectionTimeout = "UMMORPG_MYSQL_CONNECTION_TIMEOUT";
+#endif
+
     // -----------------------------------------------------------------------------------
     // ConnectionString
     // -----------------------------------------------------------------------------------
@@ -27,12 +38,13 @@ public partial class Database : MonoBehaviour
             {
                 MySqlConnectionStringBuilder connectionStringBuilder = new MySqlConnectionStringBuilder
                 {
-                    Server = string.IsNullOrWhiteSpace(dbHost) ? "127.0.0.1" : dbHost,
-                    Database = string.IsNullOrWhiteSpace(dbName) ? "database" : dbName,
-                    UserID = string.IsNullOrWhiteSpace(dbUser) ? "user" : dbUser,
-                    Password = string.IsNullOrWhiteSpace(dbPassword) ? "password" : dbPassword,
-                    Port = dbPort,
-                    CharacterSet = string.IsNullOrWhiteSpace(dbCharacterSet) ? "utf8mb4" : dbCharacterSet
+                    Server = EffectiveDbHost,
+                    Database = EffectiveDbName,
+                    UserID = EffectiveDbUser,
+                    Password = EffectiveDbPassword,
+                    Port = EffectiveDbPort,
+                    CharacterSet = EffectiveDbCharacterSet,
+                    ConnectionTimeout = EffectiveConnectionTimeout
                 };
                 connectionString = connectionStringBuilder.ConnectionString;
             }
@@ -50,6 +62,127 @@ public partial class Database : MonoBehaviour
 
 
 #region MYSQL FUNCTION HELPER 
+
+#if _SERVER
+    private static readonly string[] HostEnvKeys = { EnvHost, "MYSQL_HOST", "DB_HOST" };
+    private static readonly string[] DatabaseEnvKeys = { EnvDatabase, "MYSQL_DATABASE", "MYSQL_DB", "DB_NAME" };
+    private static readonly string[] UserEnvKeys = { EnvUser, "MYSQL_USER", "MYSQL_USERNAME", "DB_USER" };
+    private static readonly string[] PasswordEnvKeys = { EnvPassword, "MYSQL_PASSWORD", "DB_PASSWORD" };
+    private static readonly string[] PortEnvKeys = { EnvPort, "MYSQL_PORT", "DB_PORT" };
+    private static readonly string[] CharsetEnvKeys = { EnvCharacterSet, "MYSQL_CHARSET", "DB_CHARSET" };
+    private static readonly string[] ConnectionTimeoutEnvKeys = { EnvConnectionTimeout, "MYSQL_CONNECTION_TIMEOUT", "DB_CONNECTION_TIMEOUT" };
+
+    public string RuntimeDbHost => EffectiveDbHost;
+    public string RuntimeDbName => EffectiveDbName;
+    public string RuntimeDbUser => EffectiveDbUser;
+    public uint RuntimeDbPort => EffectiveDbPort;
+
+    private string EffectiveDbHost => FirstNonEmpty(GetEnv(HostEnvKeys), dbHost, "127.0.0.1");
+    private string EffectiveDbName => FirstNonEmpty(GetEnv(DatabaseEnvKeys), dbName, "database");
+    private string EffectiveDbUser => FirstNonEmpty(GetEnv(UserEnvKeys), dbUser, "user");
+    private string EffectiveDbPassword => FirstNonEmpty(GetEnv(PasswordEnvKeys), dbPassword, "password");
+    private uint EffectiveDbPort => GetUIntEnv(PortEnvKeys, dbPort == 0 ? 3306u : dbPort);
+    private string EffectiveDbCharacterSet => FirstNonEmpty(GetEnv(CharsetEnvKeys), dbCharacterSet, "utf8mb4");
+    private uint EffectiveConnectionTimeout => GetUIntEnv(ConnectionTimeoutEnvKeys, 8);
+
+    public bool RuntimeDbUsesPlaceholderHost()
+    {
+        return IsPlaceholderValue(EffectiveDbHost, "localhost", "127.0.0.1");
+    }
+
+    public bool RuntimeDbUsesPlaceholderName()
+    {
+        return IsPlaceholderValue(EffectiveDbName, "database", "dbName");
+    }
+
+    public bool RuntimeDbUsesPlaceholderUser()
+    {
+        return IsPlaceholderValue(EffectiveDbUser, "user", "dbUser");
+    }
+
+    public bool RuntimeDbUsesPlaceholderPassword()
+    {
+        return IsPlaceholderValue(EffectiveDbPassword, "password", "dbPassword");
+    }
+
+    private string FirstNonEmpty(params string[] values)
+    {
+        foreach (string value in values)
+        {
+            if (!string.IsNullOrWhiteSpace(value))
+                return value.Trim();
+        }
+
+        return string.Empty;
+    }
+
+    private string GetEnv(params string[] names)
+    {
+        for (int i = 0; i < names.Length; ++i)
+        {
+            string value = Environment.GetEnvironmentVariable(names[i]);
+            if (!string.IsNullOrWhiteSpace(value))
+                return value;
+        }
+
+        return null;
+    }
+
+    private bool IsPlaceholderValue(string value, params string[] placeholders)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+            return true;
+
+        foreach (string placeholder in placeholders)
+        {
+            if (string.Equals(value.Trim(), placeholder, StringComparison.OrdinalIgnoreCase))
+                return true;
+        }
+
+        return false;
+    }
+
+    private void ValidateMySqlConfiguration()
+    {
+        List<string> issues = new List<string>();
+
+        if (IsPlaceholderValue(EffectiveDbName, "database", "dbName"))
+            issues.Add($"database name is not configured ({string.Join(", ", DatabaseEnvKeys)} or Database.dbName)");
+
+        if (IsPlaceholderValue(EffectiveDbUser, "user", "dbUser"))
+            issues.Add($"database user is not configured ({string.Join(", ", UserEnvKeys)} or Database.dbUser)");
+
+        if (IsPlaceholderValue(EffectiveDbPassword, "password", "dbPassword"))
+            issues.Add($"database password is not configured ({string.Join(", ", PasswordEnvKeys)} or Database.dbPassword)");
+
+        if (EffectiveDbPort == 0)
+            issues.Add($"database port is invalid ({string.Join(", ", PortEnvKeys)} or Database.dbPort)");
+
+        if (issues.Count > 0)
+        {
+            throw new InvalidOperationException(
+                "MySQL startup configuration is incomplete: " + string.Join("; ", issues));
+        }
+    }
+
+    private void EnsureMySqlConnectionAvailable()
+    {
+        ValidateMySqlConfiguration();
+
+        try
+        {
+            using MySqlConnection connection = new MySqlConnection(ConnectionString);
+            connection.Open();
+        }
+        catch (Exception ex) when (ex is MySqlException || ex is TimeoutException)
+        {
+            throw new InvalidOperationException(
+                $"Unable to connect to MySQL during server startup. Host={EffectiveDbHost}, Port={EffectiveDbPort}, Database={EffectiveDbName}, User={EffectiveDbUser}. " +
+                $"Update the Database component or set one of these env var groups before starting the server: [{string.Join(", ", HostEnvKeys)}], [{string.Join(", ", DatabaseEnvKeys)}], [{string.Join(", ", UserEnvKeys)}], [{string.Join(", ", PasswordEnvKeys)}], [{string.Join(", ", PortEnvKeys)}].",
+                ex);
+        }
+    }
+#endif
 
     // -----------------------------------------------------------------------------------
     // Transaction
@@ -265,6 +398,18 @@ public partial class Database : MonoBehaviour
         return defaultValue;
     }
 
+    private uint GetUIntEnv(string[] names, uint defaultValue = 0)
+    {
+        for (int i = 0; i < names.Length; ++i)
+        {
+            uint result = GetUIntEnv(names[i], uint.MaxValue);
+            if (result != uint.MaxValue)
+                return result;
+        }
+
+        return defaultValue;
+    }
+
 #endregion MYSQL FUNCTION HELPER 
 
     // -----------------------------------------------------------------------------------
@@ -282,6 +427,8 @@ public partial class Database : MonoBehaviour
     public void Connect()
     {
 #if _SERVER
+        EnsureMySqlConnectionAvailable();
+
         // -- accounts
         ExecuteNonQueryMySql(@"
         CREATE TABLE IF NOT EXISTS accounts (
