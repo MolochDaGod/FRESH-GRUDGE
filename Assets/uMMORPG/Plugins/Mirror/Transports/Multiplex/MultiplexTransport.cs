@@ -7,7 +7,7 @@ namespace Mirror
 {
     // a transport that can listen to multiple underlying transport at the same time
     [DisallowMultipleComponent]
-    public class MultiplexTransport : Transport, PortTransport
+    public class MultiplexTransport : PortTransport
     {
         public Transport[] transports;
 

@@ -10,7 +10,7 @@ namespace kcp2k
 {
     [HelpURL("https://mirror-networking.gitbook.io/docs/transports/kcp-transport")]
     [DisallowMultipleComponent]
-    public class KcpTransport : Transport, PortTransport
+    public class KcpTransport : PortTransport
     {
         // scheme used by this transport
         public const string Scheme = "kcp";

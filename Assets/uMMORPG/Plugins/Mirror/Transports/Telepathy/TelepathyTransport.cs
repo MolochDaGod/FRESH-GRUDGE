@@ -9,7 +9,7 @@ namespace Mirror
 {
     [HelpURL("https://github.com/vis2k/Telepathy/blob/master/README.md")]
     [DisallowMultipleComponent]
-    public class TelepathyTransport : Transport, PortTransport
+    public class TelepathyTransport : PortTransport
     {
         // scheme used by this transport
         // "tcp4" means tcp with 4 bytes header, network byte order
