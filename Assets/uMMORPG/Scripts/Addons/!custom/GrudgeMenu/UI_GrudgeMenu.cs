@@ -18,6 +18,7 @@ using UnityEngine.UI;
 //
 // Attach this to the HUD canvas root (alongside other UI managers).
 // ─────────────────────────────────────────────────────────────────────────────
+[DefaultExecutionOrder(110)]
 public class UI_GrudgeMenu : MonoBehaviour
 {
     // ── Tabs ──────────────────────────────────────────────────────────────────

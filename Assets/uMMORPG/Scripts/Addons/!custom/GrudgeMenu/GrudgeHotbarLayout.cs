@@ -16,6 +16,7 @@ using UnityEngine.UI;
 // This script runs AFTER UI_Skillbar.Update() because it relies on OnGUI /
 // LateUpdate to override colors without touching the skillbar's core logic.
 // ─────────────────────────────────────────────────────────────────────────────
+[DefaultExecutionOrder(200)]
 [RequireComponent(typeof(UI_Skillbar))]
 public class GrudgeHotbarLayout : MonoBehaviour
 {

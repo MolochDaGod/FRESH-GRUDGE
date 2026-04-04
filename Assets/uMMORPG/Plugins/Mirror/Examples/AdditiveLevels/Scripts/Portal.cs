@@ -50,7 +50,7 @@ namespace Mirror.Examples.AdditiveLevels
             if (!other.CompareTag("Player")) return;
 
             // applies to host client on server and remote clients
-            if (other.TryGetComponent(out Common.Controllers.Player.PlayerControllerBase playerController))
+            if (other.TryGetComponent(out PlayerController playerController))
                 playerController.enabled = false;
 
             if (isServer)
@@ -97,7 +97,7 @@ namespace Mirror.Examples.AdditiveLevels
 
             // host client playerController would have been disabled by OnTriggerEnter above
             // Remote client players are respawned with playerController already enabled
-            if (NetworkClient.localPlayer != null && NetworkClient.localPlayer.TryGetComponent(out Common.Controllers.Player.PlayerControllerBase playerController))
+            if (NetworkClient.localPlayer != null && NetworkClient.localPlayer.TryGetComponent(out PlayerController playerController))
                 playerController.enabled = true;
         }
     }

@@ -18,6 +18,7 @@ using UnityEngine.UI;
 //   skillXpText      — Text showing current skill XP
 //   upgradeAllButton — optional Button to upgrade every eligible skill at once
 // ─────────────────────────────────────────────────────────────────────────────
+[DefaultExecutionOrder(150)]
 public class UI_GrudgeSkillsTab : MonoBehaviour
 {
     [Header("Slot Prefab")]

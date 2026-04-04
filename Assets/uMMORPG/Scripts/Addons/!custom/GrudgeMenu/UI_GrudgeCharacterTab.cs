@@ -19,6 +19,7 @@ using UnityEngine.UI;
 //   proficiencyBadgePrefab
 //   openClassTreeButton  — shortcut to jump to ClassTree tab
 // ─────────────────────────────────────────────────────────────────────────────
+[DefaultExecutionOrder(150)]
 public class UI_GrudgeCharacterTab : MonoBehaviour
 {
     [Header("Identity")]

@@ -19,6 +19,7 @@ using UnityEngine.UI;
 //   dismissButton    — skip onboarding entirely
 //   grudgeMenu       — reference to UI_GrudgeMenu for deep-link buttons
 // ─────────────────────────────────────────────────────────────────────────────
+[DefaultExecutionOrder(150)]
 public class UI_GrudgeOnboarding : MonoBehaviour
 {
     // ── Step data ─────────────────────────────────────────────────────────────

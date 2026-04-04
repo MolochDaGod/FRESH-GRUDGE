@@ -12,6 +12,7 @@ using Mirror;
 //
 // Tiers 1-5, milestone every 100 XP per tier (configurable).
 // ─────────────────────────────────────────────────────────────────────────────
+[DefaultExecutionOrder(-300)]
 [DisallowMultipleComponent]
 public partial class PlayerGrudgeProfessions : NetworkBehaviour
 {

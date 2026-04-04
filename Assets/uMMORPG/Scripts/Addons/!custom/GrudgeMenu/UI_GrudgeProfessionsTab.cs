@@ -12,6 +12,7 @@ using UnityEngine.UI;
 //                      0 Harvesting, 1 Mining, 2 Woodcutting, 3 Fishing, 4 Crafting
 //   totalProgressText — optional Text showing overall progression summary
 // ─────────────────────────────────────────────────────────────────────────────
+[DefaultExecutionOrder(150)]
 public class UI_GrudgeProfessionsTab : MonoBehaviour
 {
     [Header("Profession Rows (0=Harvesting 1=Mining 2=Woodcutting 3=Fishing 4=Crafting)")]
