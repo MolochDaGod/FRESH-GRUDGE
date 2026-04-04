@@ -1,0 +1,27 @@
+@echo off
+if /I not "%~1"=="/quiet" (
+    echo Run this with: call tools\mysql\set-ummorpg-mysql-env.cmd
+)
+
+set MYSQL_HOST=127.0.0.1
+set MYSQL_PORT=3306
+set MYSQL_DATABASE=grudge_game
+set MYSQL_USER=grudge_admin
+set MYSQL_PASSWORD=92120a0586492a3c03739c826692bdba
+set MYSQL_ROOT_PASSWORD=07a960772947282439a05d4351d9e111d322e737
+
+set DB_HOST=%MYSQL_HOST%
+set DB_PORT=%MYSQL_PORT%
+set DB_NAME=%MYSQL_DATABASE%
+set DB_USER=%MYSQL_USER%
+set DB_PASSWORD=%MYSQL_PASSWORD%
+
+set UMMORPG_MYSQL_HOST=%MYSQL_HOST%
+set UMMORPG_MYSQL_PORT=%MYSQL_PORT%
+set UMMORPG_MYSQL_DATABASE=%MYSQL_DATABASE%
+set UMMORPG_MYSQL_USER=%MYSQL_USER%
+set UMMORPG_MYSQL_PASSWORD=%MYSQL_PASSWORD%
+
+if /I not "%~1"=="/quiet" (
+    echo MySQL environment variables loaded for localhost:3306 / %MYSQL_DATABASE%.
+)

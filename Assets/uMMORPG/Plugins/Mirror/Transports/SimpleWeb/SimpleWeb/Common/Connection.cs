@@ -1,24 +1,32 @@
 using System;
 using System.Collections.Concurrent;
 using System.IO;
+using System.Linq;
+using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 
-namespace JamesFrowen.SimpleWeb
+namespace Mirror.SimpleWeb
 {
     internal sealed class Connection : IDisposable
     {
-        public const int IdNotSet = -1;
-
         readonly object disposedLock = new object();
 
+        public const int IdNotSet = -1;
         public TcpClient client;
-
         public int connId = IdNotSet;
+
         /// <summary>
-        /// Ip set via X-Real-IP header when using a reverse proxy
+        /// Connect request, sent from client to start handshake
+        /// <para>Only valid on server</para>
         /// </summary>
-        public string RealIp;
+        public Request request;
+        /// <summary>
+        /// RemoteEndpoint address or address from request header
+        /// <para>Only valid on server</para>
+        /// </summary>
+        public string remoteAddress;
+
         public Stream stream;
         public Thread receiveThread;
         public Thread sendThread;
@@ -27,7 +35,6 @@ namespace JamesFrowen.SimpleWeb
         public ConcurrentQueue<ArrayBuffer> sendQueue = new ConcurrentQueue<ArrayBuffer>();
 
         public Action<Connection> onDispose;
-
         volatile bool hasDisposed;
 
         public Connection(TcpClient client, Action<Connection> onDispose)
@@ -41,18 +48,18 @@ namespace JamesFrowen.SimpleWeb
         /// </summary>
         public void Dispose()
         {
-            Log.Verbose($"Dispose {ToString()}");
+            Log.Verbose("[SWT-Connection]: Dispose {0}", ToString());
 
             // check hasDisposed first to stop ThreadInterruptedException on lock
-            if (hasDisposed) { return; }
+            if (hasDisposed) return;
 
-            Log.Info($"Connection Close: {ToString()}");
-
+            Log.Verbose("[SWT-Connection]: Connection Close: {0}", ToString());
 
             lock (disposedLock)
             {
                 // check hasDisposed again inside lock to make sure no other object has called this
-                if (hasDisposed) { return; }
+                if (hasDisposed) return;
+
                 hasDisposed = true;
 
                 // stop threads first so they don't try to use disposed objects
@@ -76,9 +83,7 @@ namespace JamesFrowen.SimpleWeb
 
                 // release all buffers in send queue
                 while (sendQueue.TryDequeue(out ArrayBuffer buffer))
-                {
                     buffer.Release();
-                }
 
                 onDispose.Invoke(this);
             }
@@ -86,18 +91,44 @@ namespace JamesFrowen.SimpleWeb
 
         public override string ToString()
         {
+            // remoteAddress isn't set until after handshake
             if (hasDisposed)
-            {
                 return $"[Conn:{connId}, Disposed]";
-            }
+            else if (!string.IsNullOrWhiteSpace(remoteAddress))
+                return $"[Conn:{connId}, endPoint:{remoteAddress}]";
+            else
+                try
+                {
+                    EndPoint endpoint = client?.Client?.RemoteEndPoint;
+                    return $"[Conn:{connId}, endPoint:{endpoint}]";
+                }
+                catch (SocketException)
+                {
+                    return $"[Conn:{connId}, endPoint:n/a]";
+                }
+        }
 
-            if (!string.IsNullOrEmpty(RealIp))
+        /// <summary>
+        /// Gets the address based on the <see cref="request"/> and RemoteEndPoint
+        /// <para>Called after ServerHandShake is accepted</para>
+        /// </summary>
+        internal string CalculateAddress()
+        {
+            if (request.Headers.TryGetValue("X-Forwarded-For", out string forwardFor))
             {
-                return $"[Conn:{connId}, Ip:{RealIp}]";
+                string actualClientIP = forwardFor.ToString().Split(',').First();
+                // Remove the port number from the address
+                return actualClientIP.Split(':').First();
             }
+            else
+            {
+                IPEndPoint ipEndPoint = (IPEndPoint)client.Client.RemoteEndPoint;
+                IPAddress ipAddress = ipEndPoint.Address;
+                if (ipAddress.IsIPv4MappedToIPv6)
+                    ipAddress = ipAddress.MapToIPv4();
 
-            System.Net.EndPoint endpoint = client?.Client?.RemoteEndPoint;
-            return $"[Conn:{connId}, endPoint:{endpoint}]";
+                return ipAddress.ToString();
+            }
         }
     }
 }
