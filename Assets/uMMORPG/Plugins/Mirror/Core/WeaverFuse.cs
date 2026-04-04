@@ -1,14 +1,22 @@
-// Mirror's Weaver replaces WeaverFuse.Weaved() to return 'true' after
-// processing. If weaving never ran, it returns 'false' and NetworkServer/
-// NetworkClient throw an early exception with a clear message.
-// This stub always returns true for the uMMORPG bundled Mirror build.
+// safety fuse for weaver to flip.
+// runtime can check this to ensure weaving succeded.
+// otherwise running server/client would give lots of random 'writer not found' etc. errors.
+// this is much cleaner.
+//
+// note that ILPostProcessor errors already block entering playmode.
+// however, issues could still stop the weaving from running at all.
+// WeaverFuse can check if it actually ran.
 namespace Mirror
 {
     public static class WeaverFuse
     {
-        // Weaver replaces this with 'return true' after processing.
-        // Returning true here because uMMORPG uses the bundled Weaver
-        // which runs automatically on compile.
-        public static bool Weaved() => true;
+        // this trick only works for ILPostProcessor.
+        // CompilationFinishedHook can't weaver Mirror.dll.
+        public static bool Weaved() =>
+#if UNITY_2020_3_OR_NEWER
+            false;
+#else
+            true;
+#endif
     }
 }

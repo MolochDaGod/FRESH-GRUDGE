@@ -1,10 +1,13 @@
-// Transports that have a configurable port can inherit from PortTransport
-// instead of Transport. NetworkServer and NetworkManagerHUD use this to
-// display the port in the HUD and log it on headless server startup.
-namespace Mirror
+// convenience interface for transports which use a port.
+// useful for cases where someone wants to 'just set the port' independent of
+// which transport it is.
+//
+// note that not all transports have ports, but most do.
+
+namespace  Mirror
 {
-    public abstract class PortTransport : Transport
+    public interface PortTransport
     {
-        public abstract ushort Port { get; set; }
+        ushort Port { get; set; }
     }
 }

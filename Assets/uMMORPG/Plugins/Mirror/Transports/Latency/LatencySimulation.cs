@@ -31,7 +31,7 @@ namespace Mirror
 
     [HelpURL("https://mirror-networking.gitbook.io/docs/transports/latency-simulaton-transport")]
     [DisallowMultipleComponent]
-    public class LatencySimulation : PortTransport
+    public class LatencySimulation : Transport, PortTransport
     {
         public Transport wrap;
 
