@@ -77,7 +77,7 @@ public class DatabaseConnector : MonoBehaviour
 
     /// <summary>Fetch the top N players from the leaderboard.</summary>
     public void GetLeaderboard(int limit,
-        Action<LeaderboardEntry[]> onSuccess, Action<string> onError)
+        Action<ApiLeaderboardEntry[]> onSuccess, Action<string> onError)
     {
         StartCoroutine(Get<LeaderboardResponse>(
             $"api/leaderboard?limit={limit}",

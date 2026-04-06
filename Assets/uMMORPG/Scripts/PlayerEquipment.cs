@@ -345,7 +345,7 @@ public partial class PlayerEquipment : Equipment
     }
 
     // validation
-    void OnValidate()
+    protected override void OnValidate()
     {
         // it's easy to set a default item and forget to set amount from 0 to 1
         // -> let's do this automatically.

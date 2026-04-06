@@ -58,15 +58,13 @@ public partial class Database
     }
 #endif
 
-#if _SERVER
-    public void Start()
+#if _SERVER && _MYSQL
+    // Called during Database.Start() in DatabaseMTools — do not declare Start() here to avoid
+    // a duplicate method conflict with DatabaseMTools.cs on the same partial class.
+    public void Start_Tools_MySQLAddOn()
     {
 #if _DEBUGMODE
         Debug.Log("Search All addon require database and add in Events");
-#endif
-        //Debug.Log("Search All addon require database and add in Events");
-#if _SQLITE
-        Utils.InvokeMany(typeof(Database), this, "Start_Tools_");
 #endif
     }
 #endif

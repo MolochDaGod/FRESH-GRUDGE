@@ -61,7 +61,7 @@ public class PlayerProfile
 }
 
 [Serializable]
-public class LeaderboardEntry
+public class ApiLeaderboardEntry
 {
     public int    rank;
     public int    player_id;
@@ -100,12 +100,12 @@ public class PlayerProfileResponse
 public class LeaderboardResponse
 {
     public bool               success;
-    public LeaderboardEntry[] data;
+    public ApiLeaderboardEntry[] data;
     public string             error;
 }
 
 [Serializable]
 public class LeaderboardResponseWrapper
 {
-    public LeaderboardEntry[] entries;
+    public ApiLeaderboardEntry[] entries;
 }
