@@ -186,7 +186,7 @@ public partial class NetworkManagerMMO : NetworkManager
         // any valid local player? then set state to world
         if (NetworkClient.localPlayer != null)
             state = NetworkState.World;
-        if (autoStartServerBuild)
+        if (Mirror.Utils.IsHeadless() && (!Application.isEditor || editorAutoStart) && headlessStartMode == HeadlessStartOptions.AutoStartServer)
         {
             ++frames;
             float timeNow = Time.realtimeSinceStartup;
@@ -608,17 +608,7 @@ public partial class NetworkManagerMMO : NetworkManager
 
     void SavePlayers()
     {
-        if (Database.singleton.useThread)
-        {
-            ThreadManager.MThread.QueueOnMainThread(() =>
-            {
-                Database.singleton.CharacterSaveMany(Player.onlinePlayers.Values);
-            });
-        }
-        else
-        {
-            Database.singleton.CharacterSaveMany(Player.onlinePlayers.Values);
-        }
+        Database.singleton.CharacterSaveMany(Player.onlinePlayers.Values);
 
         if (Player.onlinePlayers.Count > 0)
             Debug.Log("saved " + Player.onlinePlayers.Count + " player(s)");

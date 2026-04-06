@@ -1,0 +1,1 @@
+﻿// For remove, is mooved to _Tools.Enum 

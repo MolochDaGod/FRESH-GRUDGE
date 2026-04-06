@@ -1,3 +1,6 @@
+// DUPLICATE — canonical copy lives at Assets/uMMORPG/Scripts/Addons/!custom/ClassLevelingTree/Scripts/PlayerClassTree.cs
+// This file is disabled to prevent duplicate-member compile errors.
+#if _iMMOTOOLS_LEGACY_CORE
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -212,3 +215,4 @@ public partial class PlayerClassTree : NetworkBehaviour, ICombatBonus, IHealthBo
         }
     }
 }
+#endif // _iMMOTOOLS_LEGACY_CORE

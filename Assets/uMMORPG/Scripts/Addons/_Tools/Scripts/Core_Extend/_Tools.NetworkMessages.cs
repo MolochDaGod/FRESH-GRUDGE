@@ -1,4 +1,4 @@
-﻿#if _iMMOTOOLS
+﻿#if _iMMOTOOLS_LEGACY_CORE
 using System.Collections.Generic;
 using Mirror;
 public partial struct CharacterCreateMsg : NetworkMessage
@@ -8,10 +8,10 @@ public partial struct CharacterCreateMsg : NetworkMessage
 #endif
 }
 
-public partial class CharactersAvailableMsg
+public partial struct CharactersAvailableMsg
 {
 #pragma warning disable CS0282
-    public partial class CharacterPreview
+    public partial struct CharacterPreview
     {
 #if _iMMOUMACHARACTERS
         public string umaDna;
@@ -28,8 +28,8 @@ public partial class CharactersAvailableMsg
         for (int i = 0; i < players.Count; ++i)
         {
 #if _iMMOUMACHARACTERS
-            if (players[i].playerAddonsConfigurator.tmpl_UMACharacterCreation)
-                characters[i].umaDna = players[i].playerAddonsConfigurator.umaDna;
+            if (players[i].playerUMACharacter)
+                characters[i].umaDna = players[i].playerUMACharacter.umaDna;
 #endif
 
 #if _iMMOLOBBY

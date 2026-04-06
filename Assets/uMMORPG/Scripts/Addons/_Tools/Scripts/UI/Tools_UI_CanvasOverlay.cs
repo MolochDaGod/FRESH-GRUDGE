@@ -48,6 +48,7 @@ public class Tools_UI_CanvasOverlay : MonoBehaviour
     public void FadeIn(float fDuration = 0.5f)
     {
         //LeanTween.alpha(this.gameObject.GetComponent<RectTransform>(), 0f, fDuration);
+        Debug.Log("on remais l'alpha à zero");
         if (fadeInOut != null)
             fadeInOut.color = new Color(fadeInOut.color.r, fadeInOut.color.g, fadeInOut.color.b, 0);
        // GetComponent<SpriteRenderer>().color += new Color(0, 0, 0, 0);
@@ -60,6 +61,7 @@ public class Tools_UI_CanvasOverlay : MonoBehaviour
     // -----------------------------------------------------------------------------------
     public void FadeIn()
     {
+        Debug.Log("on remais l'alpha à zero");
         if (fadeInOut != null)
             fadeInOut.color = new Color(fadeInOut.color.r, fadeInOut.color.g, fadeInOut.color.b, 0);
         //GetComponent<SpriteRenderer>().color += new Color(fadeInOut.color.r, fadeInOut.color.g, fadeInOut.color.b, 0);

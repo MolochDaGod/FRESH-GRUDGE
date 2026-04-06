@@ -10,7 +10,7 @@ public abstract partial class Tools_Interactable : NetworkBehaviour
 {
 
 
-    [Header("[-=-[ INTERACTABLE ]-=-]")]
+    [Header("[-=-=-[ INTERACTABLE ]-=-=-]")]
     public SpriteRenderer interactionSpriteRenderer;
     public string interactionText = "Interact with this Object";
     public Sprite interactionIcon;
@@ -29,10 +29,6 @@ public abstract partial class Tools_Interactable : NetworkBehaviour
     {
         if (interactionIcon != null && interactionSpriteRenderer != null)
             interactionSpriteRenderer.sprite = interactionIcon;
-
-
-        if (instance == null)
-            instance = FindObjectOfType<Tools_UI_InteractableAccessRequirement>();
     }
 
     // -----------------------------------------------------------------------------------
@@ -79,6 +75,9 @@ public abstract partial class Tools_Interactable : NetworkBehaviour
     // -----------------------------------------------------------------------------------
     protected virtual void ShowAccessRequirementsUI()
     {
+        if (instance == null)
+            instance = FindObjectOfType<Tools_UI_InteractableAccessRequirement>();
+
         instance.Show(this);
     }
 
@@ -88,16 +87,19 @@ public abstract partial class Tools_Interactable : NetworkBehaviour
     // -----------------------------------------------------------------------------------
     protected void HideAccessRequirementsUI()
     {
+        if (instance == null)
+            instance = FindObjectOfType<Tools_UI_InteractableAccessRequirement>();
+
         instance.Hide();
     }
 
     // -----------------------------------------------------------------------------------
     // IsWorthUpdating
     // -----------------------------------------------------------------------------------
-    // Useless ?
     public virtual bool IsWorthUpdating()
     {
-        return netIdentity.observers == null || netIdentity.observers.Count > 0;
+        return netIdentity.observers == null ||
+               netIdentity.observers.Count > 0;
     }
 
     // -----------------------------------------------------------------------------------

@@ -1,5 +1,10 @@
 using UnityEngine;
 
+public enum BuffType { Both, Buff, Nerf, None }
+
+public enum ThresholdType { None, Below, Above }
+
+public enum GroupType { None, Party, Guild, Realm }
 
 // SCRIPTABLE OBJECT BY FOLDER
 
@@ -15,6 +20,7 @@ public partial class ScripableObjectEntry
 }
 
 // MUTABLE WRAPPER
+
 [System.Serializable]
 public sealed class MutableWrapper<T>
 {
@@ -27,6 +33,7 @@ public sealed class MutableWrapper<T>
 }
 
 // Tools POPUP - CLASS
+
 [System.Serializable]
 public partial class Tools_PopupClass
 {
@@ -37,6 +44,7 @@ public partial class Tools_PopupClass
 }
 
 // Tools WEIGHTED CHANCE - CLASS
+
 [System.Serializable]
 public partial class Tools_WeightedChance : MonoBehaviour
 {
@@ -44,6 +52,7 @@ public partial class Tools_WeightedChance : MonoBehaviour
 }
 
 // Tools ITEM REWARD - CLASS
+
 [System.Serializable]
 public partial class Tools_ItemReward
 {
@@ -53,6 +62,7 @@ public partial class Tools_ItemReward
 }
 
 // Tools ITEM REQUIREMENT - CLASS
+
 [System.Serializable]
 public partial class Tools_ItemRequirement
 {
@@ -60,15 +70,8 @@ public partial class Tools_ItemRequirement
     public int amount = 1;
 }
 
-// Tools ITEM REQUIREMENT - CLASS
-[System.Serializable]
-public partial class Tools_ItemRandomRequirement
-{
-    public ScriptableItem item;
-    public int amount = 1;
-}
-
 // Tools ITEM MODIFIER - CLASS
+
 [System.Serializable]
 public partial class Tools_ItemModifier
 {
@@ -77,6 +80,7 @@ public partial class Tools_ItemModifier
 }
 
 // Tools SKILL REQUIREMENT - CLASS
+
 [System.Serializable]
 public partial class Tools_SkillRequirement
 {
@@ -85,7 +89,9 @@ public partial class Tools_SkillRequirement
 }
 
 // Tools PROFESSION REQUIREMENT - CLASS
+
 #if _iMMOHARVESTING
+
 [System.Serializable]
 public partial class HarvestingProfessionRequirement
 {
@@ -94,23 +100,28 @@ public partial class HarvestingProfessionRequirement
     [Tooltip("Minimum required profession level?")]
     public int level = 1;
 }
+
 #endif
 
 // Tools CRAFT REQUIREMENT - CLASS
+
 #if _iMMOCRAFTING
+
 [System.Serializable]
 public partial class Tools_CraftingProfessionRequirement
 {
     public CraftingProfessionTemplate template;
-    //public Tmpl_CraftingProfession template;
 
     [Tooltip("Minimum required craft level?")]
     public int level = 1;
 }
+
 #endif
 
 // ATTRIBUTE MODIFIER
+
 #if _iMMOATTRIBUTES
+
 [System.Serializable]
 public partial class Tools_AttributeModifier
 {
@@ -120,12 +131,15 @@ public partial class Tools_AttributeModifier
     public float percentBonus = 0f;
     public int flatBonus = 0;
 }
+
 #else
 public partial class Tools_AttributeModifier { }
 #endif
 
 // ATTRIBUTE REQUIREMENT
+
 #if _iMMOATTRIBUTES
+
 [System.Serializable]
 public partial class Tools_AttributeRequirement
 {
@@ -133,6 +147,7 @@ public partial class Tools_AttributeRequirement
     public int minValue = 0;
     public int maxValue = 0;
 }
+
 #else
 public partial class Tools_AttributeRequirement { }
 #endif

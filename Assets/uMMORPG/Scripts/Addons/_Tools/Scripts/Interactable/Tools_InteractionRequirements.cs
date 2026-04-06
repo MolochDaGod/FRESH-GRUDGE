@@ -1,5 +1,4 @@
 #if _iMMOTOOLS
-using Mirror;
 using System.Linq;
 using UnityEngine;
 
@@ -9,124 +8,189 @@ using UnityEngine;
 [System.Serializable]
 public partial class Tools_InteractionRequirements : Tools_Requirements
 {
-    [Header("[-=-[ COSTS (Removed after checking Requirements) ]-=-]")]
-    public Tools_Cost requierementCost;
+    [Header("[-=-=-[ COSTS (Removed after checking Requirements) ]-=-=-]")]
+    [Tooltip("[Optional] These items will be removed from players inventory")]
+    public Tools_ItemRequirement[] removeItems;
 
-    [Header("[-=-[ REWARDS (awarded after checks & costs (repetitive)) ]-=-]")]
-    public Tools_Reward requierementReward;
+    [Tooltip("[Optional] Gold cost to interact")]
+    public long goldCost = 0;
+    [Tooltip("[Optional] Coins cost to interact")]
+    public long coinCost = 0;
+    [Tooltip("[Optional] Health cost to interact")]
+    public int healthCost = 0;
+    [Tooltip("[Optional] Mana cost to interact")]
+    public int manaCost = 0;
+
+#if _iMMOHONORSHOP
+    [Tooltip("[Optional] Honor Currency costs to interact")]
+    public HonorShopCurrencyDrop[] honorCurrencyCost;
+#endif
+
+    [Header("[-=-=-[ REWARDS (awarded after checks & costs (repetitive)) ]-=-=-]")]
     public int expRewardMin                     = 0;
     public int expRewardMax                     = 0;
     public int skillExpRewardMin                = 0;
     public int skillExpRewardMax                = 0;
 
-    [Header("[-=-[ Chat Messages (automatic activation only) ]-=-]")]
-#pragma warning disable
-    [SerializeField] private bool editChatMessage = false;
-#pragma warning restore
-    [BoolShowConditional("editChatMessage", true)]
+    [Header("[-=-=-[ Chat Messages (automatic activation only) ]-=-=-]")]
     public string labelMinLevel                 = " Minimum Level: ";
-    [BoolShowConditional("editChatMessage", true)]
     public string labelMaxLevel                 = " Maximum Level: ";
-    [BoolShowConditional("editChatMessage", true)]
     public string labelMinHealth                = " Min. Health Percent: ";
-    [BoolShowConditional("editChatMessage", true)]
-    public string labelMinMana = " Min. Mana Percent: ";
-#if _iMMOSTAMINA
-    [BoolShowConditional("editChatMessage", true)]
-    public string labelMinStamina = " Min. stamina Percent: ";
-#endif
-    [BoolShowConditional("editChatMessage", true)]
+    public string labelMinMana                  = " Min. Mana Percent: ";
     public string labelDayStart                 = " Start Day: ";
-    [BoolShowConditional("editChatMessage", true)]
     public string labelDayEnd                   = " End Day: ";
-    [BoolShowConditional("editChatMessage", true)]
     public string labelActiveMonth              = " Active Month: ";
-    [BoolShowConditional("editChatMessage", true)]
     public string labelRequiredSkills           = " Skill(s): ";
-    [BoolShowConditional("editChatMessage", true)]
     public string labelLevel                    = "LV";
-    [BoolShowConditional("editChatMessage", true)]
     public string labelAllowedClasses           = " Allowed Class(es): ";
-    [BoolShowConditional("editChatMessage", true)]
     public string labelRequiresGuild            = " Guild Membership";
-    [BoolShowConditional("editChatMessage", true)]
     public string labelRequiresParty            = " Party Membership";
 #if _iMMOPRESTIGECLASSES
-    [BoolShowConditional("editChatMessage", true)]
     public string labelAllowedPrestigeClasses   = " Allowed Prestige Class(es): ";
 #endif
 #if _iMMOPVP
-    [BoolShowConditional("editChatMessage", true)]
     public string labelRequiresRealm            = " Limited to Specific Realm";
 #endif
-    [BoolShowConditional("editChatMessage", true)]
     public string labelRequiresQuest            = " Quest: ";
-    [BoolShowConditional("editChatMessage", true)]
     public string labelInProgressQuest          = "[Must be in progress]";
 #if _iMMOFACTIONS
-    [BoolShowConditional("editChatMessage", true)]
     public string labelFactionRequirements      = " Faction Ratings: ";
 #endif
-    [BoolShowConditional("editChatMessage", true)]
     public string labelRequiredEquipment        = " Equipment: ";
-    [BoolShowConditional("editChatMessage", true)]
     public string labelRequiredItems            = " Item(s): ";
-    [BoolShowConditional("editChatMessage", true)]
     public string labelDestroyItem              = "[Destroyed on use]";
 #if _iMMOHARVESTING
-    [BoolShowConditional("editChatMessage", true)]
     public string requiredHarvestProfessions    = " Harvesting Profession(s): ";
 #endif
 #if _iMMOCRAFTING
-    [BoolShowConditional("editChatMessage", true)]
     public string requiredCraftProfessions      = " Craft Profession(s): ";
 #endif
 #if _iMMOMOUNTS
-    [BoolShowConditional("editChatMessage", true)]
     public string labelMountedOnly              = " Accessible only while mounted.";
-    [BoolShowConditional("editChatMessage", true)]
     public string labelUnmountedOnly            = " Accessible only while unmounted.";
 #endif
 #if _iMMOTRAVEL
-    [BoolShowConditional("editChatMessage", true)]
     public string labelTravelroute              = " Travelroute: ";
 #endif
 #if _iMMOWORLDEVENTS
-    [BoolShowConditional("editChatMessage", true)]
     public string labelWorldEvent               = " World Event: ";
 #endif
 #if _iMMOGUILDUPGRADES
-    [BoolShowConditional("editChatMessage", true)]
     public string labelGuildUpgrades            = " Guild Level: ";
 #endif
 #if _iMMOACCOUNTUNLOCKABLES
-    [BoolShowConditional("editChatMessage", true)]
     public string labelAccountUnlockable        = " Account Unlockable: ";
 #endif
 #if _iMMOPATREON
-    [BoolShowConditional("editChatMessage", true)]
     public string labelPatreonSubscription      = " - Requires active Patreon subscription.";
 #endif
     [Header("Error Chat message")]
     [Tooltip("You will need to enter the SlotChatMessage, if you are using CompleteChat make sure you have a Slot for this chat")]
     public ChannelInfo requires = new ChannelInfo("", "(Requires)", "(Requires)", null);
 
+    public Tools_Cost requierementCost
+    {
+        get
+        {
+            return new Tools_Cost
+            {
+                itemCost = removeItems,
+                goldCost = goldCost,
+                coinCost = coinCost,
+                healthCost = healthCost,
+                manaCost = manaCost,
+#if _iMMOSTAMINA
+                staminaCost = 0,
+#endif
+                experienceCost = 0,
+                skillExperienceCost = 0
+            };
+        }
+    }
+
     // -----------------------------------------------------------------------------------
     // checkRequirements
     // -----------------------------------------------------------------------------------
     public override bool checkRequirements(Player player)
     {
-        bool valid = base.checkRequirements(player);
-        valid = requierementCost.CheckCost(player) && valid;
+        bool valid = true;
+
+        valid = base.checkRequirements(player);
+
+        valid = checkCosts(player, valid);
 
         return valid;
     }
-#if _SERVER
+
     // -----------------------------------------------------------------------------------
-    // GrantRewards
+    // checkCosts
     // -----------------------------------------------------------------------------------
-    [Server]
-    public void GrantRewards(Player player)
+    public bool checkCosts(Player player, bool valid)
+    {
+        valid = (removeItems.Length == 0 || player.Tools_checkHasItems(player, removeItems)) ? valid : false;
+        valid = (goldCost == 0 || player.gold >= goldCost) ? valid : false;
+        valid = (coinCost == 0 || player.itemMall.coins >= coinCost) ? valid : false;
+        valid = (healthCost == 0 || player.health.current >= healthCost) ? valid : false;
+        valid = (manaCost == 0 || player.mana.current >= manaCost) ? valid : false;
+#if _iMMOHONORSHOP
+        valid = (player.playerHonorShop.CheckHonorCurrencyCost(honorCurrencyCost)) ? valid : false;
+#endif
+
+        return valid;
+    }
+
+    // -----------------------------------------------------------------------------------
+    // hasCosts
+    // -----------------------------------------------------------------------------------
+    public bool hasCosts()
+    {
+        return removeItems.Length > 0 ||
+                goldCost > 0 ||
+                coinCost > 0 ||
+                healthCost > 0 ||
+                manaCost > 0
+#if _iMMOHONORSHOP
+                || honorCurrencyCost.Any(x => x.amount > 0)
+#endif
+                ;
+    }
+
+    // -----------------------------------------------------------------------------------
+    // payCosts
+    // -----------------------------------------------------------------------------------
+    public void payCosts(Player player)
+    {
+        if (checkRequirements(player))
+        {
+            player.Tools_removeItems(player, removeItems, true);
+
+            if(goldCost > 0)
+                player.gold -= goldCost;
+            
+            if(coinCost > 0)
+                player.itemMall.coins -= coinCost;
+
+            if(manaCost > 0)
+               player.mana.current -= manaCost;
+
+            if (healthCost > 0)
+            {
+                if (player.health.current > healthCost)
+                    player.health.current -= healthCost;
+                else
+                    player.health.current = 1;
+            }
+
+#if _iMMOHONORSHOP
+            player.playerHonorShop.PayHonorCurrencyCost(honorCurrencyCost);
+#endif
+        }
+    }
+
+    // -----------------------------------------------------------------------------------
+    // grantRewards
+    // -----------------------------------------------------------------------------------
+    public void grantRewards(Player player)
     {
         if (checkRequirements(player))
         {
@@ -134,7 +198,7 @@ public partial class Tools_InteractionRequirements : Tools_Requirements
             ((PlayerSkills)player.skills).skillExperience += Random.Range(skillExpRewardMin, skillExpRewardMax);
         }
     }
-#endif
+
 
     // -----------------------------------------------------------------------------------
     // Update Required Chat (Auto Activation)
@@ -158,10 +222,7 @@ public partial class Tools_InteractionRequirements : Tools_Requirements
 
         if (minMana > 0)
             SendMessageChat("", requires.identifierIn, labelMinMana + minMana.ToString(), "", requires.textPrefab);
-#if _iMMOSTAMINA
-        if (minStamina > 0)
-            SendMessageChat("", requires.identifierIn, labelMinStamina + minStamina.ToString(), "", requires.textPrefab);
-#endif
+
         // TIME
         if (dayStart > 0)
             SendMessageChat("", requires.identifierIn, labelDayStart + dayStart.ToString(), "", requires.textPrefab);
@@ -183,7 +244,7 @@ public partial class Tools_InteractionRequirements : Tools_Requirements
         if (allowedClasses.Length > 0)
         {
             string temp_classes = "";
-            foreach (Player classes in allowedClasses)
+            foreach (GameObject classes in allowedClasses)
                 temp_classes += " " + classes.name;
             SendMessageChat("", requires.identifierIn, labelAllowedClasses + temp_classes, "", requires.textPrefab);
         }
@@ -290,19 +351,19 @@ public partial class Tools_InteractionRequirements : Tools_Requirements
 #if _iMMOWORLDEVENTS
         if (worldEvent != null)
         {
-            if (player.playerAddonsConfigurator.CheckWorldEvent(worldEvent, minEventCount, maxEventCount))
+            if (player.playerWorldEvents.CheckWorldEvent(worldEvent, minEventCount, maxEventCount))
             {
                 if (maxEventCount == 0)
-                    SendMessageChat("", requires.identifierIn, labelWorldEvent + worldEvent.name + " (" + player.playerAddonsConfigurator.GetWorldEventCount(worldEvent) + "/" + minEventCount.ToString() + ")", "", requires.textPrefab);
+                    SendMessageChat("", requires.identifierIn, labelWorldEvent + worldEvent.name + " (" + player.playerWorldEvents.GetWorldEventCount(worldEvent) + "/" + minEventCount.ToString() + ")", "", requires.textPrefab);
                 else
-                    SendMessageChat("", requires.identifierIn, labelWorldEvent + worldEvent.name + " (" + minEventCount.ToString() + "-" + maxEventCount.ToString() + ") [" + player.playerAddonsConfigurator.GetWorldEventCount(worldEvent) + "]", "", requires.textPrefab);
+                    SendMessageChat("", requires.identifierIn, labelWorldEvent + worldEvent.name + " (" + minEventCount.ToString() + "-" + maxEventCount.ToString() + ") [" + player.playerWorldEvents.GetWorldEventCount(worldEvent) + "]", "", requires.textPrefab);
             }
             else
             {
                 if (maxEventCount == 0)
-                    SendMessageChat("", requires.identifierIn, labelWorldEvent + worldEvent.name + " (" + player.playerAddonsConfigurator.GetWorldEventCount(worldEvent) + "/" + minEventCount.ToString() + ")", "", requires.textPrefab);
+                    SendMessageChat("", requires.identifierIn, labelWorldEvent + worldEvent.name + " (" + player.playerWorldEvents.GetWorldEventCount(worldEvent) + "/" + minEventCount.ToString() + ")", "", requires.textPrefab);
                 else
-                    SendMessageChat("", requires.identifierIn, labelWorldEvent + worldEvent.name + " (" + minEventCount.ToString() + "-" + maxEventCount.ToString() + ") [" + player.playerAddonsConfigurator.GetWorldEventCount(worldEvent) + "]", "", requires.textPrefab);
+                    SendMessageChat("", requires.identifierIn, labelWorldEvent + worldEvent.name + " (" + minEventCount.ToString() + "-" + maxEventCount.ToString() + ") [" + player.playerWorldEvents.GetWorldEventCount(worldEvent) + "]", "", requires.textPrefab);
             }
         }
 #endif
@@ -318,9 +379,9 @@ public partial class Tools_InteractionRequirements : Tools_Requirements
 #endif
 
 #if _iMMOACCOUNTUNLOCKABLES
-        if (accountUnlockable != null)
+        if (!string.IsNullOrWhiteSpace(accountUnlockable))
         {
-            if (player.playerAddonsConfigurator.HasAccountUnlock(accountUnlockable.name))
+            if (player.playerAccountUnlockables.HasAccountUnlock(accountUnlockable))
                 SendMessageChat("", requires.identifierIn, labelAccountUnlockable + accountUnlockable, "", requires.textPrefab);
             else
                 SendMessageChat("", requires.identifierIn, labelAccountUnlockable + accountUnlockable, "", requires.textPrefab);
@@ -343,7 +404,15 @@ public partial class Tools_InteractionRequirements : Tools_Requirements
     {
         if (requires.textPrefab != null)
         {
-            return;
+#if _iMMOCOMPLETECHAT
+            UICompleteChat.singleton.AddMessage(new ChatMessage(sender, identifier, message, replyPrefix, textPrefab));
+#else
+            UIChat.singleton.AddMessage(new ChatMessage(sender, identifier, message, replyPrefix, textPrefab));
+#endif
+        }
+        else
+        {
+            Debug.LogWarning("Warning" + this +" does not contain a slotmessage so it cannot be displayed on the chat!");
         }
     }
     // -----------------------------------------------------------------------------------

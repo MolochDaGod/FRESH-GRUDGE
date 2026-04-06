@@ -40,7 +40,7 @@ public partial class Tools_ActivationRequirements : Tools_Requirements
         valid = base.checkRequirements(player);
 
 #if _iMMOBUILDSYSTEM
-        valid = (checkBuildSystem(player) == true) && valid;
+        valid = (checkBuildSystem(player) == true) ? valid : false;
 #endif
 
         return valid;

@@ -1,7 +1,9 @@
 #if _iMMOTOOLS
 using Mirror;
+using UnityEngine;
 
 // PLAYER
+
 public partial class Player
 {
     protected Tools_Popup popup;
@@ -34,9 +36,9 @@ public partial class Player
     // @Server
     // -----------------------------------------------------------------------------------
     [ServerCallback]
-    public void Tools_ShowPopup(string message)
+    public void Tools_ShowPopup(string message, byte iconId = 0, byte soundId = 0)
     {
-        Target_Tools_ShowPopup(connectionToClient, message);
+        Target_Tools_ShowPopup(connectionToClient, message, iconId, soundId);
     }
 
     // -----------------------------------------------------------------------------------
@@ -44,14 +46,14 @@ public partial class Player
     // @Server -> @Client
     // -----------------------------------------------------------------------------------
     [TargetRpc]
-    public void Target_Tools_ShowPopup(NetworkConnection target, string message)
+    public void Target_Tools_ShowPopup(NetworkConnection target, string message, byte iconId, byte soundId)
     {
         if (popup == null)
             popup = GetComponent<Tools_Popup>();
 
         if (popup != null)
         {
-            
+            popup.Prepare(message, iconId, soundId);
             popup.Show();
             if (!popup.forceUseChat)
                 Tools_AddMessage(message, 0, false);                                      // todo: add editable color
@@ -63,14 +65,14 @@ public partial class Player
     // Shows a popup, triggered on the client, shown on the client
     //  @Client
     // -----------------------------------------------------------------------------------
-    public void Tools_ClientShowPopup(string message)
+    public void Tools_ClientShowPopup(string message, byte iconId, byte soundId)
     {
         if (popup == null)
             popup = GetComponent<Tools_Popup>();
 
         if (popup != null)
         {
-
+            popup.Prepare(message, iconId, soundId);
             popup.Show();
             if (!popup.forceUseChat)
                 Tools_AddMessage(message, 0, false);                                      // todo: add editable color

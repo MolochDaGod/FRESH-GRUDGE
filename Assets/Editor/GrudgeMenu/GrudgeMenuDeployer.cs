@@ -249,7 +249,7 @@ public class GrudgeMenuDeployer : EditorWindow
         PatchPlayerPrefabs();
 
         // ── 19. Mark scene dirty ───────────────────────────────────────────
-        EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+        EditorSceneManager.MarkSceneDirty(UnityEngine.SceneManagement.SceneManager.GetActiveScene());
         Log("=== DEPLOY COMPLETE. Press Ctrl+S to save. ===");
         Repaint();
     }
@@ -511,7 +511,7 @@ public class GrudgeMenuDeployer : EditorWindow
     {
         PatchSkillbar();
         PatchPlayerPrefabs();
-        EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+        EditorSceneManager.MarkSceneDirty(UnityEngine.SceneManagement.SceneManager.GetActiveScene());
         Log("=== Patch complete. ===");
     }
 

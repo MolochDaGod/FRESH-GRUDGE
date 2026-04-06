@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18ac96f6edcf0604aa41c35bbb9f2b8f, type: 3}
+  m_Name: Warrior_Tier0
+  m_EditorClassIdentifier: 
+  nodeName: Warrior
+  description: 'The path of physical combat mastery. Warriors excel in melee combat,
+    wielding swords with devastating precision. Choosing this path unlocks Sword skills
+    and grants natural combat resilience.'
+  icon: {fileID: 0}
+  tier: 0
+  prerequisites: []
+  unlocksSkillCategory: Sword
+  weaponProficiencies:
+  - weaponCategory: Sword
+    damageMultiplierBonus: 0.1
+    flatDamageBonus: 2
+  grantedSkills: []
+  damageBonus: 3
+  defenseBonus: 2
+  healthBonus: 20
+  manaBonus: 0

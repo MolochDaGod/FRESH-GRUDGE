@@ -31,10 +31,11 @@ public partial class Tools_InteractableObject : Tools_Interactable
     public AudioSource audioSource;
 
     [Header("Events")]
-    public UnityEventEntity onSelect; // called when clicking it the first TimeLogout
+    public UnityEventEntity onSelect; // called when clicking it the first time
     // -----------------------------------------------------------------------------------
     // Start
     // -----------------------------------------------------------------------------------
+
     void OnMouseDown()
     {
         // joined world yet? (not character selection?)
@@ -47,19 +48,13 @@ public partial class Tools_InteractableObject : Tools_Interactable
             Player.localPlayer.useSkillWhenCloser = -1;
 
             // set indicator in any case
-            // (not just the first TimeLogout, because we might have clicked on the
-            //  ground in the mean TimeLogout. always set it when selecting.)
+            // (not just the first time, because we might have clicked on the
+            //  ground in the mean time. always set it when selecting.)
             Player.localPlayer.indicator.SetViaParent(transform);
 
-            // clicked for the first TimeLogout: SELECT
+            // clicked for the first time: SELECT
             if (Player.localPlayer.target != this)
             {
-
-                Player.localPlayer.movement.Reset();
-                if (checkInteractionRange(Player.localPlayer))
-                {
-                    //Debug.Log("Selected " + this.name);
-                }
                 // target it
                 Player.localPlayer.CmdSetTarget(netIdentity);
 
@@ -93,13 +88,23 @@ public partial class Tools_InteractableObject : Tools_Interactable
         Player player = Player.localPlayer;
         if (!player) return;
 
+        // -- check for interaction Distance
+#if !_iMMO2D
+        this.GetComponentInChildren<SpriteRenderer>().enabled = UMMO_Tools.Tools_CheckSelectionHandling(this.gameObject);
+#endif
+
         // -- check for click
         if (UMMO_Tools.Tools_SelectionHandling(this.gameObject))
         {
-            if (checkInteractionRange(player) && ((!interactionRequirements.hasRequirements() && !interactionRequirements.requierementCost.HasCosts()) || automaticActivation))
+            if (checkInteractionRange(player) && ((!interactionRequirements.hasRequirements() && !interactionRequirements.hasCosts()) || automaticActivation))
             {
                 // -- when no requirements & no costs: automatically
                 ConfirmAccess();
+            }
+            else if (checkInteractionRange(player) && interactionRequirements.checkState(player))
+            {
+                // -- in any other case: show confirmation UI
+                ShowAccessRequirementsUI();
             }
         }
     }
@@ -228,10 +233,12 @@ public partial class Tools_InteractableObject : Tools_Interactable
     // -----------------------------------------------------------------------------------
     // IsWorthUpdating
     // -----------------------------------------------------------------------------------
-    /*public override bool IsWorthUpdating()
+    public override bool IsWorthUpdating()
     {
-        return netIdentity.observers == null || netIdentity.observers.Count > 0 || IsHidden();
-    }*/
+        return netIdentity.observers == null ||
+               netIdentity.observers.Count > 0 ||
+               IsHidden();
+    }
 
     // -----------------------------------------------------------------------------------
 }

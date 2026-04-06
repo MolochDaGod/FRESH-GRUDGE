@@ -31,7 +31,7 @@ public class UI_Latency : MonoBehaviour
         Player player = Player.localPlayer;
 #if _iMMOSETTINGS
         //TODO faire les vérification des playerpref dans un update est une mauvaise idée, cela créer du GC
-        if (player && !PlayerPrefs.HasKey("ShowPing") || (PlayerPrefs.GetInt("ShowPing") == 1))
+        if (player)// && !PlayerPrefs.HasKey("ShowPing") || (PlayerPrefs.GetInt("ShowPing") == 1))
 #else
         if (player)
 #endif

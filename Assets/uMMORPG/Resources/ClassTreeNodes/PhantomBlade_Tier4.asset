@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18ac96f6edcf0604aa41c35bbb9f2b8f, type: 3}
+  m_Name: PhantomBlade_Tier4
+  m_EditorClassIdentifier: 
+  nodeName: Phantom Blade
+  description: 'Phantom Blades no longer require a body to kill. They phase between
+    shadows, striking from impossible angles with blades that leave wounds in
+    space itself. They are the last myth whispered of by the few who survived
+    their encounter.'
+  icon: {fileID: 0}
+  tier: 4
+  prerequisites:
+  - {fileID: 11400000, guid: d0004000000000000000000000000000, type: 2}
+  unlocksSkillCategory: Dagger
+  weaponProficiencies:
+  - weaponCategory: Dagger
+    damageMultiplierBonus: 0.22
+    flatDamageBonus: 8
+  grantedSkills: []
+  damageBonus: 18
+  defenseBonus: 8
+  healthBonus: 20
+  manaBonus: 10

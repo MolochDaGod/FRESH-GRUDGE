@@ -10,22 +10,37 @@ using System.Data;
 using MySql.Data.MySqlClient;                   // From MySql.Data.dll in Plugins folder
 using UnityEngine.Events;
 
+using SqlParameter = MySql.Data.MySqlClient.MySqlParameter;
+
 // Database (mySQL)
 public partial class Database : MonoBehaviour
 {
     public static Database singleton;
     private string connectionString = null;
 
-#if _SERVER
-    private const string EnvHost = "UMMORPG_MYSQL_HOST";
-    private const string EnvDatabase = "UMMORPG_MYSQL_DATABASE";
-    private const string EnvUser = "UMMORPG_MYSQL_USER";
-    private const string EnvPassword = "UMMORPG_MYSQL_PASSWORD";
-    private const string EnvPort = "UMMORPG_MYSQL_PORT";
-    private const string EnvCharacterSet = "UMMORPG_MYSQL_CHARSET";
-    private const string EnvConnectionTimeout = "UMMORPG_MYSQL_CONNECTION_TIMEOUT";
-#endif
+    public string RuntimeDbHost => string.IsNullOrWhiteSpace(dbHost) ? "127.0.0.1" : dbHost;
+    public string RuntimeDbName => string.IsNullOrWhiteSpace(dbName) ? "database" : dbName;
+    public string RuntimeDbUser => string.IsNullOrWhiteSpace(dbUser) ? "user" : dbUser;
 
+    public bool RuntimeDbUsesPlaceholderHost()
+    {
+        return string.IsNullOrWhiteSpace(RuntimeDbHost) || RuntimeDbHost == "127.0.0.1" || RuntimeDbHost.Equals("localhost", StringComparison.OrdinalIgnoreCase);
+    }
+
+    public bool RuntimeDbUsesPlaceholderName()
+    {
+        return string.IsNullOrWhiteSpace(RuntimeDbName) || RuntimeDbName.Equals("database", StringComparison.OrdinalIgnoreCase);
+    }
+
+    public bool RuntimeDbUsesPlaceholderUser()
+    {
+        return string.IsNullOrWhiteSpace(RuntimeDbUser) || RuntimeDbUser.Equals("user", StringComparison.OrdinalIgnoreCase);
+    }
+
+    public bool RuntimeDbUsesPlaceholderPassword()
+    {
+        return string.IsNullOrWhiteSpace(dbPassword) || dbPassword.Equals("password", StringComparison.OrdinalIgnoreCase);
+    }
     // -----------------------------------------------------------------------------------
     // ConnectionString
     // -----------------------------------------------------------------------------------
@@ -38,13 +53,12 @@ public partial class Database : MonoBehaviour
             {
                 MySqlConnectionStringBuilder connectionStringBuilder = new MySqlConnectionStringBuilder
                 {
-                    Server = EffectiveDbHost,
-                    Database = EffectiveDbName,
-                    UserID = EffectiveDbUser,
-                    Password = EffectiveDbPassword,
-                    Port = EffectiveDbPort,
-                    CharacterSet = EffectiveDbCharacterSet,
-                    ConnectionTimeout = EffectiveConnectionTimeout
+                    Server = string.IsNullOrWhiteSpace(dbHost) ? "127.0.0.1" : dbHost,
+                    Database = string.IsNullOrWhiteSpace(dbName) ? "database" : dbName,
+                    UserID = string.IsNullOrWhiteSpace(dbUser) ? "user" : dbUser,
+                    Password = string.IsNullOrWhiteSpace(dbPassword) ? "password" : dbPassword,
+                    Port = dbPort,
+                    CharacterSet = string.IsNullOrWhiteSpace(dbCharacterSet) ? "utf8mb4" : dbCharacterSet
                 };
                 connectionString = connectionStringBuilder.ConnectionString;
             }
@@ -61,128 +75,7 @@ public partial class Database : MonoBehaviour
 
 
 
-#region MYSQL FUNCTION HELPER 
-
-#if _SERVER
-    private static readonly string[] HostEnvKeys = { EnvHost, "MYSQL_HOST", "DB_HOST" };
-    private static readonly string[] DatabaseEnvKeys = { EnvDatabase, "MYSQL_DATABASE", "MYSQL_DB", "DB_NAME" };
-    private static readonly string[] UserEnvKeys = { EnvUser, "MYSQL_USER", "MYSQL_USERNAME", "DB_USER" };
-    private static readonly string[] PasswordEnvKeys = { EnvPassword, "MYSQL_PASSWORD", "DB_PASSWORD" };
-    private static readonly string[] PortEnvKeys = { EnvPort, "MYSQL_PORT", "DB_PORT" };
-    private static readonly string[] CharsetEnvKeys = { EnvCharacterSet, "MYSQL_CHARSET", "DB_CHARSET" };
-    private static readonly string[] ConnectionTimeoutEnvKeys = { EnvConnectionTimeout, "MYSQL_CONNECTION_TIMEOUT", "DB_CONNECTION_TIMEOUT" };
-
-    public string RuntimeDbHost => EffectiveDbHost;
-    public string RuntimeDbName => EffectiveDbName;
-    public string RuntimeDbUser => EffectiveDbUser;
-    public uint RuntimeDbPort => EffectiveDbPort;
-
-    private string EffectiveDbHost => FirstNonEmpty(GetEnv(HostEnvKeys), dbHost, "127.0.0.1");
-    private string EffectiveDbName => FirstNonEmpty(GetEnv(DatabaseEnvKeys), dbName, "database");
-    private string EffectiveDbUser => FirstNonEmpty(GetEnv(UserEnvKeys), dbUser, "user");
-    private string EffectiveDbPassword => FirstNonEmpty(GetEnv(PasswordEnvKeys), dbPassword, "password");
-    private uint EffectiveDbPort => GetUIntEnv(PortEnvKeys, dbPort == 0 ? 3306u : dbPort);
-    private string EffectiveDbCharacterSet => FirstNonEmpty(GetEnv(CharsetEnvKeys), dbCharacterSet, "utf8mb4");
-    private uint EffectiveConnectionTimeout => GetUIntEnv(ConnectionTimeoutEnvKeys, 8);
-
-    public bool RuntimeDbUsesPlaceholderHost()
-    {
-        return IsPlaceholderValue(EffectiveDbHost, "localhost", "127.0.0.1");
-    }
-
-    public bool RuntimeDbUsesPlaceholderName()
-    {
-        return IsPlaceholderValue(EffectiveDbName, "database", "dbName");
-    }
-
-    public bool RuntimeDbUsesPlaceholderUser()
-    {
-        return IsPlaceholderValue(EffectiveDbUser, "user", "dbUser");
-    }
-
-    public bool RuntimeDbUsesPlaceholderPassword()
-    {
-        return IsPlaceholderValue(EffectiveDbPassword, "password", "dbPassword");
-    }
-
-    private string FirstNonEmpty(params string[] values)
-    {
-        foreach (string value in values)
-        {
-            if (!string.IsNullOrWhiteSpace(value))
-                return value.Trim();
-        }
-
-        return string.Empty;
-    }
-
-    private string GetEnv(params string[] names)
-    {
-        for (int i = 0; i < names.Length; ++i)
-        {
-            string value = Environment.GetEnvironmentVariable(names[i]);
-            if (!string.IsNullOrWhiteSpace(value))
-                return value;
-        }
-
-        return null;
-    }
-
-    private bool IsPlaceholderValue(string value, params string[] placeholders)
-    {
-        if (string.IsNullOrWhiteSpace(value))
-            return true;
-
-        foreach (string placeholder in placeholders)
-        {
-            if (string.Equals(value.Trim(), placeholder, StringComparison.OrdinalIgnoreCase))
-                return true;
-        }
-
-        return false;
-    }
-
-    private void ValidateMySqlConfiguration()
-    {
-        List<string> issues = new List<string>();
-
-        if (IsPlaceholderValue(EffectiveDbName, "database", "dbName"))
-            issues.Add($"database name is not configured ({string.Join(", ", DatabaseEnvKeys)} or Database.dbName)");
-
-        if (IsPlaceholderValue(EffectiveDbUser, "user", "dbUser"))
-            issues.Add($"database user is not configured ({string.Join(", ", UserEnvKeys)} or Database.dbUser)");
-
-        if (IsPlaceholderValue(EffectiveDbPassword, "password", "dbPassword"))
-            issues.Add($"database password is not configured ({string.Join(", ", PasswordEnvKeys)} or Database.dbPassword)");
-
-        if (EffectiveDbPort == 0)
-            issues.Add($"database port is invalid ({string.Join(", ", PortEnvKeys)} or Database.dbPort)");
-
-        if (issues.Count > 0)
-        {
-            throw new InvalidOperationException(
-                "MySQL startup configuration is incomplete: " + string.Join("; ", issues));
-        }
-    }
-
-    private void EnsureMySqlConnectionAvailable()
-    {
-        ValidateMySqlConfiguration();
-
-        try
-        {
-            using MySqlConnection connection = new MySqlConnection(ConnectionString);
-            connection.Open();
-        }
-        catch (Exception ex) when (ex is MySqlException || ex is TimeoutException)
-        {
-            throw new InvalidOperationException(
-                $"Unable to connect to MySQL during server startup. Host={EffectiveDbHost}, Port={EffectiveDbPort}, Database={EffectiveDbName}, User={EffectiveDbUser}. " +
-                $"Update the Database component or set one of these env var groups before starting the server: [{string.Join(", ", HostEnvKeys)}], [{string.Join(", ", DatabaseEnvKeys)}], [{string.Join(", ", UserEnvKeys)}], [{string.Join(", ", PasswordEnvKeys)}], [{string.Join(", ", PortEnvKeys)}].",
-                ex);
-        }
-    }
-#endif
+    #region MYSQL FUNCTION HELPER 
 
     // -----------------------------------------------------------------------------------
     // Transaction
@@ -190,7 +83,6 @@ public partial class Database : MonoBehaviour
     private void Transaction(Action<MySqlCommand> action)
     {
 #if _SERVER
-        
         using MySqlConnection connection = new MySqlConnection(ConnectionString);
         connection.Open();
         MySqlTransaction transaction = null;
@@ -213,14 +105,13 @@ public partial class Database : MonoBehaviour
                 transaction.Rollback();
             throw ex;
         }
-        
 #endif
     }
 
     // -----------------------------------------------------------------------------------
     // ExecuteNonQueryMySql
     // -----------------------------------------------------------------------------------
-    public void ExecuteNonQueryMySql(string sql, params MySqlParameter[] args)
+    public void ExecuteNonQueryMySql(string sql, params SqlParameter[] args)
     {
 #if _SERVER
         try
@@ -237,7 +128,7 @@ public partial class Database : MonoBehaviour
     // -----------------------------------------------------------------------------------
     // ExecuteNonQueryMySql
     // -----------------------------------------------------------------------------------
-    public void ExecuteNonQueryMySql(MySqlCommand command, string sql, params MySqlParameter[] args)
+    public void ExecuteNonQueryMySql(MySqlCommand command, string sql, params SqlParameter[] args)
     {
 #if _SERVER
         try
@@ -245,7 +136,7 @@ public partial class Database : MonoBehaviour
             command.CommandText = sql;
             command.Parameters.Clear();
 
-            foreach (MySqlParameter arg in args)
+            foreach (SqlParameter arg in args)
             {
                 command.Parameters.Add(arg);
             }
@@ -262,7 +153,7 @@ public partial class Database : MonoBehaviour
     // -----------------------------------------------------------------------------------
     // ExecuteScalarMySql
     // -----------------------------------------------------------------------------------
-    public object ExecuteScalarMySql(string sql, params MySqlParameter[] args)
+    public object ExecuteScalarMySql(string sql, params SqlParameter[] args)
     {
 #if _SERVER
         try
@@ -281,7 +172,7 @@ public partial class Database : MonoBehaviour
     // -----------------------------------------------------------------------------------
     // ExecuteDataRowMySql
     // -----------------------------------------------------------------------------------
-    public DataRow ExecuteDataRowMySql(string sql, params MySqlParameter[] args)
+    public DataRow ExecuteDataRowMySql(string sql, params SqlParameter[] args)
     {
 #if _SERVER
         try
@@ -300,7 +191,7 @@ public partial class Database : MonoBehaviour
     // -----------------------------------------------------------------------------------
     // ExecuteDataSetMySql
     // -----------------------------------------------------------------------------------
-    public DataSet ExecuteDataSetMySql(string sql, params MySqlParameter[] args)
+    public DataSet ExecuteDataSetMySql(string sql, params SqlParameter[] args)
     {
 #if _SERVER
         try
@@ -319,7 +210,7 @@ public partial class Database : MonoBehaviour
     // -----------------------------------------------------------------------------------
     // ExecuteReaderMySql
     // -----------------------------------------------------------------------------------
-    public List<List<object>> ExecuteReaderMySql(string sql, params MySqlParameter[] args)
+    public List<List<object>> ExecuteReaderMySql(string sql, params SqlParameter[] args)
     {
 #if _SERVER
         List<List<object>> result = new List<List<object>>();
@@ -350,7 +241,7 @@ public partial class Database : MonoBehaviour
     // -----------------------------------------------------------------------------------
     // GetReader
     // -----------------------------------------------------------------------------------
-    public MySqlDataReader GetReader(string sql, params MySqlParameter[] args)
+    public MySqlDataReader GetReader(string sql, params SqlParameter[] args)
     {
 #if _SERVER
         try
@@ -398,19 +289,7 @@ public partial class Database : MonoBehaviour
         return defaultValue;
     }
 
-    private uint GetUIntEnv(string[] names, uint defaultValue = 0)
-    {
-        for (int i = 0; i < names.Length; ++i)
-        {
-            uint result = GetUIntEnv(names[i], uint.MaxValue);
-            if (result != uint.MaxValue)
-                return result;
-        }
-
-        return defaultValue;
-    }
-
-#endregion MYSQL FUNCTION HELPER 
+    #endregion MYSQL FUNCTION HELPER 
 
     // -----------------------------------------------------------------------------------
     // Awake
@@ -427,8 +306,6 @@ public partial class Database : MonoBehaviour
     public void Connect()
     {
 #if _SERVER
-        EnsureMySqlConnectionAvailable();
-
         // -- accounts
         ExecuteNonQueryMySql(@"
         CREATE TABLE IF NOT EXISTS accounts (
@@ -453,7 +330,6 @@ public partial class Database : MonoBehaviour
         	level INT NOT NULL DEFAULT 1,
             health INT NOT NULL,
         	mana INT NOT NULL,
-        	stamina INT NOT NULL DEFAULT 0,
             strength INT NOT NULL DEFAULT 0,
         	intelligence INT NOT NULL DEFAULT 0,
             experience BIGINT NOT NULL DEFAULT 0,
@@ -472,8 +348,6 @@ public partial class Database : MonoBehaviour
                 ON DELETE CASCADE ON UPDATE CASCADE
 
         ) CHARACTER SET=utf8mb4");
-        //ExecuteNonQueryMySql("ALTER TABLE characters DROP PRIMARY KEY, ADD INDEX (name), ADD UNIQUE (name)");
-        //ExecuteNonQueryMySql("ALTER TABLE characters ADD charcters_id INT(11) NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (charcters_id); ");
 #else
         ExecuteNonQueryMySql(@"
         CREATE TABLE IF NOT EXISTS characters(
@@ -485,7 +359,6 @@ public partial class Database : MonoBehaviour
         	level INT NOT NULL DEFAULT 1,
             health INT NOT NULL,
         	mana INT NOT NULL,
-        	stamina INT NOT NULL DEFAULT 0,
             strength INT NOT NULL DEFAULT 0,
         	intelligence INT NOT NULL DEFAULT 0,
             experience BIGINT NOT NULL DEFAULT 0,
@@ -516,8 +389,6 @@ public partial class Database : MonoBehaviour
         	summonedHealth INT NOT NULL,
             summonedLevel INT NOT NULL,
             summonedExperience BIGINT NOT NULL,
-            equipmentLevel INT NOT NULL DEFAULT 0,
-            equipmentGems VARCHAR(256),
 
             primary key(`character`, slot),
         	FOREIGN KEY(`character`)
@@ -534,8 +405,6 @@ public partial class Database : MonoBehaviour
         	summonedHealth INT NOT NULL,
             summonedLevel INT NOT NULL,
             summonedExperience BIGINT NOT NULL,
-            equipmentLevel INT NOT NULL DEFAULT 0,
-            equipmentGems VARCHAR(256),
 
             primary key(`character`, slot),
         	FOREIGN KEY(`character`)
@@ -556,8 +425,6 @@ public partial class Database : MonoBehaviour
         	summonedHealth INT NOT NULL,
             summonedLevel INT NOT NULL,
             summonedExperience BIGINT NOT NULL,
-            equipmentLevel INT NOT NULL,
-            equipmentGems VARCHAR(256),
 
             primary key(`character`, slot),
         	FOREIGN KEY(`character`)
@@ -574,8 +441,6 @@ public partial class Database : MonoBehaviour
             summonedHealth INT NOT NULL,
             summonedLevel INT NOT NULL,
             summonedExperience BIGINT NOT NULL,
-            equipmentLevel INT NOT NULL,
-            equipmentGems VARCHAR(256),
 
             primary key(`character`, slot),
         	FOREIGN KEY(`character`)
@@ -585,15 +450,16 @@ public partial class Database : MonoBehaviour
 #endif
         // -- character_itemcooldowns
         ExecuteNonQueryMySql(@"
-        CREATE TABLE IF NOT EXISTS `character_itemcooldowns` (
-            `character` varchar(32) NOT NULL,
-            `category` varchar(50) NOT NULL,
-            `cooldownEnd` float NOT NULL,
-            UNIQUE KEY `character` (`character`,`category`),
+        CREATE TABLE IF NOT EXISTS character_itemcooldowns(
+            `character` VARCHAR(32) NOT NULL,
+            category VARCHAR(50) NOT NULL,
+            cooldownEnd FLOAT NOT NULL,
+
+            PRIMARY KEY (`character`),
             FOREIGN KEY(`character`)
                 REFERENCES characters(name)
                 ON DELETE CASCADE ON UPDATE CASCADE
-        ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;");
+        ) CHARACTER SET=utf8mb4");
 
         // -- character_skills
         ExecuteNonQueryMySql(@"
@@ -672,11 +538,10 @@ public partial class Database : MonoBehaviour
             PRIMARY KEY(name)
         ) CHARACTER SET=utf8mb4");
 
-
         // addon system hooks
         onConnected.Invoke();
+
 #endif
-        
     }
 
     // -----------------------------------------------------------------------------------
@@ -688,19 +553,14 @@ public partial class Database : MonoBehaviour
         if (!string.IsNullOrWhiteSpace(account) && !string.IsNullOrWhiteSpace(password))
         {
             // demo feature: create account if it doesn't exist yet.
-            MySqlParameter accountParameter = new("@name", MySqlDbType.VarChar) { Value = account };
-            MySqlParameter passwordParameter = new("@password", MySqlDbType.VarChar) { Value = password };
-            MySqlParameter createdParameter = new("@created", MySqlDbType.DateTime) { Value = DateTime.UtcNow };
-            MySqlParameter lastloginParameter = new("@lastlogin", MySqlDbType.DateTime) { Value = DateTime.UtcNow };
-            // Execute query
-            ExecuteNonQueryMySql("INSERT IGNORE INTO accounts VALUES (@name, @password, @created, @lastlogin, 0)", accountParameter, passwordParameter, createdParameter, lastloginParameter);
+            ExecuteNonQueryMySql("INSERT IGNORE INTO accounts VALUES (@name, @password, @created, @lastlogin, 0)", new SqlParameter("@name", account), new SqlParameter("@password", password), new SqlParameter("@created", DateTime.UtcNow), new SqlParameter("@lastlogin", DateTime.UtcNow));
 
             // check account name, password, banned status
-            bool valid = ((long)ExecuteScalarMySql("SELECT Count(*) FROM accounts WHERE name=@name AND password=@password AND banned=0", accountParameter, passwordParameter)) == 1;
+            bool valid = ((long)ExecuteScalarMySql("SELECT Count(*) FROM accounts WHERE name=@name AND password=@password AND banned=0", new SqlParameter("@name", account), new SqlParameter("@password", password))) == 1;
             if (valid)
             {
                 // save last login time and return true
-                ExecuteNonQueryMySql("UPDATE accounts SET lastlogin=@lastlogin WHERE name=@name", accountParameter, lastloginParameter);
+                ExecuteNonQueryMySql("UPDATE accounts SET lastlogin=@lastlogin WHERE name=@name", new SqlParameter("@name", account), new SqlParameter("@lastlogin", DateTime.UtcNow));
                 return true;
             }
         }
@@ -708,38 +568,13 @@ public partial class Database : MonoBehaviour
         return false;
     }
 
-    public bool CreateAccount(string account, string password)
-    {
-#if _SERVER
-        if (!string.IsNullOrWhiteSpace(account) && !string.IsNullOrWhiteSpace(password))
-        {
-            MySqlParameter accountParameter = new("@name", MySqlDbType.VarChar) { Value = account };
-            MySqlParameter passwordParameter = new("@password", MySqlDbType.VarChar) { Value = password };
-            bool valid = ((long)ExecuteScalarMySql("SELECT Count(*) FROM accounts WHERE name=@name AND password=@password AND banned=0", accountParameter, passwordParameter)) == 1;
-            if (!valid)
-            {
-                MySqlParameter createdParameter = new("@created", MySqlDbType.DateTime) { Value = DateTime.UtcNow };
-                MySqlParameter lastloginParameter = new("@lastlogin", MySqlDbType.DateTime) { Value = DateTime.UtcNow };
-                // Execute query
-                ExecuteNonQueryMySql("INSERT IGNORE INTO accounts VALUES (@name, @password, @created, @lastlogin, 0)", accountParameter, passwordParameter, createdParameter, lastloginParameter);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-#endif
-        return false;
-    }
     // -----------------------------------------------------------------------------------
     // CharacterExists
     // -----------------------------------------------------------------------------------
     public bool CharacterExists(string characterName)
     {
 #if _SERVER
-        MySqlParameter characterNameParameter = new("@character", MySqlDbType.VarChar) { Value = characterName };
-        return ((long)ExecuteScalarMySql("SELECT Count(*) FROM characters WHERE name=@character", characterNameParameter)) == 1;
+        return ((long)ExecuteScalarMySql("SELECT Count(*) FROM characters WHERE name=@name", new SqlParameter("@name", characterName))) == 1;
 #else
         return false;
 #endif
@@ -751,8 +586,7 @@ public partial class Database : MonoBehaviour
     public void CharacterDelete(string characterName)
     {
 #if _SERVER
-        MySqlParameter characterNameParameter = new("@character", MySqlDbType.VarChar) { Value = characterName };
-        ExecuteNonQueryMySql("UPDATE characters SET deleted=1 WHERE name=@character", characterNameParameter);
+        ExecuteNonQueryMySql("UPDATE characters SET deleted=1 WHERE name=@character", new SqlParameter("@character", characterName));
 #endif
     }
 
@@ -763,8 +597,7 @@ public partial class Database : MonoBehaviour
     {
         List<String> result = new List<String>();
 #if _SERVER
-        MySqlParameter accountParameter = new("@account", MySqlDbType.VarChar) { Value = account };
-        var table = ExecuteReaderMySql("SELECT name FROM characters WHERE account=@account AND deleted=0", accountParameter);
+        var table = ExecuteReaderMySql("SELECT name FROM characters WHERE account=@account AND deleted=0", new SqlParameter("@account", account));
         foreach (var row in table)
             result.Add((string)row[0]);
 #endif
@@ -779,12 +612,10 @@ public partial class Database : MonoBehaviour
 #if _SERVER
         for (int i = 0; i < inventory.size; ++i)
             inventory.slots.Add(new ItemSlot());
-
-        MySqlParameter characterNameParameter = new("@character", MySqlDbType.VarChar) { Value = inventory.name };
 #if !_iMMO2D
-        using (var reader = GetReader(@"SELECT name, slot, amount,durability, summonedHealth, summonedLevel, summonedExperience, equipmentLevel, equipmentGems FROM character_inventory WHERE `character`=@character;", characterNameParameter))
+        using (var reader = GetReader(@"SELECT name, slot, amount,durability, summonedHealth, summonedLevel, summonedExperience FROM character_inventory WHERE `character`=@character;", new SqlParameter("@character", inventory.name)))
 #else
-        using (var reader = GetReader(@"SELECT name, slot, amount, summonedHealth, summonedLevel, summonedExperience, equipmentLevel, equipmentGems FROM character_inventory WHERE `character`=@character;", characterNameParameter))
+        using (var reader = GetReader(@"SELECT name, slot, amount, summonedHealth, summonedLevel, summonedExperience FROM character_inventory WHERE `character`=@character;", new SqlParameter("@character", inventory.name)))
 #endif
         {
             while (reader.Read())
@@ -803,8 +634,6 @@ public partial class Database : MonoBehaviour
                     item.summonedHealth = (int)reader["summonedHealth"];
                     item.summonedLevel = (int)reader["summonedLevel"];
                     item.summonedExperience = (long)reader["summonedExperience"];
-                    item.equipmentLevel = (int)reader["equipmentLevel"];
-                    item.equipmentGems = (string)reader["equipmentGems"];
                     inventory.slots[slot] = new ItemSlot(item, amount); ;
                 }
             }
@@ -821,9 +650,8 @@ public partial class Database : MonoBehaviour
         for (int i = 0; i < equipment.slotInfo.Length; ++i)
             equipment.slots.Add(new ItemSlot());
 
-
-        MySqlParameter characterNameParameter = new("@character", MySqlDbType.VarChar) { Value = equipment.name };
-        using (var reader = GetReader(@"SELECT * FROM character_equipment WHERE `character`=@character;", characterNameParameter))
+        using (var reader = GetReader(@"SELECT * FROM character_equipment WHERE `character`=@character;",
+                                           new SqlParameter("@character", equipment.name)))
         {
             while (reader.Read())
             {
@@ -841,8 +669,6 @@ public partial class Database : MonoBehaviour
                     item.summonedHealth = (int)reader["summonedHealth"];
                     item.summonedLevel = (int)reader["summonedLevel"];
                     item.summonedExperience = (long)reader["summonedExperience"];
-                    item.equipmentLevel = (int)reader["equipmentLevel"];
-                    item.equipmentGems = (string)reader["equipmentGems"];
                     equipment.slots[slot] = new ItemSlot(item, amount);
                 }
             }
@@ -855,8 +681,9 @@ public partial class Database : MonoBehaviour
         // then load cooldowns
         // (one big query is A LOT faster than querying each slot separately)
 
-        MySqlParameter characterNameParameter = new("@character", MySqlDbType.VarChar) { Value = player.name };
-        using (var reader = GetReader("SELECT * FROM character_itemcooldowns WHERE `character`=@character ", characterNameParameter))
+        using (var reader = GetReader(
+             "SELECT * FROM character_itemcooldowns WHERE `character`=@character ",
+             new SqlParameter("@character", player.name)))
         {
             while (reader.Read())
             {
@@ -876,8 +703,9 @@ public partial class Database : MonoBehaviour
         foreach (ScriptableSkill skillData in skills.skillTemplates)
             skills.skills.Add(new Skill(skillData));
 
-        MySqlParameter characterNameParameter = new("@character", MySqlDbType.VarChar) { Value = skills.name };
-        using (var reader = GetReader("SELECT name, level, castTimeEnd, cooldownEnd FROM character_skills WHERE `character`=@character ", characterNameParameter))
+        using (var reader = GetReader(
+            "SELECT name, level, castTimeEnd, cooldownEnd FROM character_skills WHERE `character`=@character ",
+            new SqlParameter("@character", skills.name)))
         {
             while (reader.Read())
             {
@@ -903,14 +731,15 @@ public partial class Database : MonoBehaviour
     private void LoadBuffs(PlayerSkills skills)
     {
 #if _SERVER
-
-        MySqlParameter characterNameParameter = new("@character", MySqlDbType.VarChar) { Value = skills.name };
-        using (var reader = GetReader("SELECT name, level, buffTimeEnd FROM character_buffs WHERE `character` = @character ", characterNameParameter))
+        using (var reader = GetReader(
+            "SELECT name, level, buffTimeEnd FROM character_buffs WHERE `character` = @character ",
+            new SqlParameter("@character", skills.name)))
         {
             while (reader.Read())
             {
                 string buffName = (string)reader["name"];
-                if (ScriptableSkill.All.TryGetValue(buffName.GetStableHashCode(), out ScriptableSkill skillData))
+                ScriptableSkill skillData;
+                if (ScriptableSkill.All.TryGetValue(buffName.GetStableHashCode(), out skillData))
                 {
                     int level = Mathf.Clamp((int)reader["level"], 1, skillData.maxLevel);
                     Buff buff = new Buff((BuffSkill)skillData, level);
@@ -928,21 +757,22 @@ public partial class Database : MonoBehaviour
     private void LoadQuests(PlayerQuests quests)
     {
 #if _SERVER
-
-        MySqlParameter characterNameParameter = new("@character", MySqlDbType.VarChar) { Value = quests.name };
-        using var reader = GetReader("SELECT name, progress, completed FROM character_quests WHERE `character`=@character", characterNameParameter);
-        while (reader.Read())
+        using (var reader = GetReader("SELECT name, progress, completed FROM character_quests WHERE `character`=@character",
+                                           new SqlParameter("@character", quests.name)))
         {
-            string questName = (string)reader["name"];
-            ScriptableQuest questData;
-            if (ScriptableQuest.All.TryGetValue(questName.GetStableHashCode(), out questData))
+            while (reader.Read())
             {
-                Quest quest = new Quest(questData);
-                quest.progress = (int)reader["progress"];
-                quest.completed = (bool)reader["completed"];
-                quests.quests.Add(quest);
+                string questName = (string)reader["name"];
+                ScriptableQuest questData;
+                if (ScriptableQuest.All.TryGetValue(questName.GetStableHashCode(), out questData))
+                {
+                    Quest quest = new Quest(questData);
+                    quest.progress = (int)reader["progress"];
+                    quest.completed = (bool)reader["completed"];
+                    quests.quests.Add(quest);
+                }
+                else Debug.LogWarning("MYSQL LoadQuests: skipped quest " + questName + " for " + quests.name + " because it doesn't exist anymore. If it wasn't removed intentionally then make sure it's in the Resources folder.");
             }
-            else Debug.LogWarning("MYSQL LoadQuests: skipped quest " + questName + " for " + quests.name + " because it doesn't exist anymore. If it wasn't removed intentionally then make sure it's in the Resources folder.");
         }
 #endif
     }
@@ -957,9 +787,7 @@ public partial class Database : MonoBehaviour
 
         guild.name = guildName;
 
-        MySqlParameter guildNameParameter = new("@guild", MySqlDbType.VarChar) { Value = guildName };
-
-        List<List<object>> table = ExecuteReaderMySql("SELECT notice FROM guild_info WHERE name=@guild", guildNameParameter);
+        List<List<object>> table = ExecuteReaderMySql("SELECT notice FROM guild_info WHERE name=@guild", new SqlParameter("@guild", guildName));
         if (table.Count == 1)
         {
             List<object> row = table[0];
@@ -967,8 +795,8 @@ public partial class Database : MonoBehaviour
         }
 
         List<GuildMember> members = new List<GuildMember>();
-        /**
-        table = ExecuteReaderMySql("SELECT `character`, `rank` FROM character_guild WHERE guild=@guild", guildNameParameter);
+        table = ExecuteReaderMySql("SELECT `character`, `rank` FROM character_guild WHERE guild=@guild", new SqlParameter("@guild", guildName));
+
         foreach (List<object> row in table)
         {
             GuildMember member = new GuildMember();
@@ -984,26 +812,11 @@ public partial class Database : MonoBehaviour
             else
             {
                 member.online = false;
-                object scalar = ExecuteScalarMySql("SELECT level FROM characters WHERE name=@character", new MySqlParameter("@character", member.name));
+                object scalar = ExecuteScalarMySql("SELECT level FROM characters WHERE name=@character", new SqlParameter("@character", member.name));
                 member.level = scalar != null ? ((int)scalar) : 1;
             }
             members.Add(member);
-        }*/
-
-        using var reader = GetReader("SELECT cg.character as guild_member_name, cg.rank, c.level, c.online FROM character_guild cg LEFT JOIN characters c ON cg.character = c.name WHERE cg.guild = @guild ", guildNameParameter);
-        while (reader.Read())
-        {
-
-            GuildMember member = new()
-            {
-                name = reader["guild_member_name"].ToString(),
-                rank = (GuildRank)(int)reader["rank"],
-                level = reader["level"] != null ? (int)reader["level"] : 1,
-                online = (int)reader["online"] == 1
-            };
-            members.Add(member);
         }
-
         guild.members = members.ToArray();
 #endif
         return guild;
@@ -1015,9 +828,7 @@ public partial class Database : MonoBehaviour
     void LoadGuildOnDemand(PlayerGuild playerGuild)
     {
 #if _SERVER
-
-        MySqlParameter characterNameParameter = new("@character", MySqlDbType.VarChar) { Value = playerGuild.name };
-        string guildName = (string)ExecuteScalarMySql("SELECT guild FROM character_guild WHERE `character`=@character", characterNameParameter);
+        string guildName = (string)ExecuteScalarMySql("SELECT guild FROM character_guild WHERE `character`=@character", new SqlParameter("@character", playerGuild.name));
         if (guildName != null)
         {
             // load guild on demand when the first player of that guild logs in
@@ -1040,7 +851,7 @@ public partial class Database : MonoBehaviour
     public GameObject CharacterLoad(string characterName, List<Player> prefabs, bool isPreview)
     {
 #if _SERVER
-        var row = ExecuteDataRowMySql("SELECT * FROM characters WHERE name=@name AND deleted=0", new MySqlParameter("@name", characterName));
+        var row = ExecuteDataRowMySql("SELECT * FROM characters WHERE name=@name AND deleted=0", new SqlParameter("@name", characterName));
 
         if (row != null)
         {
@@ -1065,12 +876,14 @@ public partial class Database : MonoBehaviour
                 player.level.current = Mathf.Min((int)row["level"], player.level.max);
                 int health = (int)row["health"];
                 int mana = (int)row["mana"];
-#if _iMMOSTAMINA
-                int stamina = (int)row["stamina"];
-#endif
+                player.strength = (int)row["strength"];
+                player.intelligence = (int)row["intelligence"];
                 player.experience.current = (long)row["experience"];
                 ((PlayerSkills)player.skills).skillExperience = (long)row["skillExperience"];
                 player.gold = (long)row["gold"];
+#if !_iMMO2D
+                player.isGameMaster = (bool)row["gamemaster"];
+#endif
                 //player.isGameMaster = row.gamemaster;
                 player.itemMall.coins = (long)row["coins"];
 
@@ -1103,14 +916,11 @@ public partial class Database : MonoBehaviour
                 // addon system hooks
                 onCharacterLoad.Invoke(player);
                 if (!isPreview)
-                    ExecuteNonQueryMySql("UPDATE characters SET online=1, lastsaved=@lastsaved WHERE name=@name", new MySqlParameter("@name", characterName), new MySqlParameter("@lastsaved", DateTime.UtcNow));
+                    ExecuteNonQueryMySql("UPDATE characters SET online=1, lastsaved=@lastsaved WHERE name=@name", new SqlParameter("@name", characterName), new SqlParameter("@lastsaved", DateTime.UtcNow));
 
                 player.health.current = health;
                 player.mana.current = mana;
-#if _iMMOSTAMINA
-                //Debug.Log(" -> "+stamina);
-                player.stamina.current = stamina;
-#endif
+
 
 
                 return go;
@@ -1127,29 +937,27 @@ public partial class Database : MonoBehaviour
     void SaveInventory(PlayerInventory inventory, MySqlCommand command)
     {
 #if _SERVER
-        ExecuteNonQueryMySql(command, "DELETE FROM character_inventory WHERE `character`=@character", new MySqlParameter("@character", inventory.name));
+        ExecuteNonQueryMySql(command, "DELETE FROM character_inventory WHERE `character`=@character", new SqlParameter("@character", inventory.name));
         for (int i = 0; i < inventory.slots.Count; ++i)
         {
             ItemSlot slot = inventory.slots[i];
             if (slot.amount > 0)
 #if !_iMMO2D
-                ExecuteNonQueryMySql(command, "INSERT INTO character_inventory VALUES (@character, @slot, @name, @amount, @durability, @summonedHealth, @summonedLevel, @summonedExperience, @equipementLevel, @equipmentGems)",
+                ExecuteNonQueryMySql(command, "INSERT INTO character_inventory VALUES (@character, @slot, @name, @amount, @durability, @summonedHealth, @summonedLevel, @summonedExperience)",
 #else
-                ExecuteNonQueryMySql(command, "INSERT INTO character_inventory VALUES (@character, @slot, @name, @amount, @summonedHealth, @summonedLevel, @summonedExperience, @equipementLevel, @equipmentGems)",
+                ExecuteNonQueryMySql(command, "INSERT INTO character_inventory VALUES (@character, @slot, @name, @amount, @summonedHealth, @summonedLevel, @summonedExperience)",
 #endif
-                    new MySqlParameter("@character", inventory.name),
-                    new MySqlParameter("@slot", i),
-                    new MySqlParameter("@name", slot.item.name),
-                    new MySqlParameter("@amount", slot.amount),
+                new SqlParameter("@character", inventory.name),
+                        new SqlParameter("@slot", i),
+                        new SqlParameter("@name", slot.item.name),
+                        new SqlParameter("@amount", slot.amount),
 #if !_iMMO2D
-                    new MySqlParameter("@durability", slot.item.durability),
+                        new SqlParameter("@durability", slot.item.durability),
 #endif
-                    new MySqlParameter("@summonedHealth", slot.item.summonedHealth),
-                    new MySqlParameter("@summonedLevel", slot.item.summonedLevel),
-                    new MySqlParameter("@summonedExperience", slot.item.summonedExperience),
-                    new MySqlParameter("@equipementLevel", slot.item.equipmentLevel),
-                    new MySqlParameter("@equipmentGems", slot.item.summonedExperience));
-    }
+                        new SqlParameter("@summonedHealth", slot.item.summonedHealth),
+                        new SqlParameter("@summonedLevel", slot.item.summonedLevel),
+                        new SqlParameter("@summonedExperience", slot.item.summonedExperience));
+        }
 #endif
         }
 
@@ -1159,7 +967,7 @@ public partial class Database : MonoBehaviour
         // equipment: remove old entries first, then add all new ones
         // (we could use UPDATE where slot=... but deleting everything makes
         //  sure that there are never any ghosts)
-        ExecuteNonQueryMySql(command, "DELETE FROM character_itemcooldowns WHERE `character`=@character", new MySqlParameter("@character", player.name));
+        ExecuteNonQueryMySql(command, "DELETE FROM character_itemcooldowns WHERE `character`=@character", new SqlParameter("@character", player.name));
         foreach (KeyValuePair<string, double> kvp in player.itemCooldowns)
         {
             float cooldown = player.GetItemCooldown(kvp.Key);
@@ -1171,9 +979,9 @@ public partial class Database : MonoBehaviour
                         `character` = @character,
                         category = @category,
                         cooldownEnd = @cooldownEnd",
-                                    new MySqlParameter("@character", player.name),
-                                    new MySqlParameter("@category", kvp.Key),
-                                    new MySqlParameter("@cooldownEnd", cooldown));
+                                    new SqlParameter("@character", player.name),
+                                    new SqlParameter("@category", kvp.Key),
+                                    new SqlParameter("@cooldownEnd", cooldown));
             }
         }
     }
@@ -1185,28 +993,26 @@ public partial class Database : MonoBehaviour
     void SaveEquipment(PlayerEquipment equipment, MySqlCommand command)
     {
 #if _SERVER
-        ExecuteNonQueryMySql(command, "DELETE FROM character_equipment WHERE `character`=@character", new MySqlParameter("@character", equipment.name));
+        ExecuteNonQueryMySql(command, "DELETE FROM character_equipment WHERE `character`=@character", new SqlParameter("@character", equipment.name));
         for (int i = 0; i < equipment.slots.Count; ++i)
         {
             ItemSlot slot = equipment.slots[i];
             if (slot.amount > 0)
 #if !_iMMO2D
-                ExecuteNonQueryMySql(command, "INSERT INTO character_equipment VALUES (@character, @slot, @name, @amount, @durability, @summonedHealth, @summonedLevel, @summonedExperience, @equipementLevel, @equipmentGems)",
+                ExecuteNonQueryMySql(command, "INSERT INTO character_equipment VALUES (@character, @slot, @name, @amount, @durability, @summonedHealth, @summonedLevel, @summonedExperience)",
 #else
-                ExecuteNonQueryMySql(command, "INSERT INTO character_equipment VALUES (@character, @slot, @name, @amount, @summonedHealth, @summonedLevel, @summonedExperience, @equipementLevel, @equipmentGems)",
+                ExecuteNonQueryMySql(command, "INSERT INTO character_equipment VALUES (@character, @slot, @name, @amount, @summonedHealth, @summonedLevel, @summonedExperience)",
 #endif
-                    new MySqlParameter("@character", equipment.name),
-                    new MySqlParameter("@slot", i),
-                    new MySqlParameter("@name", slot.item.name),
-                    new MySqlParameter("@amount", slot.amount),
+                new SqlParameter("@character", equipment.name),
+                            new SqlParameter("@slot", i),
+                            new SqlParameter("@name", slot.item.name),
+                            new SqlParameter("@amount", slot.amount),
 #if !_iMMO2D
-                    new MySqlParameter("@durability", slot.item.durability),
+                            new SqlParameter("@durability", slot.item.durability),
 #endif
-                    new MySqlParameter("@summonedHealth", slot.item.summonedHealth),
-                    new MySqlParameter("@summonedLevel", slot.item.summonedLevel),
-                    new MySqlParameter("@summonedExperience", slot.item.summonedExperience),
-                    new MySqlParameter("@equipementLevel", slot.item.equipmentLevel),
-                    new MySqlParameter("@equipmentGems", slot.item.summonedExperience));
+                            new SqlParameter("@summonedHealth", slot.item.summonedHealth),
+                            new SqlParameter("@summonedLevel", slot.item.summonedLevel),
+                            new SqlParameter("@summonedExperience", slot.item.summonedExperience));
         }
 #endif
     }
@@ -1217,7 +1023,7 @@ public partial class Database : MonoBehaviour
     void SaveSkills(PlayerSkills skills, MySqlCommand command)
     {
 #if _SERVER
-        ExecuteNonQueryMySql(command, "DELETE FROM character_skills WHERE `character`=@character", new MySqlParameter("@character", skills.name));
+        ExecuteNonQueryMySql(command, "DELETE FROM character_skills WHERE `character`=@character", new SqlParameter("@character", skills.name));
         foreach (Skill skill in skills.skills)
         {
             if (skill.level > 0)
@@ -1230,11 +1036,11 @@ public partial class Database : MonoBehaviour
                         level = @level,
                         castTimeEnd = @castTimeEnd,
                         cooldownEnd = @cooldownEnd",
-                                    new MySqlParameter("@character", skills.name),
-                                    new MySqlParameter("@name", skill.name),
-                                    new MySqlParameter("@level", skill.level),
-                                    new MySqlParameter("@castTimeEnd", skill.CastTimeRemaining()),
-                                    new MySqlParameter("@cooldownEnd", skill.CooldownRemaining()));
+                                    new SqlParameter("@character", skills.name),
+                                    new SqlParameter("@name", skill.name),
+                                    new SqlParameter("@level", skill.level),
+                                    new SqlParameter("@castTimeEnd", skill.CastTimeRemaining()),
+                                    new SqlParameter("@cooldownEnd", skill.CooldownRemaining()));
             }
         }
 #endif
@@ -1246,14 +1052,14 @@ public partial class Database : MonoBehaviour
     void SaveBuffs(PlayerSkills skills, MySqlCommand command)
     {
 #if _SERVER
-        ExecuteNonQueryMySql(command, "DELETE FROM character_buffs WHERE `character`=@character", new MySqlParameter("@character", skills.name));
+        ExecuteNonQueryMySql(command, "DELETE FROM character_buffs WHERE `character`=@character", new SqlParameter("@character", skills.name));
         foreach (Buff buff in skills.buffs)
         {
             ExecuteNonQueryMySql(command, "INSERT INTO character_buffs VALUES (@character, @name, @level, @buffTimeEnd)",
-                            new MySqlParameter("@character", skills.name),
-                            new MySqlParameter("@name", buff.name),
-                            new MySqlParameter("@level", buff.level),
-                            new MySqlParameter("@buffTimeEnd", buff.BuffTimeRemaining())); //(float)buff.BuffTimeRemaining()
+                            new SqlParameter("@character", skills.name),
+                            new SqlParameter("@name", buff.name),
+                            new SqlParameter("@level", buff.level),
+                            new SqlParameter("@buffTimeEnd", buff.BuffTimeRemaining())); //(float)buff.BuffTimeRemaining()
         }
 #endif
     }
@@ -1264,14 +1070,14 @@ public partial class Database : MonoBehaviour
     void SaveQuests(PlayerQuests quests, MySqlCommand command)
     {
 #if _SERVER
-        ExecuteNonQueryMySql(command, "DELETE FROM character_quests WHERE `character`=@character", new MySqlParameter("@character", quests.name));
+        ExecuteNonQueryMySql(command, "DELETE FROM character_quests WHERE `character`=@character", new SqlParameter("@character", quests.name));
         foreach (Quest quest in quests.quests)
         {
             ExecuteNonQueryMySql(command, "INSERT INTO character_quests VALUES (@character, @name, @progress, @completed)",
-                            new MySqlParameter("@character", quests.name),
-                            new MySqlParameter("@name", quest.name),
-                            new MySqlParameter("@progress", quest.progress),
-                            new MySqlParameter("@completed", quest.completed));
+                            new SqlParameter("@character", quests.name),
+                            new SqlParameter("@name", quest.name),
+                            new SqlParameter("@progress", quest.progress),
+                            new SqlParameter("@completed", quest.completed));
         }
 #endif
     }
@@ -1299,7 +1105,8 @@ public partial class Database : MonoBehaviour
                 level = @level,
                 health = @health,
                 mana = @mana,
-                stamina = @stamina,
+                strength = @strength,
+                intelligence = @intelligence,
                 experience = @experience,
                 skillExperience = @skillExperience,
                 gold = @gold,
@@ -1316,7 +1123,8 @@ public partial class Database : MonoBehaviour
                 level = @level,
                 health = @health,
                 mana = @mana,
-                stamina = @stamina,
+                strength = @strength,
+                intelligence = @intelligence,
                 experience = @experience,
                 skillExperience = @skillExperience,
                 gold = @gold,
@@ -1338,11 +1146,13 @@ public partial class Database : MonoBehaviour
                 level = @level,
                 health = @health,
                 mana = @mana,
-                stamina = @stamina,
+                strength = @strength,
+                intelligence = @intelligence,
                 experience = @experience,
                 skillExperience = @skillExperience,
                 gold = @gold,
                 coins = @coins,
+                gamemaster = @gamemaster,
                 online = @online,
                 lastsaved = @lastsaved,
                 deleted = 0
@@ -1356,42 +1166,42 @@ public partial class Database : MonoBehaviour
                 level = @level,
                 health = @health,
                 mana = @mana,
-                stamina = @stamina,
+                strength = @strength,
+                intelligence = @intelligence,
                 experience = @experience,
                 skillExperience = @skillExperience,
                 gold = @gold,
                 coins = @coins,
+                gamemaster = @gamemaster,
                 online = @online,
                 lastsaved = @lastsaved,
                 deleted = 0
             ";
 #endif
         ExecuteNonQueryMySql(command, query,
-                    new MySqlParameter("@name", player.name),
-                    new MySqlParameter("@account", player.account),
-                    new MySqlParameter("@class", player.className),
-                    new MySqlParameter("@x", player.transform.position.x),
-                    new MySqlParameter("@y", player.transform.position.y),
+                    new SqlParameter("@name", player.name),
+                    new SqlParameter("@account", player.account),
+                    new SqlParameter("@class", player.className),
+                    new SqlParameter("@x", player.transform.position.x),
+                    new SqlParameter("@y", player.transform.position.y),
 #if !_iMMO2D
-                    new MySqlParameter("@z", player.transform.position.z),
+                    new SqlParameter("@z", player.transform.position.z),
 #endif
-                    //new MySqlParameter("@ry", player.transform.rotation.x),
-                    new MySqlParameter("@level", player.level.current),
-                    new MySqlParameter("@health", player.health.current),
-                    new MySqlParameter("@mana", player.mana.current),
-                    new MySqlParameter("@stamina",
-#if _iMMOSTAMINA
-                    player.stamina.current
-#else
-                    "0"
+                    //new SqlParameter("@ry", player.transform.rotation.x),
+                    new SqlParameter("@level", player.level.current),
+                    new SqlParameter("@health", player.health.current),
+                    new SqlParameter("@mana", player.mana.current),
+                    new SqlParameter("@strength", player.strength),
+                    new SqlParameter("@intelligence", player.intelligence),
+                    new SqlParameter("@experience", player.experience.current),
+                    new SqlParameter("@skillExperience", ((PlayerSkills)player.skills).skillExperience),
+                    new SqlParameter("@gold", player.gold),
+                    new SqlParameter("@coins", player.itemMall.coins),
+#if !_iMMO2D
+                    new SqlParameter("@gamemaster", player.isGameMaster),
 #endif
-                    ),
-                    new MySqlParameter("@experience", player.experience.current),
-                    new MySqlParameter("@skillExperience", ((PlayerSkills)player.skills).skillExperience),
-                    new MySqlParameter("@gold", player.gold),
-                    new MySqlParameter("@coins", player.itemMall.coins),
-                    new MySqlParameter("@online", online ? 1 : 0),
-                    new MySqlParameter("@lastsaved", DateTime.UtcNow)
+                    new SqlParameter("@online", online ? 1 : 0),
+                    new SqlParameter("@lastsaved", DateTime.UtcNow)
                 );
 
         SaveInventory(player.inventory, command);
@@ -1431,20 +1241,11 @@ public partial class Database : MonoBehaviour
     public void CharacterSaveMany(IEnumerable<Player> players, bool online = true)
     {
 #if _SERVER && !_iMMOTHREADDB
-        try
+        Transaction(command =>
         {
-            Transaction(command =>
-            {
-                foreach (Player player in players)
-                {
-                    CharacterSave(player, online, command);
-                }
-            });
-        }
-        catch(Exception e)
-        {
-            Debug.Log("SQL error :" + e );
-        }
+            foreach (Player player in players)
+                CharacterSave(player, online, command);
+        });
 #endif
     }
 
@@ -1459,10 +1260,10 @@ public partial class Database : MonoBehaviour
             var query = @"INSERT INTO guild_info SET `name` = @guild, `notice` = @notice ON DUPLICATE KEY UPDATE `notice` = @notice";
 
             ExecuteNonQueryMySql(command, query,
-                                new MySqlParameter("@guild", guild.name),
-                                new MySqlParameter("@notice", guild.notice));
+                                new SqlParameter("@guild", guild.name),
+                                new SqlParameter("@notice", guild.notice));
 
-            ExecuteNonQueryMySql(command, "DELETE FROM character_guild WHERE `guild` = @guild", new MySqlParameter("@guild", guild.name));
+            ExecuteNonQueryMySql(command, "DELETE FROM character_guild WHERE `guild` = @guild", new SqlParameter("@guild", guild.name));
 
             var query2 = @"INSERT INTO character_guild SET `guild` = @guild, `rank`= @rank, `character`= @character
                             ON DUPLICATE KEY UPDATE `guild` = @guild, `rank`= @rank, `character`= @character";
@@ -1470,9 +1271,9 @@ public partial class Database : MonoBehaviour
             foreach (GuildMember member in guild.members)
             {
                 ExecuteNonQueryMySql(command, query2,
-                                new MySqlParameter("@guild", guild.name),
-                                new MySqlParameter("@rank", member.rank),
-                                new MySqlParameter("@character", member.name));
+                                new SqlParameter("@guild", guild.name),
+                                new SqlParameter("@rank", member.rank),
+                                new SqlParameter("@character", member.name));
             }
         });
 #endif
@@ -1484,7 +1285,7 @@ public partial class Database : MonoBehaviour
     public bool GuildExists(string guild)
     {
 #if _SERVER
-        return ((long)ExecuteScalarMySql("SELECT Count(*) FROM guild_info WHERE `name`=@name", new MySqlParameter("@name", guild))) == 1;
+        return ((long)ExecuteScalarMySql("SELECT Count(*) FROM guild_info WHERE `name`=@name", new SqlParameter("@name", guild))) == 1;
 #else
         return false;
 #endif
@@ -1496,8 +1297,8 @@ public partial class Database : MonoBehaviour
     public void RemoveGuild(string guild)
     {
 #if _SERVER
-        ExecuteNonQueryMySql("DELETE FROM guild_info WHERE `name`=@name", new MySqlParameter("@name", guild));
-        ExecuteNonQueryMySql("DELETE FROM character_guild WHERE guild=@guild", new MySqlParameter("@guild", guild));
+        ExecuteNonQueryMySql("DELETE FROM guild_info WHERE `name`=@name", new SqlParameter("@name", guild));
+        ExecuteNonQueryMySql("DELETE FROM character_guild WHERE guild=@guild", new SqlParameter("@guild", guild));
 #endif
     }
 
@@ -1508,12 +1309,12 @@ public partial class Database : MonoBehaviour
     {
         var result = new List<long>();
 #if _SERVER
-        var table = ExecuteReaderMySql("SELECT orderid, coins FROM character_orders WHERE `character`=@character AND processed=0", new MySqlParameter("@character", characterName));
+        var table = ExecuteReaderMySql("SELECT orderid, coins FROM character_orders WHERE `character`=@character AND processed=0", new SqlParameter("@character", characterName));
 
         foreach (var row in table)
         {
             result.Add((long)row[1]);
-            ExecuteNonQueryMySql("UPDATE character_orders SET processed=1 WHERE orderid=@orderid", new MySqlParameter("@orderid", (long)row[0]));
+            ExecuteNonQueryMySql("UPDATE character_orders SET processed=1 WHERE orderid=@orderid", new SqlParameter("@orderid", (long)row[0]));
         }
 #endif
         return result;

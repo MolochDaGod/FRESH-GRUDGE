@@ -18,9 +18,8 @@ public partial class Entity
     protected const float minBuffChance = 0.01f;
     protected const float maxBuffChance = 0.99f;
 
-#if !_iMMO2D
     public GameObject headPosition;
-#endif
+
 
     public void OnSkillBuffChanged(SyncList<Buff>.Operation op, int index, Buff oldData, Buff newData)
     {
@@ -124,17 +123,16 @@ public partial class Entity
     // -----------------------------------------------------------------------------------
     public virtual bool Tools_CanAttack(Entity entity)
     {
-//#if !_iMMO2D
-        //Vector3 localPosHead = (headPosition != null) ? headPosition.transform.position : transform.position;
-        //Vector3 targetPosHead = (entity == null) ? Vector3.zero : (entity.headPosition != null) ? entity.headPosition.transform.position : entity.transform.position;
 
-//#if UNITY_EDITOR
- //       if (Physics.Linecast(localPosHead, targetPosHead, out RaycastHit hitb, LayerMask.GetMask("Default")))
- //           Debug.DrawLine(localPosHead, hitb.point, Color.red);
- //       else
- //           Debug.DrawLine(localPosHead, targetPosHead, Color.green);
-//#endif
-//#endif
+        Vector3 localPosHead = (headPosition != null) ? headPosition.transform.position : transform.position;
+        Vector3 targetPosHead = (entity == null) ? Vector3.zero : (entity.headPosition != null) ? entity.headPosition.transform.position : entity.transform.position;
+
+#if UNITY_EDITOR
+        if (Physics.Linecast(localPosHead, targetPosHead, out RaycastHit hitb, LayerMask.GetMask("Default")))
+            Debug.DrawLine(localPosHead, hitb.point, Color.red);
+        else
+            Debug.DrawLine(localPosHead, targetPosHead, Color.green);
+#endif
         return
             (!_cannotCast &&
             isAlive &&
@@ -143,12 +141,9 @@ public partial class Entity
             entity != this &&
             !inSafeZone &&
             !entity.inSafeZone &&
-#if _iMMO2D
-            !NavMesh2D.Raycast(transform.position, entity.transform.position, out NavMeshHit2D hit, NavMesh2D.AllAreas) &&
-#else
-            //!(Physics.Linecast(localPosHead, targetPosHead, out RaycastHit hit, LayerMask.GetMask("Default"))) &&
-#endif
-           (entity is Player p && (!p.invisible) ||
+            //!NavMesh.Raycast(transform.position, entity.transform.position, out NavMeshHit hit, NavMesh.AllAreas) && //TODO utilisation du raycast vraiment utile ?
+            !(Physics.Linecast(localPosHead, targetPosHead, out RaycastHit hit, LayerMask.GetMask("Default"))) &&
+           (entity is Player ||
             entity is Monster ||
             entity is Pet ||
             entity is Npc ||
@@ -185,7 +180,7 @@ public partial class Entity
     // -----------------------------------------------------------------------------------
     // DealDamageAt_Tools
     // Custom hook and splits up the DealDamageAt hook into class based ones. I could not
-    // get the built-in DealDamageAt hook to work with "player" for example, it only and
+    // get the built-in DealDamageAt hook to work with "Player" for example, it only and
     // ever triggered at the "Entity". Same for Monster and Pet. So it always triggers on
     // the base class, not on the derived classes.
     //
@@ -223,7 +218,7 @@ public partial class Entity
     [Server]
     public void onKilledEnemyIdentity(Entity entity)
     {
-        entity.lastAggressor = (this as Summonable) ? ((Summonable)this).owner : entity;
+        entity.lastAggressor = this;
     }
 
 
@@ -606,7 +601,7 @@ public partial class Entity
     // -----------------------------------------------------------------------------------
     // Tools_HarmonizeChance
     // -----------------------------------------------------------------------------------
-        public float Tools_HarmonizeChance(float baseChance, float modifier)
+    public float Tools_HarmonizeChance(float baseChance, float modifier)
     {
         baseChance += modifier;
 
@@ -693,10 +688,10 @@ public partial class Entity
     // -----------------------------------------------------------------------------------
     // Tools_checkHasItem
     // -----------------------------------------------------------------------------------
-    public bool Tools_checkHasItem(Player player, ScriptableItem item, int amount = 1)
+    public bool Tools_checkHasItem(Player player, ScriptableItem item)
     {
         if (item == null) return true;
-        return player.inventory.Count(new Item(item)) >= amount;
+        return player.inventory.Count(new Item(item)) >= 1;
     }
 
     // -----------------------------------------------------------------------------------

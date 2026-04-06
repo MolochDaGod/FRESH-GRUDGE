@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // UI PROMPT
+
 public class Tools_UI_Prompt : MonoBehaviour
 {
     public GameObject panel;

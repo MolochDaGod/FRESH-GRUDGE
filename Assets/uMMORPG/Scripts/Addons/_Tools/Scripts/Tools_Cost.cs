@@ -1,5 +1,4 @@
 #if _iMMOTOOLS
-using System.Collections.Generic;
 using UnityEngine;
 
 // COST - CLASS
@@ -26,194 +25,52 @@ public class Tools_Cost
     // -----------------------------------------------------------------------------------
     // checkCost
     // -----------------------------------------------------------------------------------
-    public bool CheckCost(Player player)
+    public bool checkCost(Player player)
     {
         if (!player) return false;
 
         bool valid = true;
 
-        valid = (itemCost.Length == 0 || player.Tools_checkHasItems(player, itemCost)) && valid;
-        valid = (goldCost == 0 || player.gold >= goldCost) && valid;
-        valid = (coinCost == 0 || player.itemMall.coins >= coinCost) && valid;
-        valid = (healthCost == 0 || player.health.current > healthCost) && valid;
-        valid = (manaCost == 0 || player.mana.current >= manaCost) && valid;
-#if _iMMOSTAMINA
-        if(player.stamina)
-            valid = (staminaCost == 0 || player.stamina.current >= staminaCost) && valid;
-#endif
-        valid = (experienceCost == 0 || player.experience.current >= experienceCost) && valid;
-        valid = (skillExperienceCost == 0 || ((PlayerSkills)player.skills).skillExperience >= skillExperienceCost) && valid;
+        valid = (itemCost == null || itemCost.Length == 0 || player.Tools_checkHasItems(player, itemCost)) ? valid : false;
+        valid = (goldCost == 0 || player.gold >= goldCost) ? valid : false;
+        valid = (coinCost == 0 || player.itemMall.coins >= coinCost) ? valid : false;
+        valid = (healthCost == 0 || player.health.current > healthCost) ? valid : false;
+        valid = (manaCost == 0 || player.mana.current >= manaCost) ? valid : false;
+    #if _iMMOSTAMINA
+        valid = (staminaCost == 0 || player.stamina.current >= staminaCost) ? valid : false;
+    #endif
+        valid = (experienceCost == 0 || player.experience.current >= experienceCost) ? valid : false;
+        valid = (skillExperienceCost == 0 || ((PlayerSkills)player.skills).skillExperience >= skillExperienceCost) ? valid : false;
 
 #if _iMMOHONORSHOP
-        if(player.playerHonorShop)
-            valid = player.playerHonorShop.CheckHonorCurrencyCost(honorCurrencyCost) && valid;
+        valid = (player.playerHonorShop.CheckHonorCurrencyCost(honorCurrencyCost)) ? valid : false;
 #endif
 
         return valid;
     }
 
     // -----------------------------------------------------------------------------------
-    // ListCost
-    // -----------------------------------------------------------------------------------
-    public List<ListCostValue> ListCost(Player player)
-    {
-        List<ListCostValue> listCost = new List<ListCostValue>();
-        if (!player) return listCost;
-        // Item
-        if (itemCost.Length > 0)
-        {
-            foreach (Tools_ItemRequirement item in itemCost)
-            {
-                ListCostValue listCostValue = new ListCostValue()
-                {
-                    requireName = item.item.name,
-                    amout = item.amount,
-                    completed = (player.Tools_getTotalItemCount(player, item.item) >= item.amount)
-                };
-                listCost.Add(listCostValue);
-            }
-        }
-        // Gold
-        if (goldCost > 0)
-        {
-            ListCostValue listCostValue = new ListCostValue()
-            {
-                requireName = "Gold",
-                amout = goldCost,
-                completed = player.gold >= goldCost
-            };
-            listCost.Add(listCostValue);
-        }
-        // Coin
-        if (coinCost > 0)
-        {
-            ListCostValue listCostValue = new ListCostValue()
-            {
-                requireName = "Coins",
-                amout = coinCost,
-                completed = player.itemMall.coins >= coinCost
-            };
-            listCost.Add(listCostValue);
-        }
-        // Health
-        if (healthCost > 0)
-        {
-            ListCostValue listCostValue = new ListCostValue()
-            {
-                requireName = "Health",
-                amout = healthCost,
-                completed = player.health.current >= healthCost
-            };
-            listCost.Add(listCostValue);
-        }
-        // Mana
-        if (manaCost > 0)
-        {
-            ListCostValue listCostValue = new ListCostValue()
-            {
-                requireName = "Mana",
-                amout = manaCost,
-                completed = player.mana.current >= manaCost
-            };
-            listCost.Add(listCostValue);
-        }
-#if _iMMOSTAMINA
-        // stamina
-        if (staminaCost > 0)
-        {
-            ListCostValue listCostValue = new ListCostValue()
-            {
-                requireName = "stamina",
-                amout = staminaCost,
-                completed = player.stamina.current >= staminaCost
-            };
-            listCost.Add(listCostValue);
-        }
-#endif
-        // Experience
-        if(experienceCost > 0)
-        {
-            ListCostValue listCostValue = new ListCostValue()
-            {
-                requireName = "Experience Cost",
-                amout = experienceCost,
-                completed = player.experience.current >= experienceCost
-            };
-            listCost.Add(listCostValue);
-        }
-        // Skill Experience
-        if (skillExperienceCost > 0)
-        {
-            ListCostValue listCostValue = new ListCostValue()
-            {
-                requireName = "Skill Experience Cost",
-                amout = skillExperienceCost,
-                completed = (((PlayerSkills)player.skills).skillExperience >= skillExperienceCost)
-            };
-            listCost.Add(listCostValue);
-        }
-#if _iMMOHONORSHOP
-        // HonorShop
-        if (honorCurrencyCost.Length > 0)
-        {
-            foreach (HonorShopCurrencyCost honorCost in honorCurrencyCost)
-            {
-                ListCostValue listCostValue = new ListCostValue()
-                {
-                    requireName = honorCost.honorCurrency.name,
-                    amout = honorCost.amount,
-                    completed = honorCost.amount < player.playerHonorShop.GetHonorCurrency(honorCost.honorCurrency)
-                };
-                listCost.Add(listCostValue);
-            }
-        }
-#endif
-        return listCost;
-    }
-
-    // -----------------------------------------------------------------------------------
-    // hasCosts
-    // -----------------------------------------------------------------------------------
-    public bool HasCosts()
-    {
-        return itemCost.Length > 0 ||
-                goldCost > 0 ||
-                coinCost > 0 ||
-                healthCost > 0 ||
-                experienceCost > 0 ||
-                skillExperienceCost > 0 ||
-                manaCost > 0
-#if _iMMOSTAMINA
-                || staminaCost > 0
-#endif
-#if _iMMOHONORSHOP
-                || honorCurrencyCost.Length > 0
-#endif
-                ;
-    }
-
-    // -----------------------------------------------------------------------------------
     // payCost
     // -----------------------------------------------------------------------------------
-    public void PayCost(Player player)
+    public void payCost(Player player)
     {
-        if (!player || !CheckCost(player)) return;
+        if (!player || !checkCost(player)) return;
 
-        player.Tools_removeItems(player, itemCost);
+        player.Tools_removeItems(player, itemCost ?? new Tools_ItemRequirement[0]);
 
         if(goldCost > 0)
             player.gold -= goldCost;
         if(coinCost > 0)
             player.itemMall.coins -= coinCost;
         if(healthCost > 0)
-            player.health.current -= healthCost;
-        if (manaCost > 0)
+        player.health.current -= healthCost;
+        if(manaCost > 0)
             player.mana.current -= manaCost;
 #if _iMMOSTAMINA
         if (staminaCost > 0)
             player.stamina.current -= staminaCost;
 #endif
-        if (experienceCost > 0)
+        if(experienceCost > 0)
             player.experience.current -= experienceCost;
         if(skillExperienceCost > 0)
             ((PlayerSkills)player.skills).skillExperience -= skillExperienceCost;
@@ -222,9 +79,68 @@ public class Tools_Cost
         player.playerHonorShop.PayHonorCurrencyCost(honorCurrencyCost);
 #endif
     }
+
+    public bool CheckCost(Player player) => checkCost(player);
+
+    public void PayCost(Player player) => payCost(player);
+
+    public bool HasCosts()
+    {
+        return (itemCost != null && itemCost.Length > 0) ||
+               goldCost > 0 ||
+               coinCost > 0 ||
+               healthCost > 0 ||
+               manaCost > 0 ||
+#if _iMMOSTAMINA
+               staminaCost > 0 ||
+#endif
+               experienceCost > 0 ||
+               skillExperienceCost > 0;
+    }
+
+    public System.Collections.Generic.List<ListCostValue> ListCost(Player player)
+    {
+        var values = new System.Collections.Generic.List<ListCostValue>();
+
+        if (itemCost != null)
+        {
+            foreach (Tools_ItemRequirement item in itemCost)
+            {
+                if (item != null && item.item != null && item.amount > 0)
+                {
+                    values.Add(new ListCostValue
+                    {
+                        requireName = item.item.name,
+                        amout = item.amount,
+                        completed = player != null && player.Tools_checkHasItems(player, new[] { item })
+                    });
+                }
+            }
+        }
+
+        if (goldCost > 0)
+            values.Add(new ListCostValue { requireName = "Gold", amout = goldCost, completed = player != null && player.gold >= goldCost });
+        if (coinCost > 0)
+            values.Add(new ListCostValue { requireName = "Coins", amout = coinCost, completed = player != null && player.itemMall.coins >= coinCost });
+        if (healthCost > 0)
+            values.Add(new ListCostValue { requireName = "Health", amout = healthCost, completed = player != null && player.health.current > healthCost });
+        if (manaCost > 0)
+            values.Add(new ListCostValue { requireName = "Mana", amout = manaCost, completed = player != null && player.mana.current >= manaCost });
+#if _iMMOSTAMINA
+        if (staminaCost > 0)
+            values.Add(new ListCostValue { requireName = "Stamina", amout = staminaCost, completed = player != null && player.stamina.current >= staminaCost });
+#endif
+        if (experienceCost > 0)
+            values.Add(new ListCostValue { requireName = "Experience", amout = experienceCost, completed = player != null && player.experience.current >= experienceCost });
+        if (skillExperienceCost > 0)
+            values.Add(new ListCostValue { requireName = "Skill Experience", amout = skillExperienceCost, completed = player != null && ((PlayerSkills)player.skills).skillExperience >= skillExperienceCost });
+
+        return values;
+    }
 }
 
-public struct ListCostValue
+[System.Serializable]
+public class ListCostValue
 {
     public string requireName;
     public long amout;

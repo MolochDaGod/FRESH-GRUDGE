@@ -3,12 +3,10 @@
 using SQLite;
 #endif
 using UnityEngine;
- 
+
 // DATABASE CLASSES
 public partial class Database
 {
-    [Header("[-=-[ Use Thread For save ]-=-]")]
-    public bool useThread;
     public enum DatabaseType { SQLite, mySQL }
     // -----------------------------------------------------------------------------------
     // Tools_connection
@@ -60,5 +58,17 @@ public partial class Database
     }
 #endif
 
+#if _SERVER
+    public void Start()
+    {
+#if _DEBUGMODE
+        Debug.Log("Search All addon require database and add in Events");
+#endif
+        //Debug.Log("Search All addon require database and add in Events");
+#if _SQLITE
+        Utils.InvokeMany(typeof(Database), this, "Start_Tools_");
+#endif
+    }
+#endif
     }
 #endif

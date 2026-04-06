@@ -17,12 +17,7 @@ public class Tools_ClosestDistance : MonoBehaviour
         // ClosestPoint is more accurate. OnBounds often doesn't get <1 because
         // it uses a point at the top of the player collider, not in the center.
         // (use Debug.DrawLine here to see the difference)
-#if _iMMO2D
-        return Vector2.Distance(a.ClosestPoint(b.transform.position),
-                                b.ClosestPoint(a.transform.position));
-#else
         return Vector3.Distance(a.ClosestPoint(b.transform.position),
                                 b.ClosestPoint(a.transform.position));
-#endif
     }
 }

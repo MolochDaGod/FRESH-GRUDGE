@@ -1,6 +1,7 @@
 using Mirror;
 
 // PLAYER
+
 public partial class Player
 {
     protected UIMinimap minimap;
