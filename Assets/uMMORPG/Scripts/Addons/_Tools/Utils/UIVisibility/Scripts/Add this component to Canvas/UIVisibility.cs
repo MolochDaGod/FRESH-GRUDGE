@@ -17,7 +17,7 @@ public class UIVisibility : MonoBehaviour
         modifierPressed = Input.GetKey(modifierKey) ? true : false;
         if (modifierPressed && Input.GetKey(hotkey) && updateTime <= Time.time)
         {
-            updateTime = Time.time + 0.5f;  // Create a wait TimeLogout before allowing this action again.
+            updateTime = Time.time + 0.5f;  // Create a wait time before allowing this action again.
                                             // If we don't have hidden parent objects then hide the user interface.
             if (hiddenPanels.Count == 0)
             {

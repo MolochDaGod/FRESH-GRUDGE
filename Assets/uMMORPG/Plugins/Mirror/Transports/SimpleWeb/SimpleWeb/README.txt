@@ -7,6 +7,7 @@ Requirements:
   Unity 2019.4 LTS
 
 Documentation:
+  https://mirror-networking.gitbook.io/docs/
   https://github.com/James-Frowen/SimpleWebTransport/blob/master/README.md
 
 Support:

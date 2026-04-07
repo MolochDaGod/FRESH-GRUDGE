@@ -36,7 +36,7 @@ public partial class ElementTemplate : ScriptableObject
                     _cache = Resources.LoadAll<ElementTemplate>(folderName).ToDictionary(x => x.name.GetStableHashCode(), x => x);
 #else
                 //_cache = SGResources.LoadAll<ElementTemplate>(TemplateConfiguration.singleton.GetTemplatePath(typeof(ElementTemplate))).ToDictionary(x => x.name.GetStableHashCode(), x => x);
-                _cache = Resources.LoadAll<ElementTemplate>("Templates").ToDictionary(x => x.name.GetStableHashCode(), x => x);
+                _cache = Resources.LoadAll<ElementTemplate>(TemplateConfiguration.singleton.GetTemplatePath(typeof(ElementTemplate))).ToDictionary(x => x.name.GetStableHashCode(), x => x);
 #endif
             }
 

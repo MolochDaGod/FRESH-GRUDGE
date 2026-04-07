@@ -212,7 +212,7 @@ public partial class ResourceNode : Tools_InteractableObject
     protected void UpdateServer()
     {
         //Debug.Log("Serveur call");
-        if (_isUsed && !IsHidden() && !HasResources()) // si non caché et qu'il n'a plus de resources
+        if (_isUsed && !IsHidden() && !HasResources()) // si non cachï¿½ et qu'il n'a plus de resources
         {
             //Debug.Log("je passe ici");
             Invoke(nameof(HideNode), emptyTime);
@@ -235,7 +235,7 @@ public partial class ResourceNode : Tools_InteractableObject
         if (respawn)
         {
             Hide();
-            netIdentity.visible = Visibility.ForceHidden;
+            netIdentity.visibility = Visibility.ForceHidden;
            
             Invoke(nameof(ShowNode), respawnTime);
         }
@@ -250,7 +250,7 @@ public partial class ResourceNode : Tools_InteractableObject
         currentResources = Random.Range(totalResourcesMin, totalResourcesMax);
         OnRefill();
         Show();
-        netIdentity.visible = Visibility.Default;
+        netIdentity.visibility = Visibility.Default;
     }
 
 

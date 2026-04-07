@@ -52,13 +52,13 @@ public partial class Tools_InteractableAreaSphere : Tools_Interactable
 
         if (player != null && player == Player.localPlayer)
         {
-            if ((!interactionRequirements.hasRequirements() && !interactionRequirements.requierementCost.HasCosts()) || automaticActivation)
+            if ((!interactionRequirements.hasRequirements() && !interactionRequirements.hasCosts()) || automaticActivation)
             {
                 ConfirmAccess();
             }
             else
             {
-                //ShowAccessRequirementsUI();
+                ShowAccessRequirementsUI();
             }
         }
     }
@@ -78,27 +78,24 @@ public partial class Tools_InteractableAreaSphere : Tools_Interactable
         Player player = co.GetComponentInParent<Player>();
 
         if (player != null && player == Player.localPlayer)
-        {
-            // Intentionally no-op; UI hide hook currently disabled.
-            //HideAccessRequirementsUI();
-        }
+            HideAccessRequirementsUI();
     }
 
     // -----------------------------------------------------------------------------------
     // Update
     // @Client
     // -----------------------------------------------------------------------------------
-    /*[ClientCallback]
+    [ClientCallback]
     private void Update()
     {
-        player player = player.localPlayer;
+        Player player = Player.localPlayer;
         if (!player) return;
 
         // -- check for interaction Distance
         if (IsWorthUpdating())
             this.GetComponentInChildren<SpriteRenderer>().enabled = UMMO_Tools.Tools_CheckSelectionHandling(this.gameObject);
 
-    }*/
+    }
 
     // -----------------------------------------------------------------------------------
 }

@@ -295,7 +295,7 @@ public class PlayerCharacterControllerMovement : Movement
         originalCameraPosition = camera.transform.localPosition;
     }
 
-    void OnValidate()
+    protected override void OnValidate()
     {
         minMoveBuffer = Mathf.Clamp(minMoveBuffer, 1, maxMoveBuffer); // need at least 1 to move
         combineMovesAfter = Mathf.Clamp(combineMovesAfter, minMoveBuffer + 1, maxMoveBuffer);

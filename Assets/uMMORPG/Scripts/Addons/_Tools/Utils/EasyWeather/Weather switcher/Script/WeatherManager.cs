@@ -5,6 +5,7 @@ using UnityEngine;
 public class WeatherManager : MonoBehaviour
 {
     public Material SkyBox;
+    public Material OtherSkyBox;
 
     public GameObject defaultSun;
 
@@ -25,37 +26,50 @@ public class WeatherManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // a player might have a root collider and a hip collider.
+        // only fire OnTriggerEnter code here ONCE.
+        // => only for the collider ON the player
+        // => so we check GetComponent. DO NOT check GetComponentInParent.
         Player player = other.GetComponent<Player>();
-        if (player != null && player.isLocalPlayer)
+        if (player != null)
         {
-            Debug.Log("Local player entered the trigger");
-            RenderSettings.skybox = SkyBox;
-            DynamicGI.UpdateEnvironment(); // Ensure the skybox updates visually
-            defaultSun.SetActive(false);
-            zoneSun.SetActive(true);
-            zoneSun.GetComponent<Light>().intensity = sunintensity;
-            zoneSun.GetComponent<Light>().color = sunColor;
-
-            if (Weather != null)
-                Weather.SetActive(true);
-
-            if (enebleFog)
+            // only call this for local player. not for other
+            if (player.isLocalPlayer)
             {
-                RenderSettings.fog = true;
+                RenderSettings.skybox = OtherSkyBox;
+                defaultSun.SetActive(false);
+                zoneSun.SetActive(true);
+                zoneSun.GetComponent<Light>().intensity = sunintensity;
+                zoneSun.GetComponent<Light>().color = sunColor;
+
+                if (Weather != null)
+                    Weather.SetActive(true);
+                if (!enebleFog) return;
+                RenderSettings.fog = (true);
                 RenderSettings.fogDensity = density;
                 RenderSettings.fogColor = fogColor;
+                RenderSettings.fogDensity = density;
             }
         }
     }
 
+
+
     private void OnTriggerExit(Collider other)
     {
         Player player = other.GetComponent<Player>();
-        if (player != null && player.isLocalPlayer)
+        if (player != null)
         {
-
-            if (Weather != null)
-                Weather.SetActive(false);
+            // only call this for local player. not for other
+            if (player.isLocalPlayer)
+            {
+                RenderSettings.skybox = SkyBox;
+                RenderSettings.fog = (false);
+                defaultSun.SetActive(true);
+                zoneSun.SetActive(false);
+                if (Weather != null)
+                    Weather.SetActive(false);
+            }
         }
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public partial class Tools_InteractionRewards
 {
-    [Header("[-=-[ INTERACTION REWARDS ]-=-]")]
+    [Header("[-=-=-[ INTERACTION REWARDS ]-=-=-]")]
     [Tooltip("[Optional] Items awarded after sucessful interaction")]
     public Tools_ItemReward[] items;
 
@@ -86,19 +86,13 @@ public partial class Tools_InteractionRewards
         // -- reward honor currency
 #if _iMMOHONORSHOP
         foreach (HonorShopCurrencyCost currency in honorCurrencyReward)
-        {
             player.playerHonorShop.AddHonorCurrency(currency.honorCurrency, currency.amount);
-            player.Tools_TargetAddMessage("You got " + currency.amount.ToString()  + " honnor token");
-        }
 #endif
 
         // -- unlock travelroutes
 #if _iMMOTRAVEL
         foreach (Unlockroute route in unlockTravelroutes)
-        {
-            player.playerTravelroute.UnlockTravelroute(route);
-            player.Tools_TargetAddMessage("You got unlock route for " + route.ToString());
-        }
+    		player.playerTravelroute.UnlockTravelroute(route);
 #endif
 
         // -- reward items

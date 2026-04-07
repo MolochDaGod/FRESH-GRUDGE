@@ -95,11 +95,13 @@ public class UI_Settings : MonoBehaviour
         ShowHideSetting();
     }*/
 
+#endif
     public void ShowHideSetting()
     {
         panel.SetActive(!panel.activeSelf);
     }
 
+#if _CLIENT
     // Load all of the player saved settings.
     private void LoadSettings()
     {

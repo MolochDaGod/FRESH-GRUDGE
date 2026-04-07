@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18ac96f6edcf0604aa41c35bbb9f2b8f, type: 3}
+  m_Name: InfernalWarlord_Tier4
+  m_EditorClassIdentifier: 
+  nodeName: Infernal Warlord
+  description: 'Infernal Warlords are demonic conquerors — warriors whose fury
+    has been infused with hellfire and dark blessing. They tear through armies
+    like a god of war given flesh, leaving only cinders and broken ranks behind.'
+  icon: {fileID: 0}
+  tier: 4
+  prerequisites:
+  - {fileID: 11400000, guid: d0002000000000000000000000000000, type: 2}
+  unlocksSkillCategory: Spear
+  weaponProficiencies:
+  - weaponCategory: Spear
+    damageMultiplierBonus: 0.18
+    flatDamageBonus: 8
+  - weaponCategory: Twohand
+    damageMultiplierBonus: 0.15
+    flatDamageBonus: 6
+  grantedSkills: []
+  damageBonus: 18
+  defenseBonus: 5
+  healthBonus: 30
+  manaBonus: 0

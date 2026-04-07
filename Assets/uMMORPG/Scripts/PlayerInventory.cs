@@ -222,7 +222,7 @@ public partial class PlayerInventory : Inventory
     }
 
     // validation
-    void OnValidate()
+    protected override void OnValidate()
     {
         // defaultItems is null when first adding the component. avoid error.
         if (defaultItems != null)

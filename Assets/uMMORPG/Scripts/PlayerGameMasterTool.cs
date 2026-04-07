@@ -193,7 +193,7 @@ public class PlayerGameMasterTool : NetworkBehaviour
     //}
 
     // validation //////////////////////////////////////////////////////////////
-    void OnValidate()
+    protected override void OnValidate()
     {
         // gm tool data should only ever be synced to owner!
         // observers should not know about it!

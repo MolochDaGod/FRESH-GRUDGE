@@ -266,7 +266,7 @@ public class PlayerNavMeshMovement : NavMeshMovement
     }
 
     // validation //////////////////////////////////////////////////////////////
-    void OnValidate()
+    protected override void OnValidate()
     {
         // make sure that the NetworkNavMeshAgentRubberbanding component is
         // ABOVE this component, so that it gets updated before this one.

@@ -3,7 +3,7 @@
 //                 Do not hesitate to post your feedback on Asset Store
 // =======================================================================================
 // * Discord Support Server........: https://discord.gg/aRCBPGMr7A
-// * Website Instructions..........: https://mmo-indie.com/addon/_Tools
+// * Website Instructions..........: https://mmo-indie.com/addon.php?name=tools
 // =======================================================================================
 // * Addon name....................: Tools
 // * Asset Store link..............: https://u3d.as/2FcL

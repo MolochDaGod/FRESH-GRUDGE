@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Threading;
 
-namespace JamesFrowen.SimpleWeb
+namespace Mirror.SimpleWeb
 {
     public class WebSocketServer
     {
@@ -12,7 +12,6 @@ namespace JamesFrowen.SimpleWeb
 
         readonly TcpConfig tcpConfig;
         readonly int maxMessageSize;
-        readonly bool useRealIpHeader;
 
         TcpListener listener;
         Thread acceptThread;
@@ -22,17 +21,15 @@ namespace JamesFrowen.SimpleWeb
         readonly BufferPool bufferPool;
         readonly ConcurrentDictionary<int, Connection> connections = new ConcurrentDictionary<int, Connection>();
 
-
         int _idCounter = 0;
 
-        public WebSocketServer(TcpConfig tcpConfig, int maxMessageSize, int handshakeMaxSize, SslConfig sslConfig, BufferPool bufferPool, string realIpHeader = null)
+        public WebSocketServer(TcpConfig tcpConfig, int maxMessageSize, int handshakeMaxSize, SslConfig sslConfig, BufferPool bufferPool)
         {
             this.tcpConfig = tcpConfig;
             this.maxMessageSize = maxMessageSize;
             sslHelper = new ServerSslHelper(sslConfig);
             this.bufferPool = bufferPool;
-            this.useRealIpHeader = !string.IsNullOrEmpty(realIpHeader);
-            handShake = new ServerHandshake(this.bufferPool, handshakeMaxSize, realIpHeader);
+            handShake = new ServerHandshake(this.bufferPool, handshakeMaxSize);
         }
 
         public void Listen(int port)
@@ -40,7 +37,7 @@ namespace JamesFrowen.SimpleWeb
             listener = TcpListener.Create(port);
             listener.Start();
 
-            Log.Info($"Server has started on port {port}");
+            Log.Verbose("[SWT-WebSocketServer]: Server Started on {0}", port);
 
             acceptThread = new Thread(acceptLoop);
             acceptThread.IsBackground = true;
@@ -56,13 +53,12 @@ namespace JamesFrowen.SimpleWeb
             listener?.Stop();
             acceptThread = null;
 
-            Log.Info("Server stopped, Closing all connections...");
+            Log.Verbose("[SWT-WebSocketServer]: Server stopped...closing all connections.");
+
             // make copy so that foreach doesn't break if values are removed
             Connection[] connectionsCopy = connections.Values.ToArray();
             foreach (Connection conn in connectionsCopy)
-            {
                 conn.Dispose();
-            }
 
             connections.Clear();
         }
@@ -78,15 +74,14 @@ namespace JamesFrowen.SimpleWeb
                         TcpClient client = listener.AcceptTcpClient();
                         tcpConfig.ApplyTo(client);
 
-
                         // TODO keep track of connections before they are in connections dictionary
                         //      this might not be a problem as HandshakeAndReceiveLoop checks for stop
                         //      and returns/disposes before sending message to queue
-                        var conn = new Connection(client, AfterConnectionDisposed);
-                        Log.Info($"A client connected {conn}");
+                        Connection conn = new Connection(client, AfterConnectionDisposed);
+                        Log.Verbose("[SWT-WebSocketServer]: A client connected from {0}", conn);
 
                         // handshake needs its own thread as it needs to wait for message from client
-                        var receiveThread = new Thread(() => HandshakeAndReceiveLoop(conn));
+                        Thread receiveThread = new Thread(() => HandshakeAndReceiveLoop(conn));
 
                         conn.receiveThread = receiveThread;
 
@@ -102,7 +97,7 @@ namespace JamesFrowen.SimpleWeb
                 }
             }
             catch (ThreadInterruptedException e) { Log.InfoException(e); }
-            catch (ThreadAbortException e) { Log.InfoException(e); }
+            catch (ThreadAbortException) { Log.Error("[SWT-WebSocketServer]: Thread Abort Exception"); }
             catch (Exception e) { Log.Exception(e); }
         }
 
@@ -113,7 +108,7 @@ namespace JamesFrowen.SimpleWeb
                 bool success = sslHelper.TryCreateStream(conn);
                 if (!success)
                 {
-                    Log.Error($"Failed to create SSL Stream {conn}");
+                    Log.Warn("[SWT-WebSocketServer]: Failed to create SSL Stream {0}", conn);
                     conn.Dispose();
                     return;
                 }
@@ -121,12 +116,10 @@ namespace JamesFrowen.SimpleWeb
                 success = handShake.TryHandshake(conn);
 
                 if (success)
-                {
-                    Log.Info($"Sent Handshake {conn}");
-                }
+                    Log.Verbose("[SWT-WebSocketServer]: Sent Handshake {0}, false", conn);
                 else
                 {
-                    Log.Error($"Handshake Failed {conn}");
+                    Log.Warn("[SWT-WebSocketServer]: Handshake Failed {0}", conn);
                     conn.Dispose();
                     return;
                 }
@@ -134,7 +127,7 @@ namespace JamesFrowen.SimpleWeb
                 // check if Stop has been called since accepting this client
                 if (serverStopped)
                 {
-                    Log.Info("Server stops after successful handshake");
+                    Log.Warn("[SWT-WebSocketServer]: Server stopped after successful handshake");
                     return;
                 }
 
@@ -143,9 +136,9 @@ namespace JamesFrowen.SimpleWeb
 
                 receiveQueue.Enqueue(new Message(conn.connId, EventType.Connected));
 
-                var sendThread = new Thread(() =>
+                Thread sendThread = new Thread(() =>
                 {
-                    var sendConfig = new SendLoop.Config(
+                    SendLoop.Config sendConfig = new SendLoop.Config(
                         conn,
                         bufferSize: Constants.HeaderSize + maxMessageSize,
                         setMask: false);
@@ -155,10 +148,10 @@ namespace JamesFrowen.SimpleWeb
 
                 conn.sendThread = sendThread;
                 sendThread.IsBackground = true;
-                sendThread.Name = $"SendLoop {conn.connId}";
+                sendThread.Name = $"SendThread {conn.connId}";
                 sendThread.Start();
 
-                var receiveConfig = new ReceiveLoop.Config(
+                ReceiveLoop.Config receiveConfig = new ReceiveLoop.Config(
                     conn,
                     maxMessageSize,
                     expectMask: true,
@@ -168,7 +161,7 @@ namespace JamesFrowen.SimpleWeb
                 ReceiveLoop.Loop(receiveConfig);
             }
             catch (ThreadInterruptedException e) { Log.InfoException(e); }
-            catch (ThreadAbortException e) { Log.InfoException(e); }
+            catch (ThreadAbortException) { Log.Error("[SWT-WebSocketServer]: Thread Abort Exception"); }
             catch (Exception e) { Log.Exception(e); }
             finally
             {
@@ -194,41 +187,44 @@ namespace JamesFrowen.SimpleWeb
                 conn.sendPending.Set();
             }
             else
-            {
-                Log.Warn($"Cant send message to {id} because connection was not found in dictionary. Maybe it disconnected.");
-            }
+                Log.Warn("[SWT-WebSocketServer]: Cannot send message to {0} because connection was not found in dictionary. Maybe it disconnected.", id);
         }
 
         public bool CloseConnection(int id)
         {
             if (connections.TryGetValue(id, out Connection conn))
             {
-                Log.Info($"Kicking connection {id}");
+                Log.Info($"[SWT-WebSocketServer]: Disconnecting connection {0}", id);
                 conn.Dispose();
                 return true;
             }
             else
             {
-                Log.Warn($"Failed to kick {id} because id not found");
-
+                Log.Warn("[SWT-WebSocketServer]: Failed to kick {0} because id not found.", id);
                 return false;
             }
         }
 
         public string GetClientAddress(int id)
         {
-            if (connections.TryGetValue(id, out Connection conn))
+            if (!connections.TryGetValue(id, out Connection conn))
             {
-                if (useRealIpHeader)
-                    return conn.RealIp;
-                else
-                    return conn.client.Client.RemoteEndPoint.ToString();
-            }
-            else
-            {
-                Log.Error($"Cant get address of connection {id} because connection was not found in dictionary");
+                Log.Warn("[SWT-WebSocketServer]: Cannot get address of connection {0} because connection was not found in dictionary.", id);
                 return null;
             }
+
+            return conn.remoteAddress;
+        }
+
+        public Request GetClientRequest(int id)
+        {
+            if (!connections.TryGetValue(id, out Connection conn))
+            {
+                Log.Warn("[SWT-WebSocketServer]: Cannot get request of connection {0} because connection was not found in dictionary.", id);
+                return null;
+            }
+
+            return conn.request;
         }
     }
 }

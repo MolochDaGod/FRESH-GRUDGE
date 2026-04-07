@@ -20,11 +20,3 @@ public enum AlignmentState
     NEUTRAL_EVIL,
     CHAOTIC_EVIL
 }
-
-public enum TeleportationType { onScene, offScene }
-
-public enum BuffType { Both, Buff, Nerf, None }
-
-public enum ThresholdType { None, Below, Above }
-
-public enum GroupType { None, Party, Guild, Realm }

@@ -5,11 +5,7 @@ using UnityEngine;
 // ===================================================================================
 // POPUP AREA - BOX
 // ===================================================================================
-#if _iMMO2D
-[RequireComponent(typeof(BoxCollider2D))]
-#else
 [RequireComponent(typeof(BoxCollider))]
-#endif
 public partial class Tools_AreaBox_Popup : NetworkBehaviour
 {
 #if _iMMOPVP
@@ -27,23 +23,21 @@ public partial class Tools_AreaBox_Popup : NetworkBehaviour
     // OnTriggerEnter
     // @Client
     // -----------------------------------------------------------------------------------
-#if _iMMO2D
-    private void OnTriggerEnter2D(Collider2D co)
-#else
     private void OnTriggerEnter(Collider co)
-#endif
     {
-
-        Player player = co.GetComponentInParent<Player>();
         if (messageOnEnter != "")
         {
-            //player player = co.GetComponentInParent<player>();
+            Player player = co.GetComponentInParent<Player>();
             if (player)
             {
 #if _iMMOPVP
                 if (player.GetAlliedRealms(realmId, alliedRealmId))
+                {
 #endif
-                    player.Tools_ShowPopup(messageOnEnter);
+                player.Tools_ShowPopup(messageOnEnter, iconId, soundId);
+#if _iMMOPVP
+                }
+#endif
             }
         }
     }
@@ -52,11 +46,7 @@ public partial class Tools_AreaBox_Popup : NetworkBehaviour
     // OnTriggerExit
     // @Client
     // -----------------------------------------------------------------------------------
-#if _iMMO2D
-    private void OnTriggerExit2D(Collider2D co)
-#else
     private void OnTriggerExit(Collider co)
-#endif
     {
         if (messageOnExit != "")
         {
@@ -65,9 +55,12 @@ public partial class Tools_AreaBox_Popup : NetworkBehaviour
             {
 #if _iMMOPVP
                 if (player.GetAlliedRealms(realmId, alliedRealmId))
+                {
 #endif
-                
-                    player.Tools_ShowPopup(messageOnExit);
+                player.Tools_ShowPopup(messageOnExit, iconId, soundId);
+#if _iMMOPVP
+                }
+#endif
             }
         }
     }

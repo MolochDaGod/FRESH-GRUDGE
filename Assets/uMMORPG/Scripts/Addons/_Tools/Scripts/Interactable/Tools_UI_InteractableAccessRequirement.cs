@@ -1,6 +1,9 @@
 #if _iMMOTOOLS
+using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Globalization;
 
 // ===================================================================================
 // UI INTERACTABLE ACCESS REQUIREMENT
@@ -13,8 +16,6 @@ public partial class Tools_UI_InteractableAccessRequirement : Tools_UI_Requireme
 #if _iMMOHONORSHOP
     public string labelRequiredHonorCurrency 		= " - Honor Currency cost: ";
 #endif
-
-    public KeyCode interactKey = KeyCode.E; // Public KeyCode for interaction
 
     protected Tools_Interactable interactable;
 
@@ -34,7 +35,7 @@ public partial class Tools_UI_InteractableAccessRequirement : Tools_UI_Requireme
             Destroy(content.GetChild(i).gameObject);
         }
 
-        UpdateTextbox();
+        updateTextbox();
 
         interactButton.interactable = interactable.interactionRequirements.checkRequirements(player) || interactable.IsUnlocked();
 
@@ -65,12 +66,6 @@ public partial class Tools_UI_InteractableAccessRequirement : Tools_UI_Requireme
         Player player = Player.localPlayer;
         if (!player) return;
 
-        // Check if the panel is active and the interact key is pressed  
-        if (panel.activeSelf && Input.GetKeyDown(interactKey))
-        {
-            interactable.ConfirmAccess(); // Call the interaction method  
-        }
-
         if (!UMMO_Tools.Tools_CheckSelectionHandling(interactable.gameObject))
         {
             Hide();
@@ -78,30 +73,30 @@ public partial class Tools_UI_InteractableAccessRequirement : Tools_UI_Requireme
     }
 
     // -----------------------------------------------------------------------------------
-    // UpdateTextbox
+    // updateTextbox
     // -----------------------------------------------------------------------------------
-    protected override void UpdateTextbox()
+    protected override void updateTextbox()
     {
         Player player = Player.localPlayer;
         if (!player) return;
 
-        base.UpdateTextbox();
+        base.updateTextbox();
 
         // ------------ Costs
 
         Tools_InteractionRequirements ir = (Tools_InteractionRequirements)requirements;
 
-        if (ir.requierementCost.goldCost > 0)
-            AddMessage(labelGoldCost + ir.requierementCost.goldCost.ToString(), player.gold >= ir.requierementCost.goldCost ? textColor : errorColor);
+        if (ir.goldCost > 0)
+            AddMessage(labelGoldCost + ir.goldCost.ToString(), player.gold >= ir.goldCost ? textColor : errorColor);
 
-        if (ir.requierementCost.coinCost > 0)
-            AddMessage(labelCoinCost + ir.requierementCost.coinCost.ToString(), player.itemMall.coins >= ir.requierementCost.coinCost ? textColor : errorColor);
+        if (ir.coinCost > 0)
+            AddMessage(labelCoinCost + ir.coinCost.ToString(), player.itemMall.coins >= ir.coinCost ? textColor : errorColor);
 
 #if _iMMOHONORSHOP
-		if (ir.requierementCost.honorCurrencyCost.Length > 0)
+		if (ir.honorCurrencyCost.Length > 0)
 		{
 			AddMessage(labelRequiredHonorCurrency, textColor);
-			foreach (HonorShopCurrencyCost currency in ir.requierementCost.honorCurrencyCost)
+			foreach (HonorShopCurrencyDrop currency in ir.honorCurrencyCost)
 			{
 				if (player.playerHonorShop.GetHonorCurrency(currency.honorCurrency) < currency.amount)
 				{

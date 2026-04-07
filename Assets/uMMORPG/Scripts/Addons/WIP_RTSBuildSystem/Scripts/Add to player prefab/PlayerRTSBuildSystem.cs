@@ -27,7 +27,7 @@ public class PlayerRTSBuildSystem : NetworkBehaviour
 	Vector3 structureScale;
 	Quaternion structureRotation;
 	WaitForSeconds wfs = new WaitForSeconds(1);
-	SyncList<PlaceableObject> placedClaimFlags = new SyncList<PlaceableObject>();
+	readonly SyncList<PlaceableObject> placedClaimFlags = new SyncList<PlaceableObject>();
 
 	private const string MSG_PLACEABLEOBJECT_UPGRADE = "Upgrading...";
 

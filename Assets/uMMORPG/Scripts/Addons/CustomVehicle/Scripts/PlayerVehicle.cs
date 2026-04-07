@@ -444,7 +444,7 @@ namespace BurnyDev.UMMORPG.AddonCustomVehicle
             return velocityToReturn;
         }
 
-        private void OnValidate()
+        protected override void OnValidate()
         {
             if (syncMode != SyncMode.Observers)
                 syncMode = SyncMode.Observers;

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18ac96f6edcf0604aa41c35bbb9f2b8f, type: 3}
+  m_Name: Paladin_Tier2
+  m_EditorClassIdentifier: 
+  nodeName: Paladin
+  description: 'Paladins fuse martial training with divine holy magic. They are
+    stalwart defenders blessed with healing and smiting power, standing as a
+    bulwark between the innocent and those who would do them harm.'
+  icon: {fileID: 0}
+  tier: 2
+  prerequisites:
+  - {fileID: 11400000, guid: b0001000000000000000000000000000, type: 2}
+  unlocksSkillCategory: Holy
+  weaponProficiencies:
+  - weaponCategory: Sword
+    damageMultiplierBonus: 0.08
+    flatDamageBonus: 2
+  grantedSkills: []
+  damageBonus: 5
+  defenseBonus: 8
+  healthBonus: 30
+  manaBonus: 10

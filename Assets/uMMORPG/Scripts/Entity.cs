@@ -266,16 +266,16 @@ public abstract partial class Entity : NetworkBehaviour
     //       cause inactive objects to not receive any info anymore
     // note: this won't be visible on the server as it always sees everything.
     [Server]
-    public void Hide() => netIdentity.visible = Visibility.ForceHidden;
+    public void Hide() => netIdentity.visibility = Visibility.ForceHidden;
 
     [Server]
-    public void Show() => netIdentity.visible = Visibility.Default;
+    public void Show() => netIdentity.visibility = Visibility.Default;
 
     // is the entity currently hidden?
     // note: usually the server is the only one who uses forceHidden, the
     //       client usually doesn't know about it and simply doesn't see the
     //       GameObject.
-    public bool IsHidden() => netIdentity.visible == Visibility.ForceHidden || invisible;
+    public bool IsHidden() => netIdentity.visibility == Visibility.ForceHidden || invisible;
 
     public float VisRange() => ((SpatialHashingInterestManagement)NetworkServer.aoi).visRange;
 

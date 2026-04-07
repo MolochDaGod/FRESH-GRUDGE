@@ -10,7 +10,7 @@ using System.Globalization;
 // ===================================================================================
 public partial class Tools_UI_Requirement : MonoBehaviour
 {
-    [Header("[-=-[ Required Assignments ]-=-]")]
+    [Header("[-=-=-[ Required Assignments ]-=-=-]")]
     public GameObject panel;
     public Button interactButton;
     public Button cancelButton;
@@ -18,12 +18,12 @@ public partial class Tools_UI_Requirement : MonoBehaviour
     public ScrollRect scrollRect;
     public GameObject textPrefab;
 
-    [Header("[-=-[ Configureable Colors ]-=-]")]
+    [Header("[-=-=-[ Configureable Colors ]-=-=-]")]
     public Color headingColor;
     public Color textColor;
     public Color errorColor;
 
-    [Header("[-=-[ Configureable Labels ]-=-]")]
+    [Header("[-=-=-[ Configureable Labels ]-=-=-]")]
     public string labelHeading = "Interaction requirements:";
     public string labelMinLevel = " - Required minimum Level: ";
     public string labelMaxLevel = " - Required maximum level: ";
@@ -93,9 +93,9 @@ public partial class Tools_UI_Requirement : MonoBehaviour
     }
 
     // -----------------------------------------------------------------------------------
-    // UpdateTextbox
+    // updateTextbox
     // -----------------------------------------------------------------------------------
-    protected virtual void UpdateTextbox()
+    protected virtual void updateTextbox()
     {
         Player player = Player.localPlayer;
         if (!player) return;
@@ -135,7 +135,7 @@ public partial class Tools_UI_Requirement : MonoBehaviour
         {
             AddMessage(labelAllowedClasses, textColor);
             string temp_classes = "";
-            foreach (Player classes in requirements.allowedClasses)
+            foreach (GameObject classes in requirements.allowedClasses)
                 temp_classes += " " + classes.name;
             AddMessage(temp_classes, player.Tools_checkHasClass(requirements.allowedClasses) ? textColor : errorColor);
         }
@@ -153,7 +153,7 @@ public partial class Tools_UI_Requirement : MonoBehaviour
             string temp_classes = "";
             foreach (PrestigeClassTemplate classes in requirements.allowedPrestigeClasses)
                 temp_classes += " " + classes.name;
-            AddMessage(temp_classes, player.playerAddonsConfigurator.CheckPrestigeClass(requirements.allowedPrestigeClasses) ? textColor : errorColor);
+            AddMessage(temp_classes, player.playerPrestigeClasses.CheckPrestigeClass(requirements.allowedPrestigeClasses) ? textColor : errorColor);
         }
 #endif
 
@@ -254,19 +254,19 @@ public partial class Tools_UI_Requirement : MonoBehaviour
 		if (requirements.worldEvent != null)
 		{
 			AddMessage(labelWorldEvent, textColor);
-			if (player.playerAddonsConfigurator.CheckWorldEvent(requirements.worldEvent, requirements.minEventCount, requirements.maxEventCount))
+			if (player.playerWorldEvents.CheckWorldEvent(requirements.worldEvent, requirements.minEventCount, requirements.maxEventCount))
 			{
 				if (requirements.maxEventCount == 0)
-					AddMessage(requirements.worldEvent.name + " (" + player.playerAddonsConfigurator.GetWorldEventCount(requirements.worldEvent) + "/" + requirements.minEventCount.ToString() + ")", textColor);
+					AddMessage(requirements.worldEvent.name + " (" + player.playerWorldEvents.GetWorldEventCount(requirements.worldEvent) + "/" + requirements.minEventCount.ToString() + ")", textColor);
 				else
-            		AddMessage(requirements.worldEvent.name + " (" + requirements.minEventCount.ToString() + "-" + requirements.maxEventCount.ToString() + ") [" + player.playerAddonsConfigurator.GetWorldEventCount(requirements.worldEvent) + "]", textColor);
+            		AddMessage(requirements.worldEvent.name + " (" + requirements.minEventCount.ToString() + "-" + requirements.maxEventCount.ToString() + ") [" + player.playerWorldEvents.GetWorldEventCount(requirements.worldEvent) + "]", textColor);
             }
             else
             {
             	if (requirements.maxEventCount == 0)
-					AddMessage(requirements.worldEvent.name + " (" + player.playerAddonsConfigurator.GetWorldEventCount(requirements.worldEvent) + "/" + requirements.minEventCount.ToString() + ")", errorColor);
+					AddMessage(requirements.worldEvent.name + " (" + player.playerWorldEvents.GetWorldEventCount(requirements.worldEvent) + "/" + requirements.minEventCount.ToString() + ")", errorColor);
 				else
-            		AddMessage(requirements.worldEvent.name + " (" + requirements.minEventCount.ToString() + "-" + requirements.maxEventCount.ToString() + ") [" + player.playerAddonsConfigurator.GetWorldEventCount(requirements.worldEvent) + "]", errorColor);
+            		AddMessage(requirements.worldEvent.name + " (" + requirements.minEventCount.ToString() + "-" + requirements.maxEventCount.ToString() + ") [" + player.playerWorldEvents.GetWorldEventCount(requirements.worldEvent) + "]", errorColor);
             }
 		}
 #endif
@@ -282,9 +282,9 @@ public partial class Tools_UI_Requirement : MonoBehaviour
 #endif
 
 #if _iMMOACCOUNTUNLOCKABLES
-		if (requirements.accountUnlockable != null && !string.IsNullOrWhiteSpace(requirements.accountUnlockable.name))
+		if (!string.IsNullOrWhiteSpace(requirements.accountUnlockable))
 		{
-			if (player.playerAddonsConfigurator.HasAccountUnlock(requirements.accountUnlockable.name))
+			if (player.playerAccountUnlockables.HasAccountUnlock(requirements.accountUnlockable))
 				AddMessage(labelAccountUnlockable + requirements.accountUnlockable, textColor);
 			else
 				AddMessage(labelAccountUnlockable + requirements.accountUnlockable, errorColor);

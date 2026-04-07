@@ -9,11 +9,8 @@ namespace Mirror
     public class NetworkTransform : NetworkTransformBase
     {
         // only sync when changed hack /////////////////////////////////////////
+        // onlySyncOnChange is inherited from NetworkTransformBase - do not re-declare here.
 #if onlySyncOnChange_BANDWIDTH_SAVING
-        [Header("Sync Only If Changed")]
-        [Tooltip("When true, changes are not sent unless greater than sensitivity values below.")]
-        public bool onlySyncOnChange = true;
-
         // 3 was original, but testing under really bad network conditions, 2%-5% packet loss and 250-1200ms ping, 5 proved to eliminate any twitching.
         [Tooltip("How much time, as a multiple of send interval, has passed before clearing buffers.")]
         public float bufferResetMultiplier = 5;

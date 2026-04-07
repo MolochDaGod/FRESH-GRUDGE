@@ -10,18 +10,18 @@ using System.Globalization;
 [System.Serializable]
 public partial class Tools_Requirements
 {
-    [Header("[-=-[ REQUIREMENTS (Checked before interaction allowed) ]-=-]")]
+    [Header("[-=-=-[ REQUIREMENTS (Checked before interaction allowed) ]-=-=-]")]
 
     [Tooltip("[Optional] One click deactivation (ignores all requirements)")]
     public bool isActive = true;
 
     [Header("[STATUS & LEVEL]")]
-    [Tooltip("[Optional] player must be alive (health > 0)?")]
+    [Tooltip("[Optional] Player must be alive (health > 0)?")]
     public bool aliveOnly = true;
 
     public enum StateType { Any, Idle, Casting, Moving, IdleOrCasting, IdleOrMoving, IdleOrCastingOrMoving, Dead }
 
-    [Tooltip("[Optional] player state limit?")]
+    [Tooltip("[Optional] Player state limit?")]
     public StateType stateType;
 
     [Tooltip("[Optional] Minimum player level to interact (0 to disable)")]
@@ -35,10 +35,7 @@ public partial class Tools_Requirements
 
     [Tooltip("[Optional] Mana has to be equal or higher (0 to disable, 0.5=50%, 1.0=100%)")]
     [Range(0, 1)] public float minMana;
-#if _iMMOSTAMINA
-    [Tooltip("[Optional] stamina has to be equal or higher (0 to disable, 0.5=50%, 1.0=100%)")]
-    [Range(0, 1)] public float minStamina;
-#endif
+
     [Header("[TIME]")]
     [Tooltip("[Optional] To access, must be this day or later in the month (0 to disable)"), Range(0, 31)]
     public int dayStart = 0;
@@ -66,8 +63,8 @@ public partial class Tools_Requirements
     public BuffSkill prohibitedBuff;
 
     [Header("[CLASSES, PARTY & GUILD]")]
-    [Tooltip("[Optional] Allowed Classes (player Prefab)")]
-    public Player[] allowedClasses;
+    [Tooltip("[Optional] Allowed Classes (Player Prefab)")]
+    public GameObject[] allowedClasses;
 
     [Tooltip("[Optional] Must be in a party (any) ?")]
     public bool requiresParty = false;
@@ -176,7 +173,7 @@ public partial class Tools_Requirements
 #if _iMMOACCOUNTUNLOCKABLES
 	[Header("[ACCOUNT UNLOCKABLES]")]
 	[Tooltip("[Optional] This must be unlocked on the account (empty to disable)")]
-	public Item_AccountUnlockable accountUnlockable;
+	public string accountUnlockable;
 #endif
 
 #if _iMMOPATREON
@@ -201,9 +198,7 @@ public partial class Tools_Requirements
         valid = (!aliveOnly || aliveOnly && player.isAlive) ? valid : false;
         valid = checkState(player) ? valid : false;
         valid = (minLevel == 0 || player.level.current >= minLevel) ? valid : false;
-        //Debug.Log(">>" + valid);
         valid = (maxLevel == 0 || player.level.current <= maxLevel) ? valid : false;
-        //Debug.Log("<"+ maxLevel + "><"+ player.level.current + ">" + valid);
         valid = (minHealth == 0 || player.health.Percent() >= minHealth) ? valid : false;
         valid = (minMana == 0 || player.mana.Percent() >= minMana) ? valid : false;
 
@@ -224,9 +219,7 @@ public partial class Tools_Requirements
         valid = (requiredEquipment.Length == 0 || player.Tools_checkHasEquipment(requiredEquipment)) ? valid : false;
         valid = (requiredItems.Length == 0 || player.Tools_checkHasItems(player, requiredItems)) ? valid : false;
 #if _iMMOPRESTIGECLASSES
-
-        if (player.playerAddonsConfigurator)
-            valid = player.playerAddonsConfigurator.CheckPrestigeClass(allowedPrestigeClasses) ? valid : false;
+        valid = player.playerPrestigeClasses.CheckPrestigeClass(allowedPrestigeClasses) ? valid : false;
 #endif
 #if _iMMOATTRIBUTES
         valid = checkAttributes(player) ? valid : false;
@@ -247,16 +240,13 @@ public partial class Tools_Requirements
         valid = (requiredQuest == null || player.quests.HasCompleted(requiredQuest.name)) ? valid : false;
 #endif
 #if _iMMOFACTIONS
-        if(player.playerFactions)
-            valid = player.playerFactions.CheckFactionRatings(factionRequirements, requiresAllFactionRatings) ? valid : false;
+        valid = player.playerFactions.CheckFactionRatings(factionRequirements, requiresAllFactionRatings) ? valid : false;
 #endif
 #if _iMMOHARVESTING
-        if(player.playerHarvesting)
-            valid = player.playerHarvesting.HasHarvestingProfessions(harvestProfessionRequirements, requiresAllHarvestingProfessions) ? valid : false;
+        valid = player.playerHarvesting.HasHarvestingProfessions(harvestProfessionRequirements, requiresAllHarvestingProfessions) ? valid : false;
 #endif
 #if _iMMOCRAFTING
-        if(player.playerCraftingExtended)
-            valid = player.playerCraftingExtended.HasCraftingProfessions(craftProfessionRequirements, requiresAllCraftingProfessions) ? valid : false;
+        valid = player.playerCraftingExtended.HasCraftingProfessions(craftProfessionRequirements, requiresAllCraftingProfessions) ? valid : false;
 #endif
 #if _iMMOMOUNTS
         valid = mountType == MountType.Both || (mountType == MountType.Unmounted && !player.playerExtentedMounts.isMounted) || (mountType == MountType.Mounted && !player.playerExtentedMounts.isMounted) ? valid : false;
@@ -267,8 +257,7 @@ public partial class Tools_Requirements
 #endif
 
 #if _iMMOWORLDEVENTS
-        if(player.playerAddonsConfigurator)
-    		valid = player.playerAddonsConfigurator.CheckWorldEvent(worldEvent, minEventCount, maxEventCount) ? valid : false;
+		valid = player.playerWorldEvents.CheckWorldEvent(worldEvent, minEventCount, maxEventCount) ? valid : false;
 #endif
 
 #if _iMMOGUILDUPGRADES
@@ -277,12 +266,12 @@ public partial class Tools_Requirements
 #endif
 
 #if _iMMOACCOUNTUNLOCKABLES
-		if (player.playerAddonsConfigurator && accountUnlockable != null && !string.IsNullOrWhiteSpace(accountUnlockable.name))
-			valid = player.playerAddonsConfigurator.HasAccountUnlock(accountUnlockable.name) ? valid : false;
+		if (!string.IsNullOrWhiteSpace(accountUnlockable))
+			valid = player.playerAccountUnlockables.HasAccountUnlock(accountUnlockable) ? valid : false;
 #endif
 
 #if _iMMOPATREON
-        if (player.playerPatreonManager && activeMinPatreon > 0)
+        if (activeMinPatreon > 0)
             valid = player.playerPatreonManager.HasActivePatreonSubscription(activeMinPatreon) ? valid : false;
 #endif
 

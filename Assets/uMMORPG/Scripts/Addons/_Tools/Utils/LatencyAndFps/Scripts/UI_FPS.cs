@@ -37,7 +37,7 @@ public class UI_FPS : MonoBehaviour
         Player player = Player.localPlayer;
 #if _iMMOSETTINGS
         //TODO faire les vérification des playerpref dans un update est une mauvaise idée, cela créer du GC
-        if (player && !PlayerPrefs.HasKey("ShowFps") || (PlayerPrefs.GetInt("ShowFps") == 1))
+        if (player)// && !PlayerPrefs.HasKey("ShowFps") || (PlayerPrefs.GetInt("ShowFps") == 1))
 #else
         if (player)
 #endif

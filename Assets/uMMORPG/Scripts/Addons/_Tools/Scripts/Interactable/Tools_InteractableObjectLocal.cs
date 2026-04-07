@@ -31,11 +31,11 @@ public partial class Tools_InteractableObjectLocal : Tools_Interactable
     public AudioSource audioSource;
 
     [Header("Events")]
-    public UnityEventEntity onSelect; // called when clicking it the first TimeLogout
-
+    public UnityEventEntity onSelect; // called when clicking it the first time
     // -----------------------------------------------------------------------------------
     // Start
     // -----------------------------------------------------------------------------------
+
     void OnMouseDown()
     {
         // joined world yet? (not character selection?)
@@ -48,11 +48,11 @@ public partial class Tools_InteractableObjectLocal : Tools_Interactable
             Player.localPlayer.useSkillWhenCloser = -1;
 
             // set indicator in any case
-            // (not just the first TimeLogout, because we might have clicked on the
-            //  ground in the mean TimeLogout. always set it when selecting.)
+            // (not just the first time, because we might have clicked on the
+            //  ground in the mean time. always set it when selecting.)
             Player.localPlayer.indicator.SetViaParent(transform);
 
-            // clicked for the first TimeLogout: SELECT
+            // clicked for the first time: SELECT
             if (Player.localPlayer.target != this)
             {
                 // target it
@@ -65,7 +65,7 @@ public partial class Tools_InteractableObjectLocal : Tools_Interactable
         }
     }
 
-    protected virtual void OnSelect(Player player) {
+    public virtual void OnSelect(Player player) {
 #if _DEBUGMODE
         Debug.Log("On rentre dans l'event!");
 #endif
@@ -94,13 +94,16 @@ public partial class Tools_InteractableObjectLocal : Tools_Interactable
         // -- check for click
         if (UMMO_Tools.Tools_SelectionHandling(this.gameObject))
         {
-            if (checkInteractionRange(player) && ((!interactionRequirements.hasRequirements() && !interactionRequirements.requierementCost.HasCosts()) || automaticActivation))
+            Debug.Log("ok1");
+            if (checkInteractionRange(player) && ((!interactionRequirements.hasRequirements() && !interactionRequirements.hasCosts()) || automaticActivation))
             {
+                Debug.Log("ok 2");
                 // -- when no requirements & no costs: automatically
                 ConfirmAccess();
             }
             else if (checkInteractionRange(player) && interactionRequirements.checkState(player))
             {
+                Debug.Log("ok 3");
                 // -- in any other case: show confirmation UI
                 ShowAccessRequirementsUI();
             }
@@ -236,7 +239,9 @@ public partial class Tools_InteractableObjectLocal : Tools_Interactable
     // -----------------------------------------------------------------------------------
     public override bool IsWorthUpdating()
     {
-        return netIdentity.observers == null || netIdentity.observers.Count > 0 || IsHidden();
+        return netIdentity.observers == null ||
+               netIdentity.observers.Count > 0 ||
+               IsHidden();
     }
 
     // -----------------------------------------------------------------------------------

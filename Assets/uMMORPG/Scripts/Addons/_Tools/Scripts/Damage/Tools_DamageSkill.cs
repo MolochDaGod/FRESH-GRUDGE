@@ -6,7 +6,7 @@ using UnityEngine;
 // DAMAGE SKILL
 public abstract partial class Tools_DamageSkill : ScriptableSkill
 {
-    [Header("[-=-[ DAMAGE SKILL ]-=-]")]
+    [Header("[-=-=-[ DAMAGE SKILL ]-=-=-]")]
     [Tooltip("[Required] Base damage of the attack.")]
     public LinearInt damage = new LinearInt { baseValue = 1 };
 
@@ -25,7 +25,7 @@ public abstract partial class Tools_DamageSkill : ScriptableSkill
     [Tooltip("[Optional] Maximum duration of the stun (in seconds).")]
     public LinearFloat maxStunTime;
 
-#if _iMMOCOMPLETESKILLS
+#if _iMMOPROJECTILES
 
     [Header("[Projectile - required for Projectile Skill / Optional for Melee Skill]")]
     [Tooltip("[Optional] The main projectile that will be spawned.")]
@@ -213,7 +213,7 @@ public abstract partial class Tools_DamageSkill : ScriptableSkill
             NetworkServer.Spawn(go);
         }
 
-#if _iMMOCOMPLETESKILLS
+#if _iMMOPROJECTILES
         // ------ spawn one or more projectiles if any
         if (projectile != null)
             SpawnProjectile();
@@ -235,7 +235,7 @@ public abstract partial class Tools_DamageSkill : ScriptableSkill
     // -----------------------------------------------------------------------------------
     // SpawnProjectile
     // -----------------------------------------------------------------------------------
-#if _iMMOCOMPLETESKILLS
+#if _iMMOPROJECTILES
 
     protected void SpawnProjectile()
     {
@@ -364,9 +364,6 @@ public abstract partial class Tools_DamageSkill : ScriptableSkill
     // -----------------------------------------------------------------------------------
     public void ConsumeAmmunition(Entity caster)
     {
-        if (caster is Pet) return;
-        if (caster is Monster) return;
-        if (caster is Mount) return;
         Player player = (Player)caster;
         if (requiredAmmo.Length <= 0 || ammoAmount <= 0) return;
 
@@ -399,7 +396,8 @@ public abstract partial class Tools_DamageSkill : ScriptableSkill
     // -----------------------------------------------------------------------------------
     private int GetEquipmentWeaponIndex(Entity caster)
     {
-        return caster.equipment.slots.FindIndex(slot => slot.amount > 0 && slot.item.data is WeaponItem);
+        return caster.equipment.slots.FindIndex(slot => slot.amount > 0 &&
+                                          slot.item.data is WeaponItem);
     }
 
     // -----------------------------------------------------------------------------------
@@ -407,24 +405,19 @@ public abstract partial class Tools_DamageSkill : ScriptableSkill
     // -----------------------------------------------------------------------------------
     private bool HasRequiredWeaponAndAmmo(Entity caster)
     {
-        if (caster is Pet) return true;
-        if (caster is Monster) return true;
-        if (caster is Mount) return true;
         int weaponIndex = caster.equipment.GetEquippedWeaponIndex();
         if (weaponIndex != -1)
         {
             // no ammo required, or has that ammo equipped?
             WeaponItem itemData = (WeaponItem)caster.equipment.slots[weaponIndex].item.data;
-            return itemData.requiredAmmo == null || caster.equipment.GetItemIndexByName(itemData.requiredAmmo.name) != -1;
+            return itemData.requiredAmmo == null ||
+                   caster.equipment.GetItemIndexByName(itemData.requiredAmmo.name) != -1;
         }
         return false;
     }
 
     private void ConsumeRequiredWeaponsAmmo(Entity caster)
     {
-        if (caster is Pet) return;
-        if (caster is Monster) return;
-        if (caster is Mount) return;
         int weaponIndex = caster.equipment.GetEquippedWeaponIndex();
         if (weaponIndex != -1)
         {

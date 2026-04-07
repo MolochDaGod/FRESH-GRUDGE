@@ -11,8 +11,9 @@ using Mirror;
 ///
 /// Implements IHealthBonus / IManaBonus so HP/MP bonuses work the same way.
 /// </summary>
+[DefaultExecutionOrder(-280)]
 [DisallowMultipleComponent]
-public partial class PlayerClassTree : NetworkBehaviour, ICombatBonus, IHealthBonus, IManaBonus
+public partial class PlayerClassTree : NetworkBehaviour
 {
     // ── Inspector References ──────────────────────────────────────────────
     [Header("Components (assign in Inspector)")]

@@ -42,7 +42,7 @@ public class ObjectFogController : MonoBehaviour
     public float fogWaveFreqX;
     public float fogWaveFreqZ;
 
-    [HideInInspector] public MeshRenderer          renderer;
+    [HideInInspector] public new MeshRenderer      renderer;
     [HideInInspector] public MaterialPropertyBlock mpb;
 
     [Space()] [HideInInspector] public bool overridedFromGlobalController = false;

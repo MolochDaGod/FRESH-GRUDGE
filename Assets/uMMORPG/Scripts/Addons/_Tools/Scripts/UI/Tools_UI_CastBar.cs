@@ -1,6 +1,5 @@
 using Mirror;
 using System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,8 +10,8 @@ public partial class Tools_UI_CastBar : MonoBehaviour
 {
     public GameObject panel;
     public Slider slider;
-    public TMP_Text nameText;
-    public TMP_Text progressText;
+    public Text nameText;
+    public Text progressText;
 
     private double duration;
     private double durationRemaining;

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18ac96f6edcf0604aa41c35bbb9f2b8f, type: 3}
+  m_Name: Nightblade_Tier3
+  m_EditorClassIdentifier: 
+  nodeName: Nightblade
+  description: 'Nightblades transcend stealth — they become part of the darkness
+    itself. Their blade techniques are so honed that a single pass is all that is
+    needed. They are the last thing their targets ever perceive.'
+  icon: {fileID: 0}
+  tier: 3
+  prerequisites:
+  - {fileID: 11400000, guid: c0004000000000000000000000000000, type: 2}
+  unlocksSkillCategory: Dagger
+  weaponProficiencies:
+  - weaponCategory: Dagger
+    damageMultiplierBonus: 0.18
+    flatDamageBonus: 6
+  grantedSkills: []
+  damageBonus: 13
+  defenseBonus: 5
+  healthBonus: 10
+  manaBonus: 0

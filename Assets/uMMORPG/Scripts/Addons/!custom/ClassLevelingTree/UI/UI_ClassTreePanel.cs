@@ -17,6 +17,7 @@ using UnityEngine.UI;
 ///  - weaponProficiencyPanel / Content / prefab : summary of acquired proficiencies
 ///  - hotKey         : default KeyCode.T
 /// </summary>
+[DefaultExecutionOrder(120)]
 public class UI_ClassTreePanel : MonoBehaviour
 {
     [Header("Core")]

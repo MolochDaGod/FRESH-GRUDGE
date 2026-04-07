@@ -1,9 +1,5 @@
-﻿using UnityEngine;
-
-/*
-	Documentation: https://mirror-networking.gitbook.io/docs/components/network-manager
-	API Reference: https://mirror-networking.com/docs/api/Mirror.NetworkManager.html
-*/
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Mirror.Examples.MultipleMatch
 {
@@ -14,8 +10,6 @@ namespace Mirror.Examples.MultipleMatch
         public GameObject canvas;
         public CanvasController canvasController;
 
-        #region Unity Callbacks
-
         /// <summary>
         /// Runs on both Server and Client
         /// Networking is NOT initialized when this fires
@@ -25,8 +19,6 @@ namespace Mirror.Examples.MultipleMatch
             base.Awake();
             canvasController.InitializeData();
         }
-
-        #endregion
 
         #region Server System Callbacks
 
@@ -48,23 +40,18 @@ namespace Mirror.Examples.MultipleMatch
         /// <param name="conn">Connection from client.</param>
         public override void OnServerDisconnect(NetworkConnectionToClient conn)
         {
-            canvasController.OnServerDisconnect(conn);
+            StartCoroutine(DoServerDisconnect(conn));
+        }
+
+        IEnumerator DoServerDisconnect(NetworkConnectionToClient conn)
+        {
+            yield return canvasController.OnServerDisconnect(conn);
             base.OnServerDisconnect(conn);
         }
 
         #endregion
 
         #region Client System Callbacks
-
-        /// <summary>
-        /// Called on the client when connected to a server.
-        /// <para>The default implementation of this function sets the client as ready and adds a player. Override the function to dictate what happens when the client connects.</para>
-        /// </summary>
-        public override void OnClientConnect()
-        {
-            base.OnClientConnect();
-            canvasController.OnClientConnect();
-        }
 
         /// <summary>
         /// Called on clients when disconnected from a server.

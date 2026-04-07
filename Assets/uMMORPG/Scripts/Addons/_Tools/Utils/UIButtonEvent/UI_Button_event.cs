@@ -27,7 +27,7 @@ public class UI_Button_event : MonoBehaviour
             Player player = Player.localPlayer;
             if (player != null)
             {
-                //button.gameObject.SetActive(player.isGameMaster);
+                button.gameObject.SetActive(player.isGameMaster);
             }
         }
     }

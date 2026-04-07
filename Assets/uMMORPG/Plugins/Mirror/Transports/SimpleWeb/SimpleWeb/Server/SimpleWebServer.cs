@@ -2,31 +2,29 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace JamesFrowen.SimpleWeb
+namespace Mirror.SimpleWeb
 {
     public class SimpleWebServer
     {
-        readonly int maxMessagesPerTick;
+        public event Action<int, string> onConnect;
+        public event Action<int> onDisconnect;
+        public event Action<int, ArraySegment<byte>> onData;
+        public event Action<int, Exception> onError;
 
+        readonly int maxMessagesPerTick;
         readonly WebSocketServer server;
         readonly BufferPool bufferPool;
 
-        public SimpleWebServer(int maxMessagesPerTick, TcpConfig tcpConfig, int maxMessageSize, int handshakeMaxSize, SslConfig sslConfig, string realIpHeader = null)
+        public bool Active { get; private set; }
+
+        public SimpleWebServer(int maxMessagesPerTick, TcpConfig tcpConfig, int maxMessageSize, int handshakeMaxSize, SslConfig sslConfig)
         {
             this.maxMessagesPerTick = maxMessagesPerTick;
             // use max because bufferpool is used for both messages and handshake
             int max = Math.Max(maxMessageSize, handshakeMaxSize);
             bufferPool = new BufferPool(5, 20, max);
-
-            server = new WebSocketServer(tcpConfig, maxMessageSize, handshakeMaxSize, sslConfig, bufferPool, realIpHeader);
+            server = new WebSocketServer(tcpConfig, maxMessageSize, handshakeMaxSize, sslConfig, bufferPool);
         }
-
-        public bool Active { get; private set; }
-
-        public event Action<int> onConnect;
-        public event Action<int> onDisconnect;
-        public event Action<int, ArraySegment<byte>> onData;
-        public event Action<int, Exception> onError;
 
         public void Start(ushort port)
         {
@@ -48,28 +46,21 @@ namespace JamesFrowen.SimpleWeb
 
             // make copy of array before for each, data sent to each client is the same
             foreach (int id in connectionIds)
-            {
                 server.Send(id, buffer);
-            }
         }
 
         public void SendOne(int connectionId, ArraySegment<byte> source)
         {
             ArrayBuffer buffer = bufferPool.Take(source.Count);
             buffer.CopyFrom(source);
-
             server.Send(connectionId, buffer);
         }
 
-        public bool KickClient(int connectionId)
-        {
-            return server.CloseConnection(connectionId);
-        }
+        public bool KickClient(int connectionId) => server.CloseConnection(connectionId);
 
-        public string GetClientAddress(int connectionId)
-        {
-            return server.GetClientAddress(connectionId);
-        }
+        public string GetClientAddress(int connectionId) => server.GetClientAddress(connectionId);
+
+        public Request GetClientRequest(int connectionId) => server.GetClientRequest(connectionId);
 
         /// <summary>
         /// Processes all new messages
@@ -100,7 +91,7 @@ namespace JamesFrowen.SimpleWeb
                 switch (next.type)
                 {
                     case EventType.Connected:
-                        onConnect?.Invoke(next.connId);
+                        onConnect?.Invoke(next.connId, GetClientAddress(next.connId));
                         break;
                     case EventType.Data:
                         onData?.Invoke(next.connId, next.data.ToSegment());
@@ -113,6 +104,11 @@ namespace JamesFrowen.SimpleWeb
                         onError?.Invoke(next.connId, next.exception);
                         break;
                 }
+            }
+
+            if (server.receiveQueue.Count > 0)
+            {
+                Log.Warn("[SWT-SimpleWebServer]: ProcessMessageQueue has {0} remaining.", server.receiveQueue.Count);
             }
         }
     }

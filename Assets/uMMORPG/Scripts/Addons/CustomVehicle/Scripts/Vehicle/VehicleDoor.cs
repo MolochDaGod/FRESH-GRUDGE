@@ -48,7 +48,7 @@ namespace BurnyDev.UMMORPG.AddonCustomVehicle
         }
 
         // validation //////////////////////////////////////////////////////////////
-        void OnValidate()
+        protected override void OnValidate()
         {
             // door colliders move with the animation.
             // door meshes are hidding in host and server-only mode.

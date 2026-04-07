@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18ac96f6edcf0604aa41c35bbb9f2b8f, type: 3}
+  m_Name: Ranger_Tier0
+  m_EditorClassIdentifier: 
+  nodeName: Ranger
+  description: 'The path of ranged combat and battlefield awareness. Rangers are
+    swift hunters who combine precision archery with survivalist instincts. Choosing
+    this path unlocks Bow skills.'
+  icon: {fileID: 0}
+  tier: 0
+  prerequisites: []
+  unlocksSkillCategory: Bow
+  weaponProficiencies:
+  - weaponCategory: Bow
+    damageMultiplierBonus: 0.1
+    flatDamageBonus: 2
+  grantedSkills: []
+  damageBonus: 4
+  defenseBonus: 1
+  healthBonus: 15
+  manaBonus: 5

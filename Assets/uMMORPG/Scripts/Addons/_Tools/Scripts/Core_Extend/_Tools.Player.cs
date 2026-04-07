@@ -8,6 +8,10 @@ using UnityEngine;
 
 public partial class Player
 {
+#if _iMMOUMACHARACTERS
+    [Header("[Component : Player UMA Character]")]
+    public PlayerUMACharacter playerUMACharacter;
+#endif
 
     protected double Tools_timer;
     [HideInInspector] public bool Tools_timerRunning;
@@ -22,7 +26,7 @@ public partial class Player
 
     /* void OnHealthChanged(SyncList<Titles>.Operation op, int index, Titles oldData, Titles newData)
      {
-         Debug.Log("EarnedTitles Changed update required");
+         Debug.Log("earnedTitles Changed update required");
          //titleUpdate.TriggerEvent();
          //onTitleLearnedChanged.Invoke();
      }*/
@@ -72,7 +76,6 @@ public partial class Player
                     else
                         bValidTarget = true;
                 }
-                // Npc Test
                 else if (affectNpcs && candidate is Npc)
                 {
                     if (affectOwnRealm && reverseTargets)
@@ -122,7 +125,7 @@ public partial class Player
         bool bValidTarget = false;
         if (candidate != null)
         {
-            // player Test
+            // Player Test
             if (candidate is Player)
                 bValidTarget = Tools_SameCheck((Player)candidate, affectSelf, affectPlayers, affectOwnParty, affectOwnGuild, affectOwnRealm, reverseTargets);
 
@@ -210,20 +213,16 @@ public partial class Player
     [Command]
     public void Cmd_Tools_OnInteractServer(GameObject go)
     {
-#if _SERVER
-        if (!go.TryGetComponent<Tools_Interactable>(out var interactable))
-            return;
+        if (go == null || go.GetComponent<Tools_Interactable>() == null) return;
 
-        interactable.interactionRequirements.requierementCost.PayCost(this);
-        interactable.interactionRequirements.GrantRewards(this);
+        go.GetComponent<Tools_Interactable>().interactionRequirements.payCosts(this);
+        go.GetComponent<Tools_Interactable>().interactionRequirements.grantRewards(this);
 
-        if (go.TryGetComponent<Tools_InteractableObject>(out var interactableObject))
-            interactableObject.OnUnlock();
+        if (go.GetComponent<Tools_InteractableObject>() != null)
+            go.GetComponent<Tools_InteractableObject>().OnUnlock();
 
-        interactable.OnInteractServer(this);
-#endif
+        go.GetComponent<Tools_Interactable>().OnInteractServer(this);
     }
-
 
     // ============================ SELECTION HANDLING ===================================
     // Replaces the selection handling check of the core asset with custom functions
@@ -241,8 +240,8 @@ public partial class Player
         valid = entity is Npc && entity.isAlive;
 
 #if _iMMONPCRESTRICTIONS
-        if (entity is Npc npc)
-            valid = npc.npcRestrictions.ValidateNpcRestrictions(this) && valid;
+        if (entity is Npc)
+            valid = ((Npc)entity).npcRestrictions.ValidateNpcRestrictions(this) ? valid : false;
 #endif
 
         return valid;
@@ -259,8 +258,8 @@ public partial class Player
         valid = entity is Monster && !entity.isAlive;
 
 #if _iMMOLOOTRULES
-        if (entity is Monster monster && monster.monsterLootRules)
-            valid = monster.monsterLootRules.ValidateTaggedLooting(this) && valid;
+        if (entity is Monster)
+            valid = ((Monster)entity).monsterLootRules.ValidateTaggedLooting(this) ? valid : false;
 #endif
 
         return valid;
@@ -610,13 +609,11 @@ public partial class Player
     // Checks if the player prefab is of one of the provided array of classes.
     // @Client or @Server
     // -----------------------------------------------------------------------------------
-    public bool Tools_checkHasClass(Player[] classes)
+    public bool Tools_checkHasClass(GameObject[] classes)
     {
         if (classes == null || classes.Length == 0) return true;
-        foreach (Player _class in classes)
-        {
-            if (className == _class.name) return true;
-        }
+        foreach (GameObject _class in classes)
+            if (this.classIcon == _class.GetComponent<Player>().classIcon) return true;
         return false;
     }
 
@@ -631,7 +628,7 @@ public partial class Player
     public bool Tools_checkHasPrestigeClass(PrestigeClassTemplate[] prestigeClasses)
     {
         if (prestigeClasses == null || prestigeClasses.Length == 0) return true;
-        return (prestigeClasses.Any(x => x == playerAddonsConfigurator.prestigeClass)) ? true : false;
+        return (prestigeClasses.Any(x => x == playerPrestigeClasses.prestigeClass)) ? true : false;
     }
 
 #endif
@@ -697,22 +694,6 @@ public partial class Player
         foreach (Tools_ItemRequirement item in items)
         {
             player.inventory.Remove(new Item(item.item), item.amount);
-            if (!removeAll) return;
-        }
-    }
-    // -----------------------------------------------------------------------------------
-    // Tools_AddItems
-    // Removes items from the inventory without checking. Removes either the first item
-    // provided as a array or all items in that array of items.
-    // @Server
-    // -----------------------------------------------------------------------------------
-    public void Tools_AddItems(Player player, Tools_ItemRequirement[] items, bool removeAll = false)
-    {
-        if (items.Length == 0) return;
-
-        foreach (Tools_ItemRequirement item in items)
-        {
-            player.inventory.Add(new Item(item.item), item.amount);
             if (!removeAll) return;
         }
     }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public partial class PlayerNavMeshMovement2D
 {
-    [Header("[-=-[ Disable Moving ]-=-]")]
+    [Header("[-=-=-[ Disable Moving ]-=-=-]")]
     public bool disableClickMove;
     public bool disableWASDMove;
 #if _iMMOMOBILECONTROLS
